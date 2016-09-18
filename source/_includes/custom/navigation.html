@@ -12,12 +12,48 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li {% if page.navbar == 'Blog' %}class="active"{% endif %}>
-                    <a rel="index" href="{{ root_url }}/">Blog</a>
+                <a rel="index" href="{{ root_url }}/">Blog</a>
                 </li>
                 <li {% if page.navbar == 'Archives' %}class="active"{% endif %}>
-                    <a href="{{ root_url }}/blog/archives">Archives</a>
+                <a href="{{ root_url }}/blog/archives">Archives</a>
                 </li>
+                <!--dropdown nav-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="{{ root_url }}/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="{{ root_url }}/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li {% if page.navbar == 'release' %}class="active"{% endif %}>
+                <a  href="{{ root_url }}/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
             </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li {% if page.navbar == 'Blog' %}class="active"{% endif %}>-->
+                    <!--<a rel="index" href="{{ root_url }}/">Blog</a>-->
+                <!--</li>-->
+                <!--<li {% if page.navbar == 'Archives' %}class="active"{% endif %}>-->
+                    <!--<a href="{{ root_url }}/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a class="subscribe-rss" href="{{ site.subscribe_rss }}" title="subscribe via RSS">
