@@ -1,0 +1,13 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+
+#markdown-toc:before {
+  content: "index目錄";
+  font-weight: bold;
+}
+
+
+.blog-index #markdown-toc {
+  display: none;
+}
