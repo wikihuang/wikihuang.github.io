@@ -11,3 +11,30 @@
 .blog-index #markdown-toc {
   display: none;
 }
+
+div#intro{
+  overflow:hidden;
+  img{
+    float: left;
+    width:340px;
+    height:250px;
+  }
+}
+.entry-content p{
+  font-size: 16px;
+}
+
+article.hentry > .box {
+  background: #F4F5F7 url(../images/blockquote.gif) no-repeat 3px 3px;
+  padding: 8px 12px 8px 36px;
+  margin: 5px 0;
+  //font-size: 12px;
+  clear: both;
+  overflow: auto;
+  line-height: 1.8em;
+  overflow: hidden;
+}
+//hide blog archive area''s author link
+#main > #content > div.blog-index > article > div.box {
+  display: none;
+}
