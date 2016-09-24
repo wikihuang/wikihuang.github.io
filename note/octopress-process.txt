@@ -1,0 +1,9 @@
+//*set to remote
+rake setup_github_pages
+	https://github.com/luckymage/luckymage.github.io.git
+	git@github.com:luckymage/luckymage.github.io.git
+rake generate
+rake deploy
+//*ssh
+ssh-keygen -t rsa -C "ak47799@gmail.com"
+ssh-add id_rsa
