@@ -8,6 +8,7 @@ function init() {
     scrollToP();
     createH3ByImg();
     toggleSingleImg();
+    demoImgSameRate(400,400);
     //imgPrefix();
     //insertRef();
 }
@@ -141,3 +142,35 @@ function imgPrefix() {
         });
     })
 }
+function demoImgSameRate(scale_w,scale_h){
+
+    $("#intro>img").each(function(i){
+
+        //移除目前設定的影像長寬
+        $(this).removeAttr('width');
+        $(this).removeAttr('height');
+
+        //取得影像實際的長寬
+        var imgW = $(this).width();
+        var imgH = $(this).height();
+
+        //計算縮放比例
+        var w=scale_w/imgW;
+        var h=scale_h/imgH;
+        var pre=1;
+        if(w>h){
+            pre=h;
+        }else{
+            pre=w;
+        }
+
+        //設定目前的縮放比例
+        $(this).width(imgW*pre);
+        $(this).height(imgH*pre);
+
+    });
+
+
+}
+
+
