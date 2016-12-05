@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Psd-to-html | wikihuang進行式]]></title>
+  <link href="http://wikihuang.github.io/blog/categories/psd-to-html/atom.xml" rel="self"/>
+  <link href="http://wikihuang.github.io/"/>
+  <updated>2016-12-05T10:44:33+08:00</updated>
+  <id>http://wikihuang.github.io/</id>
+  <author>
+    <name><![CDATA[wikihuang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[07_表單樣式]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/07_style-the-form-elements/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/07_style-the-form-elements</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/00_demo.jpg" class="demo_img" alt="完成form區塊的輸入欄位、接鈕的樣式設定，及#mainhoo、Sidebar的外距修正。" />
+    <p>完成form區塊的輸入欄位、接鈕的樣式設定，及#mainhoo、Sidebar的外距修正。</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#form-elementscss" id="markdown-toc-form-elementscss">開始FORM ELEMENTS區塊的CSS修改</a></li>
+  <li><a href="#buttoninputtextarea" id="markdown-toc-buttoninputtextarea">button、input、textarea的樣式設定(圓角、文字樣式)</a></li>
+  <li><a href="#buttonpngjpg" id="markdown-toc-buttonpngjpg">button的背景圖片(png、jpg的差異)</a></li>
+  <li><a href="#buttoninputtextareahover" id="markdown-toc-buttoninputtextareahover">button、input、textarea的樣式設定(寬度、陰影、hover特效、大寫字)</a></li>
+  <li><a href="#mainfooter-wrap" id="markdown-toc-mainfooter-wrap">#main和#footer-wrap之間設內距</a></li>
+  <li><a href="#ltfootergt" id="markdown-toc-ltfootergt">確保&lt;footer&gt;背景能正確顯示</a></li>
+  <li><a href="#ltinputgtltbuttongtmargin" id="markdown-toc-ltinputgtltbuttongtmargin">&lt;input&gt;和&lt;button&gt;設外距(margin)，以對齊</a></li>
+  <li><a href="#ltinputgtltbuttongthover" id="markdown-toc-ltinputgtltbuttongthover">&lt;input&gt;和&lt;button&gt;滑鼠hover時的背景</a></li>
+  <li><a href="#sidebarltimggtltpgtmargin" id="markdown-toc-sidebarltimggtltpgtmargin">Sidebar區塊，&lt;img&gt;和&lt;p&gt;之間的外距(margin)</a></li>
+  <li><a href="#css" id="markdown-toc-css">完成了css的設定</a></li>
+</ul>
+<hr />
+
+<h2 id="form-elementscss">開始FORM ELEMENTS區塊的CSS修改</h2>
+
+<p>之前的課程已經完成了大部份的區塊，接下來， 開始細修小部份的區塊，我們先來修改表格物件的部份。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.00.59.27.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.00.59.27.jpg" /></p>
+
+<p>本課程一樣會使用web developer來進行css的編輯，因此需先將所有的../img改為img，再複製到web developer之內</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.01.27.73.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.01.27.73.jpg" /></p>
+
+<h2 id="buttoninputtextarea">button、input、textarea的樣式設定(圓角、文字樣式)</h2>
+
+<p>先設定按鈕和文字輸入欄位的邊框為圓角</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.02.01.53.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.02.01.53.jpg" /></p>
+
+<p>圓角化後，文字統一為置左對齊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.02.37.73.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.02.37.73.jpg" /></p>
+
+<p>按鈕和輸入欄位都是需要使用者去點選，因此設定滑鼠移過時鼠標呈現為手型</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.02.49.20.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.02.49.20.jpg" /></p>
+
+<p>按鈕不需要外框線，因此設為border:none</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.03.11.53.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.03.11.53.jpg" /></p>
+
+<p>並設定所有按鈕的顏色為白色、字為粗體、字大小為16px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.03.35.80.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.03.35.80.jpg" /></p>
+
+<h2 id="buttonpngjpg">button的背景圖片(png、jpg的差異)</h2>
+
+<p>接下來， 設定按鈕的背景，讓我們把背景分為2個部份來觀察，分別為背景顏色(red)、背景材質(img/buttonBg.png透明的顏色因此能搭配不同的背景顏色)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.09.33.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.09.33.jpg" /></p>
+
+<p>返回photoshop，量測真正的按鈕背景顏色(f6bc60)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.22.40.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.22.40.jpg" /></p>
+
+<p>運行結果， 運用材質背景png的版本就完成了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.28.00.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.28.00.jpg" /></p>
+
+<p>但是有的舊瀏灠器不支援png檔時，就得用jpg了，此時你仔細觀察按鈕背景，會發現上端的顏色有點不一樣。先暫時不管jpg的背景問題，之後的課程在解決。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.47.00.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.04.47.00.jpg" /></p>
+
+<p>接下來， 設定按鈕文字的陰影</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.05.08.20.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.05.08.20.jpg" /></p>
+
+<p>希望讓按鈕的字能和邊線保持一點距離，因此設定內距，但卻造成jpg的背景問題更明顯了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.05.29.87.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.05.29.87.jpg" /></p>
+
+<p>返回photoshop， 量測比較接近jpg顏色的背景顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.06.06.00.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.06.06.00.jpg" /></p>
+
+<p>是有比較接近，但還是一樣看得出背景有問題。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.06.11.13.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.06.11.13.jpg" /></p>
+
+<p>因此，我們還是改回用png透明材質的方法。至於如何修正jpg背景圖的方法，之後的課程再介紹。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.06.20.47.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.06.20.47.jpg" /></p>
+
+<h2 id="buttoninputtextareahover">button、input、textarea的樣式設定(寬度、陰影、hover特效、大寫字)</h2>
+
+<p>量測文字輸入欄位的背景顏色(#f8eedf)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.11.07.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.11.07.jpg" /></p>
+
+<p>設置輸入欄位的背景和邊線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.27.73.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.27.73.jpg" /></p>
+
+<p>讓字和框線保持一點距離，設定內距padding</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.38.80.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.38.80.jpg" /></p>
+
+<p>設定文字顏色為綠色(#247184)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.46.40.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.07.46.40.jpg" /></p>
+
+<p>讓輸入欄位之間保持一點距離，設定下外距margin-bottom</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.01.73.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.01.73.jpg" /></p>
+
+<p>返回photoshop， 量測文字輸入欄位的寬度(269px)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.14.67.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.14.67.jpg" /></p>
+
+<p>因此，設定文字輸入欄的寬度為270px(269px和270差不多)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.28.67.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.28.67.jpg" /></p>
+
+<p>#timeScale也是文字輸入欄位，因此寬度同樣設為270px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.49.93.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.08.49.93.jpg" /></p>
+
+<p>寬度設完了，換設高度為130px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.09.08.40.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.09.08.40.jpg" /></p>
+
+<p>接下來， 我們希望輸入欄位和按鈕在和使用者互動時，能產生些微的陰影效果，設置box-shadow</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.10.12.80.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.10.12.80.jpg" /></p>
+
+<p>設置按鈕當滑鼠滑過時，背景顏色能改變</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.11.06.00.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.11.06.00.jpg" /></p>
+
+<p>再加上png檔透明的材質背景，按鈕滑過的效果就完成了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.11.19.07.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.11.19.07.jpg" /></p>
+
+<p>設定按鈕和文字輸入欄位的字，統一為大寫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.11.55.93.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.11.55.93.jpg" /></p>
+
+<h2 id="mainfooter-wrap">#main和#footer-wrap之間設內距</h2>
+
+<p>目前的#main和#footer-wrap間的距離太近了點，想要設一點間距。但設定margin-bottom卻造成背景問題</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.13.12.47.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.13.12.47.jpg" /></p>
+
+<p>改為設定下內距padding-bottom背景就不會有問題了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.13.26.73.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.13.26.73.jpg" /></p>
+
+<h2 id="ltfootergt">確保&lt;footer&gt;背景能正確顯示</h2>
+
+<p>接下來， 先設定&lt;footer&gt;的背景顏色為紅色，來觀察背景是否有浮動問題。如有問題，設為overflow:hidden就能解決背景問題了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.13.51.07.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.13.51.07.jpg" /></p>
+
+<p>確保背景沒問題了，將測試用的紅色背景移除，這樣&lt;footer&gt;的背景就設定完成了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.14.10.80.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.14.10.80.jpg" /></p>
+
+<h2 id="ltinputgtltbuttongtmargin">&lt;input&gt;和&lt;button&gt;設外距(margin)，以對齊</h2>
+
+<p>較短的文字輸入欄寬度設為117px就好，使其能保持在同一行。並設右外距margin-right來保持間距。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.15.27.80.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.15.27.80.jpg" /></p>
+
+<p>目前的按鈕和輸入欄位並沒有對齊，設置button的margin-roght:20px，來使之對齊。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.15.52.07.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.15.52.07.jpg" /></p>
+
+<h2 id="ltinputgtltbuttongthover">&lt;input&gt;和&lt;button&gt;滑鼠hover時的背景</h2>
+
+<p>滑鼠滑過輸入欄和點選時，輸入欄背景需改變，讓使用者知道目前在操作的輸入欄是哪一個</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.16.31.87.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.16.31.87.jpg" /></p>
+
+<p>其它的輸入欄位也做一樣的背景設定，這樣輸入欄在操作時背景都會改變了。但問題是，目前這樣寫，會連button的背景也一起改變成膚色。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.16.48.47.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.16.48.47.jpg" /></p>
+
+<p>修正button的背景問題，將button的背景程式碼，給移到最下面，這樣它就會最後才執行，就不會被其它的設定給覆蓋了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.16.59.53.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.16.59.53.jpg" /></p>
+
+<h2 id="sidebarltimggtltpgtmargin">Sidebar區塊，&lt;img&gt;和&lt;p&gt;之間的外距(margin)</h2>
+
+<p>返回photoshop， 觀察Sidebar區塊，量測&lt;img&gt;和&lt;p&gt;之間的距離為20px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.17.59.93.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.17.59.93.jpg" /></p>
+
+<p>既然&lt;p&gt;和&lt;img&gt;之間要有間距，那就設margin-top，應該就能產生一點間距了。但是設完了後，發現margin-top並沒有作用，問題是出在哪?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.12.33.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.12.33.jpg" /></p>
+
+<p>先將背景給設成紅色，觀察問題是出在哪。結果是因為&lt;img&gt;有設float，造成&lt;p&gt;把&lt;img&gt;給包住了，所以設定&lt;p&gt;的margin-top沒有做用。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.17.20.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.17.20.jpg" /></p>
+
+<p>既然&lt;p&gt;設margin-top沒用，那就改設為img設置margin-bottom一樣可達成間隔距離的效果。修改好問題後，再把測試用的紅色的背景給移除掉。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.26.93.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.26.93.jpg" /></p>
+
+<h2 id="css">完成了css的設定</h2>
+
+<p>完成了所有的部份了!把寫好的css複製，準備移到本機的文字編輯器。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.48.87.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.48.87.jpg" /></p>
+
+<p>貼回style.css後，再將所有的img/改為../img/就大功告成了!</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.55.73.jpg" alt="/images/coding-note/html/psd-to-html/07_style the form elements/07_style the form elements-0.18.55.73.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[06_頁籤切換頁面]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/06_build--the-tabbing-system-with-javascript/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/06_build--the-tabbing-system-with-javascript</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/00_demo.jpg" class="demo_img" alt="運用javascript，達成點選頁籤，來切換不同頁面的功能。並運用類別判斷是否有開啟js的功能，以便使用不需js的方式來顯示資料。" />
+    <p>運用javascript，達成點選頁籤，來切換不同頁面的功能。並運用類別判斷是否有開啟js的功能，以便使用不需js的方式來顯示資料。</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#js" id="markdown-toc-js">確認js可以運行</a></li>
+  <li><a href="#documentjscss" id="markdown-toc-documentjscss">document新增類別js，來區分不同功能的css</a></li>
+  <li><a href="#js-ultabheadingjshtml" id="markdown-toc-js-ultabheadingjshtml">新增js變數-ul、tabHeading，用js來代表html物件</a></li>
+  <li><a href="#tabslth4gt" id="markdown-toc-tabslth4gt">不顯示tabs之內的&lt;h4&gt;</a></li>
+  <li><a href="#ltulgt" id="markdown-toc-ltulgt">只顯示第一個&lt;ul&gt;，其餘不顯示</a></li>
+  <li><a href="#section" id="markdown-toc-section">完成點選頁籤標題，來切換頁面的功能</a></li>
+</ul>
+<hr />
+
+<h2 id="js">確認js可以運行</h2>
+
+<p>目前頁籤標題的部份，還需要運用javascript，才能達成點按頁籤標題切換頁籤頁面的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.00.32.53.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.00.32.53.jpg" /></p>
+
+<p>為了完成頁籤點按的功能，需運用jquery，因此在置入jquery.min.js後，在置入自訂的script.js</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.08.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.08.00.jpg" /></p>
+
+<p>為了確認scripts.js可運作，先寫alert(&#x27;hi&#x27;)來確保js可正確運行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.12.53.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.12.53.jpg" /></p>
+
+<h2 id="documentjscss">document新增類別js，來區分不同功能的css</h2>
+
+<p>為了確保沒有開啟js的瀏灠器也可正常顯示頁籤功能(tab)，需設置有開啟js的和沒開啟js的二種tab顯示方式。因此能運行js的瀏灠器會套用類別名稱className = &#x27;.js&#x27;，用來區分二種樣式的不同。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.02.22.07.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.02.22.07.jpg" /></p>
+
+<h2 id="js-ultabheadingjshtml">新增js變數-ul、tabHeading，用js來代表html物件</h2>
+
+<p>開始寫js的部份，程式初始化時(Site.init())，先取得代表頁籤頁面(tabs)的變數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.20.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.20.93.jpg" /></p>
+
+<p>先返回html的部份，觀察頁籤頁面(tabs)，所包含的物件有哪些，你會看到它是由3個&lt;ul&gt;所組成(comments、categories、archieves)。程式碼太多的話，可點選最左側的欄位，將程式碼暫時收合，方便觀察</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.37.40.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.37.40.jpg" /></p>
+
+<p>可看到程式碼收合後，更能看清楚其架構</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.43.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.43.93.jpg" /></p>
+
+<p>返回js的編輯畫面， 新增變數ul來代表所有tabs之內的&lt;ul&gt;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.18.20.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.18.20.jpg" /></p>
+
+<p>新增變數tabHeadings，代表頁籤標題</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.44.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.44.93.jpg" /></p>
+
+<h2 id="tabslth4gt">不顯示tabs之內的&lt;h4&gt;</h2>
+
+<p>js可以運作的版本，必需把頁籤頁面中不需要的標題&lt;h4&gt;給隱藏住，我們不需要讓使用者看到多餘的標題。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.10.27.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.10.27.jpg" /></p>
+
+<p>運行結果， 可看到目前的頁籤頁面中，有多餘的標題，那要如何把它們隱藏呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.15.20.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.15.20.jpg" /></p>
+
+<p>返回js的編輯畫面， 可以考慮用jquery的remove()的方法，先找到tabs內所有的&lt;h4&gt;再將其移除</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.36.47.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.36.47.jpg" /></p>
+
+<p>但直接修改css會更簡單，將.tabs內的&lt;h4&gt;設定為不要顯示。<br />完成了移除不必要標題的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.14.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.14.93.jpg" /></p>
+
+<h2 id="ltulgt">只顯示第一個&lt;ul&gt;，其餘不顯示</h2>
+
+<p>接下來，要製做的功能為:隱藏所有的頁籤頁面(除了第一個以外)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.33.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.33.00.jpg" /></p>
+
+<p>uls.not(&#x27;:first&#x27;).hide();//除了第一個&lt;ul&gt;之外，其餘都隱藏。<br />此外，故意寫錯，把ul寫成uls，觀察firebug如何顯示錯誤。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.55.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.55.87.jpg" /></p>
+
+<p>運行結果， 可看到console的除錯資訊，讓你知道變數寫錯了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.08.53.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.08.53.jpg" /></p>
+
+<p>將變數全部修正為uls</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.14.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.14.93.jpg" /></p>
+
+<p>運行結果， 完成了只顯示第一個頁籤頁面，而其餘都隱藏的功能。不過，這是jquery的寫法，我們可以單單用css就可完成此功能了，接下來， 來用css的寫法來完成此功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.19.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.19.93.jpg" /></p>
+
+<p>先將所有.tab內的&lt;ul&gt;都設為不要顯示，在加入只有第一個&lt;ul&gt;需顯示的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.59.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.59.87.jpg" /></p>
+
+<p>但是這樣要寫二行，太麻煩了。可將此二行的功能整理為一行就好。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.33.13.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.33.13.jpg" /></p>
+
+<p>完成後，替此段css留段註解。<br />完成了只顯示第一個頁籤頁面的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.44.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.44.87.jpg" /></p>
+
+<h2 id="section">完成點選頁籤標題，來切換頁面的功能</h2>
+
+<p>接下來， 要完成點選頁籤標題，來切換頁面的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.59.73.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.59.73.jpg" /></p>
+
+<p>委派&lt;li&gt;來監聽click事件，新增變數li來代表目前被點選的&lt;li&gt;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.34.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.34.80.jpg" /></p>
+
+<p>新增變數hash，用來代表所點選的超連結的路徑</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.45.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.45.87.jpg" /></p>
+
+<p>變數設完後，下一步為:改變目前所點選的&lt;li&gt;的樣式，讓使用者知道目前所點選的是哪一個&lt;li&gt;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.54.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.54.80.jpg" /></p>
+
+<p>利用siblings()來取得同一層的所有&lt;li&gt;，用removeClass()先把目前的樣式給移除掉</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.34.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.34.80.jpg" /></p>
+
+<p>使用end()來跳回目前點選的&lt;li&gt;，並用addClass()來加入樣式。完成了設定點選標題，設定標題樣式的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.58.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.58.00.jpg" /></p>
+
+<p>接下來， 要取得目前所點選的超連結，以便切換到所對應的頁籤頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.27.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.27.00.jpg" /></p>
+
+<p>hash變數代表目前所點選的超連結路徑</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.36.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.36.80.jpg" /></p>
+
+<p>接下來， 要顯示所對應的頁籤頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.20.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.20.93.jpg" /></p>
+
+<p>先隱藏所有的uls，用filter()來過濾出目前所點選的頁面，並只顯示目前所點選的頁面。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.29.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.29.93.jpg" /></p>
+
+<p>如果只用show()的話，就只會單純的顯示頁面。<br />因此，可以運用特效函數，如:fadeIn()造成淡入的效果，來使頁面更加活潑</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.26.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.26.93.jpg" /></p>
+
+<p>由於點選超連結時，系統會有預設的動作。這些預設的動作會影響到我們自製的點選動作，所以使用e.preventDefault();來將預設的動作關閉。<br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.48.60.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.48.60.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[05d_footer]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/05d_buildCss_footer_section/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/05d_buildCss_footer_section</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/00_demo.jpg" class="demo_img" alt="使用webDeveloper toolbar來完成footer和其子區塊，並運用miscellaneous量測網頁物件是否對齊。" />
+    <p>使用webDeveloper toolbar來完成footer和其子區塊，並運用miscellaneous量測網頁物件是否對齊。</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#footer" id="markdown-toc-footer">解說footer區塊</a></li>
+  <li><a href="#web-developer-toolbarcss" id="markdown-toc-web-developer-toolbarcss">web developer toolbar編寫css</a></li>
+  <li><a href="#footer-wrap" id="markdown-toc-footer-wrap">#footer-wrap的背景和框線</a></li>
+  <li><a href="#recent-project" id="markdown-toc-recent-project">Recent Project區塊</a></li>
+  <li><a href="#twitter" id="markdown-toc-twitter">Twitter區塊</a></li>
+  <li><a href="#site-info" id="markdown-toc-site-info">Site info區塊</a></li>
+  <li><a href="#css" id="markdown-toc-css">css編寫完後的注意事項</a></li>
+</ul>
+<hr />
+
+<h2 id="footer">解說footer區塊</h2>
+
+<p>返回photoshop， 解說footer的區塊由3個欄位所組成(GET A FREE QUOTE、RECENTPROJECTS、TWITTER STREAM)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.00.46.60.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.00.46.60.jpg" /></p>
+
+<h2 id="web-developer-toolbarcss">web developer toolbar編寫css</h2>
+
+<p>此次，我們使用web developer toolbar來編寫css，好處是可以即時預覽所編寫的css</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.01.13.40.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.01.13.40.jpg" /></p>
+
+<p>我們可用firefox來下載Web Developer這一套外掛，安裝完畢後，可至View/Toolbars/Web developer Toolbar來使用其功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.01.32.20.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.01.32.20.jpg" /></p>
+
+<p>Web developer Toolbar提供了許多編寫網頁時，常用到的功能。例如disable javascript、編寫css、尺規等等</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.01.43.40.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.01.43.40.jpg" /></p>
+
+<p>要特別注意的一點是，在Edit CSS的模式中，所有的圖片位置需加以修改，如:url(../img/bg.jpg)需改為url(img/bg.jpg)，不然圖片會無法顯示。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.02.08.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.02.08.00.jpg" /></p>
+
+<p>改成url(img/bg.jpg)，圖片就可正常顯示了。接下來需將其它圖片的位置也一起修改</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.02.21.90.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.02.21.90.jpg" /></p>
+
+<p>在文字編輯器中，利用搜尋的功能，將所有的../img/取代為img/</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.02.49.50.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.02.49.50.jpg" /></p>
+
+<h2 id="footer-wrap">#footer-wrap的背景和框線</h2>
+
+<p>圖片都正常出現了，接下來， 開始寫FOOTER的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.03.07.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.03.07.00.jpg" /></p>
+
+<p>footer區塊的寫法和之前所教的banner區塊的寫法是一樣的，一樣分為放背景和放內容的2大區塊。<br />footer-wrap放背景、&lt;footer&gt;放入24格的內容</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.03.45.20.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.03.45.20.jpg" /></p>
+
+<p>#footer-wrap放入背景的圖片bannerInnerBg.jpg，且為了防此子容器的浮動，造成背景問題，設overflow:hidden</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.04.34.20.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.04.34.20.jpg" /></p>
+
+<p>返回photoshop， 量測邊線的顏色(#8e786e)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.04.52.10.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.04.52.10.jpg" /></p>
+
+<p>設置上邊線border-top的樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.05.01.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.05.01.00.jpg" /></p>
+
+<p>返回photoshop， 發現上邊線的上面還有一條邊線，顏色為#3a2c25</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.05.18.50.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.05.18.50.jpg" /></p>
+
+<p>使用擬元素(::before)，在#footer-wrap之前加入一個空的內容，並設置一個紅色的邊線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.02.90.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.02.90.jpg" /></p>
+
+<p>將#footer-wrap的外邊線設為綠色，而利用擬元素::before產生的邊線設為紅色，就會呈現雙外邊線的效果。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.12.70.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.12.70.jpg" /></p>
+
+<p>返回photoshop， 量測位於下端邊線的顏色(#8e786e)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.18.50.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.18.50.jpg" /></p>
+
+<p>分別填入2個上邊線的顏色，完成了雙上邊線的效果。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.25.60.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.06.25.60.jpg" /></p>
+
+<p>footer的上下內距設為50px，以便和內部的區塊留點距離。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.09.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.09.00.jpg" /></p>
+
+<p>內部的按鈕統一設為向右浮動排列</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.26.60.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.26.60.jpg" /></p>
+
+<h2 id="recent-project">Recent Project區塊</h2>
+
+<p>開始設定Recent Project的區塊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.37.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.37.00.jpg" /></p>
+
+<p>#recentProjects由4個&lt;li&gt;所組成，<br />設為向左浮動排列，<br />為了使4個&lt;li&gt;有間隔，設其右外距、下外距為20px，<br />內距設為3px，是為了讓黃色背景能夠稍稍顯現，達成黃色邊框的效果。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.39.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.07.39.00.jpg" /></p>
+
+<p>此外，當滑鼠滑過時背景需改變、且產生一外框線outline，來造成視覺回饋。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.09.10.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.09.10.00.jpg" /></p>
+
+<p>button的右外距設為40px，好讓#recenProjects內的物件可以對齊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.09.40.10.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.09.40.10.jpg" /></p>
+
+<p>使用webdeveloper tools的Miscellaneous來量測網頁元件是否對齊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.09.52.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.09.52.00.jpg" /></p>
+
+<h2 id="twitter">Twitter區塊</h2>
+
+<p>開始寫Twitter的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.10.13.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.10.13.00.jpg" /></p>
+
+<p>我們希望文字段落&lt;p&gt;之內的&lt;span&gt;可以獨立為一行，不要和其它文字擠在一起，所以設為區塊式排列display:block</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.10.41.30.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.10.41.30.jpg" /></p>
+
+<p>超連結&lt;span&gt;和&lt;a&gt;的顏色都設為綠色，也一起設為區塊式排列。顏色是設好了，但這卻會造成&lt;a&gt;也獨立為一行了，我們希望的效果是&lt;span&gt;&lt;a&gt;&lt;/a&gt;&lt;/span&gt;內的所有文字都能獨立為一行。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.11.12.10.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.11.12.10.jpg" /></p>
+
+<p>因此修改#twitter內的&lt;a&gt;為同一行排列(display:inline)的方式，這樣&lt;span&gt;&lt;a&gt;&lt;/a&gt;&lt;/span&gt;內的文字才能保持同一行。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.11.27.10.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.11.27.10.jpg" /></p>
+
+<p>最後，將&lt;span&gt;和&lt;a&gt;的字型設為斜體，完成了Twitter的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.11.39.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.11.39.00.jpg" /></p>
+
+<h2 id="site-info">Site info區塊</h2>
+
+<p>最後，為Site Info的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.12.15.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.12.15.00.jpg" /></p>
+
+<p>先設置背景</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.12.45.10.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.12.45.10.jpg" /></p>
+
+<p>#siteInfo的高度限制在50px，行高(line-height)也為50，字為白色，為防止浮動所造成背景問題，設overflow:hidden</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.13.30.30.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.13.30.30.jpg" /></p>
+
+<p>Site Info是由&lt;p&gt;Copyright&lt;/p&gt;和&lt;nav&gt;&lt;/nav&gt;二大區塊組成，設置&lt;nav&gt;為向右浮動排列。讓&lt;p&gt;和&lt;nav&gt;一左一右排列。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.13.54.80.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.13.54.80.jpg" /></p>
+
+<p>&lt;nav&gt;內的5個&lt;li&gt;元件(&lt;li&gt;HOME&lt;li&gt;、&lt;li&gt;ABOUT&lt;li&gt;、等)設為向左排列</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.08.20.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.08.20.jpg" /></p>
+
+<p>#siteInfo的行高(line-height)雖然有設定line-height:50px，但是沒有作用，&lt;p&gt;Copy Right--WebsiteName--All rights Reserved&lt;/p&gt;並沒有移到指定的行高位置，這是為何?<br />這是因為&lt;p&gt;在先前設定全域的css時，已被設為其它的值了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.25.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.25.00.jpg" /></p>
+
+<p>因此，要設定#siteInfo內的&lt;p&gt;的行高，就必需再度在此區塊內再設定一次，如下圖，就可看到&lt;p&gt;移到指定的行高了。Copyright區塊設定完畢。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.26.90.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.26.90.jpg" /></p>
+
+<p>繼續設定&lt;nav&gt;的區塊，設定&lt;nav&gt;的超連結顏色為白色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.41.20.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.41.20.jpg" /></p>
+
+<p>返回photoshop， 可看到每個連結之間，都有一條白色直線做區分。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.55.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.14.55.00.jpg" /></p>
+
+<p>運用之前所教的擬元素的用法(:before)，來在每個&lt;li&gt;之前加入白色的分隔線。可看到分隔線都出現了，但是第一個&lt;li&gt;我們並不需要分隔線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.15.30.70.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.15.30.70.jpg" /></p>
+
+<p>因此，將第一個&lt;li&gt;之前的分隔線設為無(conent:&#x27; &#x27;)，就不會產生多餘的分隔線了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.16.11.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.16.11.00.jpg" /></p>
+
+<p>最後，是字的陰影設定，我們將所有#siteInfo區塊的陰影統一設在#siteInfo內。這樣其它重複的陰影設定就可以移除了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.16.21.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.16.21.00.jpg" /></p>
+
+<h2 id="css">css編寫完後的注意事項</h2>
+
+<p>大功告成!複製所有在web developer toolbar內編寫完成的css，準備貼回本機端的文字檔</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.04.10.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.04.10.jpg" /></p>
+
+<p>貼回文字編輯器後，記得將所有的img/改為../img/</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.16.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.16.00.jpg" /></p>
+
+<p>運行結果， 再次使用web developer toolbar，觀察物件間是否對齊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.48.50.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.48.50.jpg" /></p>
+
+<p>目前已經完成了一個基本的網頁了，但如果希望在各種不同的平台上(電腦、手機、平板)都能方便的瀏灠，網頁需能自動調整成適合寬螢幕和窄螢幕的設定。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.59.00.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.17.59.00.jpg" /></p>
+
+<p>如果想要了解如何讓網頁自動調整大小，可至CSS-TRICKS網頁，來觀察它的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.18.37.70.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.18.37.70.jpg" /></p>
+
+<p>試著改變視窗的大小，可以發現網頁的排列，會因視窗大小而自動改變排列的方式。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.18.44.90.jpg" alt="/images/coding-note/html/psd-to-html/05d_buildCss_footer_section/05d_buildCss_footer_section-0.18.44.90.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[05c_main]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/05c_buildCss_main_section/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/05c_buildCss_main_section</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/00_demo.jpg" class="demo_img" alt="逐一完成main區塊內的多個子區塊(#primary,#sidebar等等)。並了解如何量測psd來輸入多重漸層背景數值，並了解如何精簡css，css的優先權設定" />
+    <p>逐一完成main區塊內的多個子區塊(#primary,#sidebar等等)。並了解如何量測psd來輸入多重漸層背景數值，並了解如何精簡css，css的優先權設定</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">透過搜尋，跳到指定的註解</a></li>
+  <li><a href="#mainbannerpadding" id="markdown-toc-mainbannerpadding">#main和banner的內距(padding)</a></li>
+  <li><a href="#main" id="markdown-toc-main">#main的漸層背景</a></li>
+  <li><a href="#main-ltarticle" id="markdown-toc-main-ltarticle">#main &lt;article</a></li>
+  <li><a href="#sidebar" id="markdown-toc-sidebar">SIDEBAR區塊</a></li>
+  <li><a href="#tabs" id="markdown-toc-tabs">TABS區塊</a></li>
+  <li><a href="#comments" id="markdown-toc-comments">COMMENTS區塊</a></li>
+  <li><a href="#tablist-li" id="markdown-toc-tablist-li">.tabList li的框線設定</a></li>
+  <li><a href="#css" id="markdown-toc-css">css屬性重覆時，優先權設定</a></li>
+  <li><a href="#csscss" id="markdown-toc-csscss">簡化css，合併用法相近的css</a></li>
+  <li><a href="#categoryarchievetabs" id="markdown-toc-categoryarchievetabs">#category、#archieve、.tabs樣式設定</a></li>
+  <li><a href="#sponsor" id="markdown-toc-sponsor">SPONSOR區塊</a></li>
+</ul>
+<hr />
+
+<h2 id="section">透過搜尋，跳到指定的註解</h2>
+
+<p>接下來開始準備寫MAIN的部份了，因此寫入MAIN的標記</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.09.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.09.00.jpg" /></p>
+
+<p>現在就可以看得出我們之前替每個css區塊做標記的效果了，舉例來說，當你想要跳至BANNER區塊時，只要搜尋-BANNER就會跳至指定的位置。如此一來，你就不用擔心當你css愈寫愈多時，找不到你所要尋找的區塊在哪裡</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.19.07.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.19.07.jpg" /></p>
+
+<h2 id="mainbannerpadding">#main和banner的內距(padding)</h2>
+
+<p>開始寫#main的部份，為了和標題間留點間隔，我們將其內距上端(padding-top)設為50px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.50.07.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.50.07.jpg" /></p>
+
+<p>回到photoshop，觀察原圖，可看到原圖的標題也有保留內距</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.52.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.52.33.jpg" /></p>
+
+<h2 id="main">#main的漸層背景</h2>
+
+<p>並且解說#main的背景是由漸層組成的</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.58.47.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.01.58.47.jpg" /></p>
+
+<p>因此我們開始逐步進行背景漸層的設定</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.10.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.10.73.jpg" /></p>
+
+<p>先量測psd檔中的#main背景顏色，可量測出顏色為#f8eedf</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.22.07.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.22.07.jpg" /></p>
+
+<p>讓我們先試試看漸層的效果，先任意填入漸層右端的顏色為紅色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.31.07.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.31.07.jpg" /></p>
+
+<p>運行結果，可看到是有漸層的效果了。但因為子容器浮動(float)的原因，父容器的背景會被子容器蓋住</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.34.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.34.53.jpg" /></p>
+
+<p>因此，需設定#main層的overflow:hidden</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.57.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.57.53.jpg" /></p>
+
+<p>運行結果，可看到背景正常顯示了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.59.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.03.59.27.jpg" /></p>
+
+<p>確定漸層成功後，開始量測真正的漸層顏色。先量測位於右側的漸層顏色(#eeddc6)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.15.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.15.93.jpg" /></p>
+
+<p>並將此顏色(#eeddc6)，填入右側的漸層</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.28.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.28.87.jpg" /></p>
+
+<p>運行結果，漸層成功了。但是漸層顏色的比例不大正確，psd的原圖左右二個欄位的顏色區分是很明顯的。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.32.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.32.87.jpg" /></p>
+
+<p>所以要如何調整左右漸層所佔的比例呢?<br />左欄所佔的比例為63.5%(因為左欄的寬度為609px，609/960=0.635)<br />右欄的顏色從63.6%處開始設置</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.54.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.54.53.jpg" /></p>
+
+<p>運行結果，可看到左右欄位的漸層有明顯的區分了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.57.67.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.04.57.67.jpg" /></p>
+
+<p>回到photoshop，觀察原圖，可看到左欄位的邊框線也是有顏色的(#fff7ea)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.35.07.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.35.07.jpg" /></p>
+
+<p>因此設置左欄的框線顏色(#fff7ea)和位置(63.6%)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.42.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.42.60.jpg" /></p>
+
+<p>回到photoshop，觀察原圖，右欄位也是有框線顏色的(#dfcdb2)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.46.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.46.87.jpg" /></p>
+
+<p>因此設置右欄的框線顏色(#dfcdb2)和位置(63.7%)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.51.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.51.33.jpg" /></p>
+
+<p>因設置了邊框的漸層，所以右欄的漸層也往後調整位置(63.8%)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.54.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.05.54.53.jpg" /></p>
+
+<p>運行結果，漸層幾乎都設好了，只是邊框顏色有點太明顯了一點，應調整漸層位置，使之看起來平滑一點</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.00.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.00.73.jpg" /></p>
+
+<p>將左右欄的邊框都設在相同位置(63.6%)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.07.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.07.33.jpg" /></p>
+
+<p>運行結果，可看到邊框沒這麼明顯了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.09.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.09.87.jpg" /></p>
+
+<p>回到photoshop，量測右欄最右邊的漸層顏色(#f8eedf)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.53.47.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.06.53.47.jpg" /></p>
+
+<p>剛好和最左邊的漸層顏色一樣(#f8eedf)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.01.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.01.13.jpg" /></p>
+
+<p>因此最右側的漸層，就設為#f8eedf</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.12.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.12.53.jpg" /></p>
+
+<p>運行結果，漸層完全設置好了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.28.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.28.73.jpg" /></p>
+
+<p>漸層確定設好後，要確保其它瀏灠器也可以運行漸層功能，所以依序寫入其它瀏灠器的寫法，漸層部份就此大功告成</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.57.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.07.57.53.jpg" /></p>
+
+<h2 id="main-ltarticle">#main &lt;article</h2>
+
+<p>接下來，來處理#main區的&lt;article&gt;部份，為了不要跟右側的欄位過於接近，要在右方留點空間，所以設右內距為50px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.08.43.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.08.43.00.jpg" /></p>
+
+<p>運行結果，可看到&lt;article&gt;就會和右方欄有些間隔了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.08.45.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.08.45.00.jpg" /></p>
+
+<p>圖片需和左右對齊，且和其下方文字的間距也要留點間距，所以設margin:0 0 10px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.10.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.10.87.jpg" /></p>
+
+<p>運行結果，圖片成功和下方文字產生適當的間距</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.17.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.17.60.jpg" /></p>
+
+<p>&lt;article&gt;的&lt;h2&gt;標題，需和其下方的&lt;h6&gt;標題貼齊，因此設margin-bottom:0，且不需設為粗體，因此設font-weight:normal</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.38.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.38.00.jpg" /></p>
+
+<p>想讓滑鼠滑過&lt;h2&gt;標題時，讓底線消失，且設為粗體</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.52.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.52.53.jpg" /></p>
+
+<p>但是超連結滑過的動作，不應由&lt;h2&gt;負責，應由其內部的子元件&lt;a&gt;來負責</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.57.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.57.73.jpg" /></p>
+
+<p>運行結果，完成了滑鼠滑過具超連結功能的標題時，標題粗體化的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.59.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.09.59.60.jpg" /></p>
+
+<p>大標題&lt;h2&gt;下方的子標題&lt;h6&gt;，分別設定其顏色和斜體</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.10.52.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.10.52.53.jpg" /></p>
+
+<p>運行結果，完成了子標題&lt;h6&gt;的設定。&lt;article&gt;區塊的標題和文字設定完成</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.10.55.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.10.55.13.jpg" /></p>
+
+<h2 id="sidebar">SIDEBAR區塊</h2>
+
+<p>在psd檔中，解說SIDEBAR區塊的頁籤區塊。設明這一個部份必需考慮到有無啟用javascript時，需套用不同的設計</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.11.16.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.11.16.33.jpg" /></p>
+
+<p>開始了SIDEBAR的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.11.35.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.11.35.53.jpg" /></p>
+
+<p>右側欄SIDEBAR是由3個section所組成的，為了必免浮動造成位置亂跑，所以設clear:both。<br />先設置背景為紅色來觀察其排列方式。<br />3個section需有間距，設置margin-bottom:40px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.03.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.03.00.jpg" /></p>
+
+<p>運行結果，可看到SIDEBAR內的&lt;section&gt;位置分佈</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.09.47.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.09.47.jpg" /></p>
+
+<p>設置section的img為向左浮動排列</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.44.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.44.53.jpg" /></p>
+
+<p>運行結果，可看到SPONSORS區內的那2張代表圖片的文字，變成向左浮動排列了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.46.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.12.46.93.jpg" /></p>
+
+<p>確定圖片可向左浮動排列後，加入其圖片的位置</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.15.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.15.53.jpg" /></p>
+
+<p>運行結果，圖片成功顯示</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.18.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.18.33.jpg" /></p>
+
+<h2 id="tabs">TABS區塊</h2>
+
+<p>接下來為TABS的部份(點選頁籤後，所顯示的欄位區塊)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.52.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.52.27.jpg" /></p>
+
+<p>由於父容器&lt;section class=&quot;tabs&quot;&gt;，內會含有子容器&lt;ul&gt;，為防止浮動溢位的問題造成背景無法正常顯示，設其overflow:hidden</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.58.40.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.13.58.40.jpg" /></p>
+
+<p>剛剛設背景為紅色只是為了測試用的而已，現在用不到了，移除這一段紅色背景的設定，並設定好.tabs的背景顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.14.29.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.14.29.00.jpg" /></p>
+
+<p>運行結果，.tabs區塊的背景成功設置了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.14.31.67.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.14.31.67.jpg" /></p>
+
+<p>回到photoshop中，觀察.tabs區塊的樣式設定，發現其背景為漸層、邊框有圓角、且和最下方的邊線間有一定的間隔距離</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.14.39.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.14.39.93.jpg" /></p>
+
+<p>因此依序設其漸層背景、圓角、及下方內距</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.15.17.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.15.17.53.jpg" /></p>
+
+<p>運行結果，.tabs區塊成功設置了圓角、漸層背景和下方內距</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.15.21.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.15.21.73.jpg" /></p>
+
+<p>#tabHeadings(頁籤標題列)用來放置切換tab的連結，<br />為了讓內部的元件以區塊式來排列，設display:block;<br />想和下方的.tabf區塊沒有間隔，設margin-bottom:0;<br />設置不同瀏灠器的左上、右上的圓角;<br />overflow先設為visible，觀察背景是否會有問題;<br />最後，設其下框線和背景顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.01.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.01.53.jpg" /></p>
+
+<p>#tabHeadings 內的&lt;li&gt;，是提供給使用者點選用的，所以需設定選取(selected)、滑過(hover)的視覺回饋。因此設定不同的背景顏色和位移。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.18.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.18.27.jpg" /></p>
+
+<p>運行結果，完成了滑鼠滑過時的視覺回饋</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.23.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.23.60.jpg" /></p>
+
+<p>但不只滑鼠滑過需要視覺回饋，目前是哪一個&lt;li&gt;被點選也需讓使用者知道，所以增加一個selected的類別，運用在目前被點選的&lt;li&gt;上(預設為第一個&lt;li&gt;被點選)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.41.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.41.53.jpg" /></p>
+
+<p>運行結果，完成了第一個&lt;li&gt;被點選的視覺效果。但是目前的樣式並不美觀，需修改其排列、寬度等設定。使其成為更容易操作的頁籤標題列。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.50.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.17.50.87.jpg" /></p>
+
+<p>將點選用的頁籤標題&lt;li&gt;，設為向左浮動排列、寬度為83px、文字置中、鼠標滑過時需變成手形(pointer)、內距為10px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.15.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.15.53.jpg" /></p>
+
+<p>運行結果，可看到較美觀的頁籤標題了，但其文字顏色和背景仍需加以修改</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.20.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.20.53.jpg" /></p>
+
+<p>設置超連結頁籤標題顏色為白色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.57.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.57.13.jpg" /></p>
+
+<p>運行結果，超連結的字被設為白色了，但是很明顯的頁籤標題列的背景有問題。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.58.20.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.18.58.20.jpg" /></p>
+
+<p>返回photoshop中，可看到理想的頁籤標題列背景顏色應為黑色，但為何頁籤標題列(#tabHeadings)的背景會不見呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.04.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.04.33.jpg" /></p>
+
+<p>因為其overflow不應設為visible，應該設為hidden才能讓身為父容器的#tabHeadings的背景正確出現，不被其子容器的背景顏色蓋掉。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.13.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.13.33.jpg" /></p>
+
+<p>運行結果，頁籤標題列的樣式設定完成。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.16.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.16.53.jpg" /></p>
+
+<p>接下來，設定頁籤頁(.tab)，內的&lt;ul&gt;的樣式。<br />設定padding使其內部的文字和邊框留點距離。<br />margin-bottom設為0，使&lt;ul&gt;能緊緊的靠在一起，不留間距。<br />border-top，設置其上邊線樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.39.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.39.53.jpg" /></p>
+
+<p>我們來觀察看看，如果margin-bottom不設為0，會有什麼影響</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.46.80.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.46.80.jpg" /></p>
+
+<p>運行結果，可看到標題和&lt;ul&gt;會產生不必要的間距</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.48.40.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.48.40.jpg" /></p>
+
+<p>先將上邊線設為紅色，來觀察上邊線的位置是在哪裡</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.56.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.56.00.jpg" /></p>
+
+<p>運行結果，看到了上邊線的位置了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.58.47.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.19.58.47.jpg" /></p>
+
+<p>觀察完畢，將邊線顏色套用至原先的設定。完成了頁籤區塊的排列樣式，但是文字的樣式尚未設定喔。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.03.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.03.13.jpg" /></p>
+
+<p>返回photoshop，觀察Comments區塊的樣式，可發現有邊線、白色字、超連結用的標題</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.05.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.05.60.jpg" /></p>
+
+<h2 id="comments">COMMENTS區塊</h2>
+
+<p>開始COMMENTS的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.11.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.11.93.jpg" /></p>
+
+<p>分別設定&lt;li&gt;的下邊線、上邊線、內距、字顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.14.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.14.53.jpg" /></p>
+
+<p>運行結果，可發現第一個上邊線和最後一個下邊線，產生了重複的邊線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.24.40.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.20.24.40.jpg" /></p>
+
+<p>所以設定最後一個和第一個&lt;li&gt;的邊線為無</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.11.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.11.53.jpg" /></p>
+
+<p>運行結果，可看到重複的邊線被成功移除了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.19.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.19.60.jpg" /></p>
+
+<p>在&lt;footer&gt;內的&lt;h6&gt;加入超連結</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.47.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.47.53.jpg" /></p>
+
+<p>運行結果 ，標題的超連結是出現了，但還需設定該&lt;h6&gt;的樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.51.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.51.00.jpg" /></p>
+
+<p>&lt;h6&gt;需和&lt;li&gt;的下邊線切齊，不留任何間隔，所以設margin-bottom:0;<br />字顏色設白色;<br />不需設為粗體且字大小設為10px，才不會因字太大而分為二行;<br />margin-top設為-13，是為了和上端的&lt;p&gt;靠近，以下會解釋為何這麼做<br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.55.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.21.55.53.jpg" /></p>
+
+<p>在firebug中，檢查&lt;p&gt;的邊距設定，可發現預設中&lt;p&gt;的下內距為20px，也因此會產生不必要的間隔。<br />如果將&lt;p&gt;的下內距改為0px，當然也可以解決&lt;p&gt;和&lt;h6&gt;間的間距問題，但這樣改的話，又得要判斷是哪一個&lt;p&gt;需做此設定，所以與其修改&lt;p&gt;，不如直接將&lt;h6&gt;的margin-top設為-13</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.22.34.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.22.34.00.jpg" /></p>
+
+<p>所以這就是為何要將&lt;h6&gt;設為margin-top:-13px的原因</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.22.51.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.22.51.13.jpg" /></p>
+
+<p>運行結果 ，完成了Comments的超連結標題設定</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.22.52.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.22.52.87.jpg" /></p>
+
+<h2 id="tablist-li">.tabList li的框線設定</h2>
+
+<p>接下來， 觀察CATEGORIES和ARCHIVES這二個區塊，可發現它們的共通點，都是清單的形式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.00.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.00.00.jpg" /></p>
+
+<p>所以，有關CATEGORIES和ARCHIVES這二個區塊的樣式，都統一設定在#secondary .tabList</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.19.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.19.53.jpg" /></p>
+
+<p>返回html中，將categories加入樣式tabList</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.31.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.31.93.jpg" /></p>
+
+<p>archives也同樣加入樣式tabList</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.36.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.36.53.jpg" /></p>
+
+<p>.tabList內的&lt;li&gt;以區塊式排列、設定上下邊線、內距為10px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.43.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.43.27.jpg" /></p>
+
+<p>運行結果， &lt;li&gt;的樣式較清楚了，但有2個問題:<br />1:第一和最後一個&lt;li&gt;有多餘的邊線<br />2:滑鼠移過超連結時，鼠標應呈現手形</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.49.80.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.49.80.jpg" /></p>
+
+<p>因此，將&lt;li&gt;滑過時的鼠標設為手形，第一個&lt;li&gt;上邊線和最後一個&lt;li&gt;的下邊線設為無</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.54.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.23.54.53.jpg" /></p>
+
+<h2 id="css">css屬性重覆時，優先權設定</h2>
+
+<p>此時，理論上第一個&lt;li&gt;的border-top和最後一個&lt;li&gt;的border-bottom應該能成功的移除才對</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.04.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.04.53.jpg" /></p>
+
+<p>運行結果， 但是border-top和border-bottom的邊線仍然存在，剛才的設定並沒有成功，這是為什麼呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.14.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.14.53.jpg" /></p>
+
+<p>這是因為優先權的原因，css設定屬性時，id名稱屬性的會比類別屬性的優先設定。所以.tabList會被#secondary .tabList給取代掉。如果不想被取代，那就將.tabList改寫為#secondary .tabList</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.54.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.54.93.jpg" /></p>
+
+<p>運行結果，重覆的上下邊線成功的移除了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.56.40.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.24.56.40.jpg" /></p>
+
+<p>如果只是要單純的測試是否為優先權問題，可直接在後寫入!important，就可將優先權設為最高。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.01.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.01.53.jpg" /></p>
+
+<p>運行結果， 一樣能解決了優先權問題，上下邊線成功移除。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.02.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.02.60.jpg" /></p>
+
+<p>為了避免id屬性的#secondary優先權太高而取代了其他設定，也可將#secondary直接移除掉，讓優先權一致</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.09.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.09.27.jpg" /></p>
+
+<p>運行結果，上下邊線一樣可成功移除， 優先權的問題解決了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.11.40.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.11.40.jpg" /></p>
+
+<h2 id="csscss">簡化css，合併用法相近的css</h2>
+
+<p>觀察#comments li和.tabList li，所寫的樣式相當的類似，所以保留.tabList li的設定就好，把#commments li給移除。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.27.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.27.53.jpg" /></p>
+
+<p>因為#commments li被移除了，所以要讓#comments套用新的樣式tabList</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.51.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.51.53.jpg" /></p>
+
+<p>運行結果， Comments的樣式大都維持原樣，只是原本的字是白色的，套用了.tabList的樣式後，變成了黑色，所以還需加以設定字的顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.53.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.53.13.jpg" /></p>
+
+<p>在.tabList li的樣式中，加入了字為白色的設定</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.59.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.25.59.60.jpg" /></p>
+
+<p>運行結果， Comments的樣式設定成功</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.00.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.00.73.jpg" /></p>
+
+<p>我們來觀察&lt;section&gt;內的&lt;ul&gt;所套用的樣式，發現都是使用tabList</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.14.47.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.14.47.jpg" /></p>
+
+<p>既然重複用了許多的tabList，那還不如將樣式統一為.tabs &gt;ul</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.35.60.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.35.60.jpg" /></p>
+
+<p>因此，將所用原先寫為.tabList li的改為.tabs &gt;ul li</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.38.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.26.38.53.jpg" /></p>
+
+<p>運行結果， 得到了一樣的效果，但是卻減少了許多重複的程式碼，使css更加簡潔</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.27.50.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.27.50.33.jpg" /></p>
+
+<p>接下來， 我們希望滑鼠滑過&lt;li&gt;時，背景有些變動，讓使用者知道目前他滑動到哪一個&lt;li&gt;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.27.56.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.27.56.53.jpg" /></p>
+
+<p>運行結果， 滑鼠經過時，背景成功改變了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.00.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.00.33.jpg" /></p>
+
+<p>但目前的.tabs li:hover會套用到全部的&lt;li&gt;，如果你並不想讓Comments的&lt;li&gt;也一起套用這滑鼠滑過的背景設定的話，需指定特定的&lt;li&gt;不需套用相同的設定</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.04.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.04.87.jpg" /></p>
+
+<p>指定.tab內的第一個&lt;li&gt;滑鼠滑過時，背景不要變</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.18.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.18.53.jpg" /></p>
+
+<p>指定.tab內的第一個&lt;ul&gt;內的所有&lt;li&gt;滑鼠滑過時，背景不要變</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.33.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.33.53.jpg" /></p>
+
+<p>運行結果， Comments的所有&lt;li&gt;，滑鼠滑過時，背景就不會變動了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.35.40.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.35.40.jpg" /></p>
+
+<p>當然，剛才只是在教各位如何限定特定&lt;li&gt;的背景特效。在此範例中，所有的&lt;li&gt;在滑鼠滑過時，背景產生變動並無影響，所以我們將限定特定&lt;li&gt;的背景特效的效果給移除掉。&lt;li&gt;背景特效的部份到此設定完成。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.39.07.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.28.39.07.jpg" /></p>
+
+<h2 id="categoryarchievetabs">#category、#archieve、.tabs樣式設定</h2>
+
+<p>接下來， 我們來觀察&lt;ul id =&quot;categories&quot; &gt;，預設的&lt;ul&gt;左右內距為20px，這會造成多餘的內距，所以將左右內距設為0px較好。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.29.01.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.29.01.53.jpg" /></p>
+
+<p>由於#categories和#archieves都是一樣的清單樣式，所以同樣設定左右內距為0px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.29.33.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.29.33.53.jpg" /></p>
+
+<p>.tabs內的超連結顏色設為白色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.21.20.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.21.20.jpg" /></p>
+
+<p>運行結果， 超連結成功設為白色了，但是滑鼠移過時，預設會產生底線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.24.80.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.24.80.jpg" /></p>
+
+<p>不希望滑鼠滑過時產生底線，因此將text-decoration設為none</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.33.20.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.33.20.jpg" /></p>
+
+<p>返回photoshop，可發現我們已經完成了此頁籤頁(.tab)的所有樣式設定，剩下的部份就只有運用javascript的功能，讓使用者點選頁籤標題時，能切換所需顯示的部份而已。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.38.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.30.38.53.jpg" /></p>
+
+<p>此外，仍需考慮使用者的流灠器是否支援javascript，javascript的支援與否，會決定html的顯示方示。<br />當有支援javascript時，頁籤標題可供點選，所以&lt;ul&gt;內的&lt;h4&gt;不需顯示，需設為display:none。<br />不支援javascript時，頁籤標題就不能點選了，沒有了頁籤標題，&lt;ul&gt;內的&lt;h4&gt;就需顯示。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.31.12.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.31.12.27.jpg" /></p>
+
+<p>運行結果， 觀察我們已經完成的部份，我們已完成了&lt;header&gt;、&lt;banner&gt;、#main的&lt;article&gt;和tab的部份。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.31.28.20.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.31.28.20.jpg" /></p>
+
+<p>接下來， 來處理SPONSORS的部份，二張圖片不需靠這麼緊，設為左右排列較美觀，而且應加外框線。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.10.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.10.73.jpg" /></p>
+
+<h2 id="sponsor">SPONSOR區塊</h2>
+
+<p>開始寫SPOONSORS的css</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.26.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.26.13.jpg" /></p>
+
+<p>#sponsors內有2個&lt;li&gt;，將第2個&lt;li&gt;設為右浮動排列</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.30.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.30.33.jpg" /></p>
+
+<p>運行結果， 第2個&lt;li&gt;的圖片向右排列了。完成了圖片一左一右的效果。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.31.87.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.32.31.87.jpg" /></p>
+
+<p>寫入圖片外框線的樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.02.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.02.53.jpg" /></p>
+
+<p>運行結果， 外框線成功顯示了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.03.13.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.03.13.jpg" /></p>
+
+<p>但我們希望#secondary內的所有&lt;img&gt;都能有外框線效果，所以改成#secondary img</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.27.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.27.53.jpg" /></p>
+
+<p>加入陰影的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.51.53.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.51.53.jpg" /></p>
+
+<p>運行結果， 邊框和陰影都出現了，但是陰影的顏色太深了一些</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.57.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.33.57.93.jpg" /></p>
+
+<p>返回photoshop， 量測邊框中的顏色(#febf5d)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.01.00.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.01.00.jpg" /></p>
+
+<p>再選擇顏色較深的部份(#fdb84d)來做為陰影的顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.03.93.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.03.93.jpg" /></p>
+
+<p>運行結果， 邊框的陰影柔和多了，邊框效果完成。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.06.47.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.06.47.jpg" /></p>
+
+<p>返回photoshop， #main的效果幾乎都完成了，只剩下超連結的顏色需要設定綠色和粗體</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.47.27.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.34.47.27.jpg" /></p>
+
+<p>設定#main內&lt;p&gt;區塊內的超連結，顏色為線色且為粗體</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.35.28.73.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.35.28.73.jpg" /></p>
+
+<p>運行結果，超連結設定完成，完成了#main的所有部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.35.31.33.jpg" alt="/images/coding-note/html/psd-to-html/05c_buildCss_main_section/05c_buildCss_main_section-0.35.31.33.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[05b_banner]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/05b_buildCss_banner_section/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/05b_buildCss_banner_section</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/00_demo.jpg" class="demo_img" alt="建立banner，設計可隨內文增多而延展的背景。
+Breadcrumbs(麵包屑的應用)，以及用web developer工具修改細部css。" />
+    <p>建立banner，設計可隨內文增多而延展的背景。
+Breadcrumbs(麵包屑的應用)，以及用web developer工具修改細部css。</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#banner-wrap" id="markdown-toc-banner-wrap">#banner-wrap背景延伸</a></li>
+  <li><a href="#bannerborder" id="markdown-toc-bannerborder">#banner的背景和框線(border)</a></li>
+  <li><a href="#bannerltheadergtpadding" id="markdown-toc-bannerltheadergtpadding">#banner和&lt;header&gt;的內距(padding)</a></li>
+  <li><a href="#banner" id="markdown-toc-banner">#banner的寬度</a></li>
+  <li><a href="#firebug-debug-css" id="markdown-toc-firebug-debug-css">firebug debug css</a></li>
+  <li><a href="#bannerltimggtltpgtltbuttongt" id="markdown-toc-bannerltimggtltpgtltbuttongt">#banner之內的&lt;img&gt;、&lt;p&gt;、&lt;button&gt;的設定</a></li>
+  <li><a href="#breadcrumbsz-index" id="markdown-toc-breadcrumbsz-index">breadcrumbs的背景漸層、z-index、圓角</a></li>
+  <li><a href="#css" id="markdown-toc-css">在瀏覽器內修改css</a></li>
+</ul>
+<hr />
+
+<h2 id="banner-wrap">#banner-wrap背景延伸</h2>
+
+<p>接下來開始進行BANNER的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.00.28.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.00.28.60.jpg" /></p>
+
+<p>在PSD的原始圖內解說，當內文超過原定範圍時，背景該如何自動延伸</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.00.45.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.00.45.60.jpg" /></p>
+
+<p>banner-wrap負責放背景、banner負責放內文</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.00.55.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.00.55.00.jpg" /></p>
+
+<p>設定為clear:both，來確保其它層的物件不會應浮動的關係而移到banner層</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.15.70.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.15.70.jpg" /></p>
+
+<p>可看到header層的物件，都能固定在預定的位置，而不會跑到banner層來</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.19.40.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.19.40.jpg" /></p>
+
+<p>試著在#banner內設置背景，看會有何問題</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.47.30.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.47.30.jpg" /></p>
+
+<p>可看到背景不應設在#banner層，因背景不只有24格而已，而是會佔滿整個網頁，所以背景應設在#banner-wrap層才對</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.51.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.01.51.00.jpg" /></p>
+
+<p>因此，將清除浮動和背景的設定，設至在#banner-wrap中</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.02.09.90.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.02.09.90.jpg" /></p>
+
+<p>運行結果，可到到即使新增一堆內文，背景也會隨之延伸</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.02.27.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.02.27.00.jpg" /></p>
+
+<p>為了使#banner-wrap和#banner之間留一點間距，設置其內距patting-bottom:15px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.02.47.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.02.47.60.jpg" /></p>
+
+<h2 id="bannerborder">#banner的背景和框線(border)</h2>
+
+<p>#banner-wrap的外框線也是有顏色的，至photoshop中量取其邊線的顏色(#bba67b)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.03.00.20.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.03.00.20.jpg" /></p>
+
+<p>#banner-wrap的部份設置完畢，接下來設置#banner的背景圖片</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.03.56.80.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.03.56.80.jpg" /></p>
+
+<p>背景顏色是正確的，但是正正方方的不好看，所以因將其邊線設置圓角</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.00.80.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.00.80.jpg" /></p>
+
+<p>在#banner加入自訂的圓角類別-rounded</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.09.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.09.00.jpg" /></p>
+
+<p>運行結果，可看到#banner有圓角框線了。但是#banner和header區的&lt;nav&gt;太接近了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.10.90.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.10.90.jpg" /></p>
+
+<h2 id="bannerltheadergtpadding">#banner和&lt;header&gt;的內距(padding)</h2>
+
+<p>因此將#banner外距設為45px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.29.30.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.29.30.jpg" /></p>
+
+<p>但設置完margin-top後，卻發現背景有問題，竟然出現了#banner-wrap的背景</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.34.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.34.10.jpg" /></p>
+
+<p>改為內距padding-top，在來觀察背景問題解決了沒</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.43.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.43.00.jpg" /></p>
+
+<p>運行結果，可看到padding-top解決了背景問題</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.45.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.45.60.jpg" /></p>
+
+<p>背景的間距問題最好是集中在#banner-wrap內，因為它是專門負責放背景的，所以將padding-top從#banner移到#banner-wrap內</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.53.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.53.60.jpg" /></p>
+
+<p>運行結果，可看到背景依然正確</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.54.70.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.04.54.70.jpg" /></p>
+
+<p>#banner-wrap的部份設置完畢，接下來設置#banner的內容。首先，需設置其標題的內距，所以至photoshop中，量測其上內距、左內距</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.05.16.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.05.16.00.jpg" /></p>
+
+<p>將#banner的上下內距設為50px，左右內距設為40px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.05.31.30.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.05.31.30.jpg" /></p>
+
+<p>運行結果，可看到完成了內距的設定</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.05.38.40.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.05.38.40.jpg" /></p>
+
+<h2 id="banner">#banner的寬度</h2>
+
+<p>#banner的寬度需設為880px，因為24格的960寬度為880px+左右外距(40px*2)，所以#banner實際上的寬度只有880px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.06.25.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.06.25.00.jpg" /></p>
+
+<p>並設定文字顏色為白色，並設置排列為relative，好確保內部元件如要設置為absolute時，只會在#banner區內移動，而不會跑到其它層</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.06.31.80.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.06.31.80.jpg" /></p>
+
+<p>運行結果，可看到顏色被成功設置了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.06.34.40.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.06.34.40.jpg" /></p>
+
+<h2 id="firebug-debug-css">firebug debug css</h2>
+
+<p>故意將color的css給寫錯，看看要如何debug</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.07.21.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.07.21.00.jpg" /></p>
+
+<p>在firebug中檢視目前套用在&lt;h2&gt;上的css</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.08.06.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.08.06.00.jpg" /></p>
+
+<p>可看到沒有出現剛才故意打錯的color部份的css</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.08.31.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.08.31.00.jpg" /></p>
+
+<p>經過這個實驗，我們就可了解以後css錯誤時，該如何檢查了。因此我們再量測正確的color值，修正color的錯誤</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.09.02.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.09.02.10.jpg" /></p>
+
+<h2 id="bannerltimggtltpgtltbuttongt">#banner之內的&lt;img&gt;、&lt;p&gt;、&lt;button&gt;的設定</h2>
+
+<p>#featured是用來放置#banner內2張圖片的區塊，將其指定為在#banner內的絕對位置，靠右40px、靠上35px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.10.27.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.10.27.10.jpg" /></p>
+
+<p>圖片是排好了，但是和文字的位置太接近了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.10.43.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.10.43.00.jpg" /></p>
+
+<p>至photoshop中量測，可發現文字距離右邊界的間距為517px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.11.25.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.11.25.00.jpg" /></p>
+
+<p>所以將標題和文字，設為離右內距517px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.11.32.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.11.32.60.jpg" /></p>
+
+<p>運行結果，可看到文字和圖片間的間距看起來不會這麼擠了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.11.34.80.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.11.34.80.jpg" /></p>
+
+<p>接下來，設定按鈕間的間距為20px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.12.13.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.12.13.00.jpg" /></p>
+
+<p>至photoshop中量測，可發現原始設計距離為29px，和我們剛才輸入的20px差不多，完成了按鈕的間距設定</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.12.17.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.12.17.00.jpg" /></p>
+
+<p>接下來，設定#featured內，那2張圖片間重疉距離。由於要使第1張圖可指定位移位置，設為relative、靠左160px、靠上14px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.13.26.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.13.26.00.jpg" /></p>
+
+<p>可看到第一張圖經位移後，重疉一部份到第2張圖上了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.13.28.50.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.13.28.50.jpg" /></p>
+
+<p>讓我們回到photoshop中，仔細看這2張圖片間的關係(有陰影、且第一張圖蓋住了第2張圖的一部份)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.13.38.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.13.38.10.jpg" /></p>
+
+<p>因此，在第一張圖設置陰影</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.13.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.13.00.jpg" /></p>
+
+<p>運行結果，可看到陰影被成功設置了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.19.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.19.00.jpg" /></p>
+
+<p>為了確保所有瀏灠器都能運行陰影，寫入各個瀏灠器的陰影css的寫法，完成了圖片陰影的設置</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.33.40.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.33.40.jpg" /></p>
+
+<h2 id="breadcrumbsz-index">breadcrumbs的背景漸層、z-index、圓角</h2>
+
+<p>在PSD檔中，解釋導覽列(breadcrumbs)的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.40.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.14.40.00.jpg" /></p>
+
+<p>開始寫BREADCRUMBS的css部份，由於BREADCRUMBS為#banner的子階層，我們使用/**/來做為子階層的標記</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.05.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.05.00.jpg" /></p>
+
+<p>在psd檔中，檢測出該導覽列的背景是有漸層的，因此先量測背景顏色(#257386)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.15.90.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.15.90.jpg" /></p>
+
+<p>量測完後，加入背景的顏色-background:#257386</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.31.70.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.31.70.jpg" /></p>
+
+<p>漸層為由上至下分佈，所以先量測上面的顏色(#298192)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.38.70.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.15.38.70.jpg" /></p>
+
+<p>在量測下面的顏色(#247184)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.02.20.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.02.20.jpg" /></p>
+
+<p>在將漸層顏色依序寫入css中</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.10.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.10.00.jpg" /></p>
+
+<p>漸層設好了，但是這個導覽列太窄了，應該將高度加高一點</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.14.80.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.14.80.jpg" /></p>
+
+<p>因此設其行高(line-height)為43px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.20.50.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.20.50.jpg" /></p>
+
+<p>但此導覽列(#breadcrumbs)的行高加高後，有點檔住了#banner的咖啡色背景，所以應該降低導覽列的堆疉順序(z-index)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.24.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.24.00.jpg" /></p>
+
+<p>為了設置z-index，需指定排列方式為relative，在將z-index設為2</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.49.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.49.00.jpg" /></p>
+
+<p>運行結果，設了z-index後，也是沒有作用。原因是因為我們尚為設置#banner的z-index</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.58.60.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.16.58.60.jpg" /></p>
+
+<p>將#banner的z-index設為3(因為#breadcrumbs的值為2，需設的比它大一層才行)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.12.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.12.00.jpg" /></p>
+
+<p>我們希望導覽列(#breadcrumbs)的上端部份呈現一點點被#banner蓋住的效果，所以將#breadcrumbs的上邊界(top)設為-6px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.27.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.27.00.jpg" /></p>
+
+<p>運行結果，#banner和#breadcrumbs的重疉問題被解決了，但是加一點圓角會好看一些</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.34.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.34.10.jpg" /></p>
+
+<p>所以將#breadcrumbs加入了自訂的圓角設定(rounded)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.46.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.46.00.jpg" /></p>
+
+<p>運行結果，是有圓角了，但沒有對齊好，而且字和左邊界的距離太近了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.49.90.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.17.49.90.jpg" /></p>
+
+<p>因此，設定上下內距為0且左右內距為40px，來讓字和邊距且有點距離。並且設定#breadcrumbs的寬度和#banner一樣都為880px，來和#banner對齊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.11.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.11.00.jpg" /></p>
+
+<p>運行結果，可看到成功對齊了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.12.70.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.12.70.jpg" /></p>
+
+<p>再來為其文字加入陰影</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.36.20.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.36.20.jpg" /></p>
+
+<p>運行結果，陰影是設好了，但是超連結的文字顏色需統一為白色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.39.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.39.10.jpg" /></p>
+
+<p>設定超連結的文字為白色且為粗體</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.53.50.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.53.50.jpg" /></p>
+
+<p>運行結果，完成了#breadcrumb內的所有文字設定了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.56.30.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.56.30.jpg" /></p>
+
+<h2 id="css">在瀏覽器內修改css</h2>
+
+<p>目前文字和右邊界的距離是根據psd檔所設計的間距(517px)，但有時psd檔的設計和實際網頁輸出時的情形會略有不同，所以應根據實際網頁的情況來決定距離為多少較美觀</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.59.90.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.18.59.90.jpg" /></p>
+
+<p>因此將右內距改為400px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.13.30.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.13.30.jpg" /></p>
+
+<p>運行結果，右內距改為400px後的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.15.30.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.15.30.jpg" /></p>
+
+<p>其餘還有許多排版上的細節，可切換至firebug，檢示其原始碼，可看到每個html tag，而其右側所對應的Layout排版資訊，可直接修改如padding、margin的數值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.39.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.39.00.jpg" /></p>
+
+<p>要觀察各物件間有無對齊，可使用miscellaneous工具的display Rule的功能，來產生檢查排版用格線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.49.10.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.49.10.jpg" /></p>
+
+<p>運用此格線比對時，可發現標題和圖片的上邊界不一樣</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.54.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.19.54.00.jpg" /></p>
+
+<p>此時打開firebug，再微調上邊界，使其對齊</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.20.14.00.jpg" alt="/images/coding-note/html/psd-to-html/05b_buildCss_banner_section/05b_buildCss_banner_section-0.20.14.00.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>

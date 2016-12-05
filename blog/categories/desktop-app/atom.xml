@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Desktop-app | wikihuang進行式]]></title>
+  <link href="http://wikihuang.github.io/blog/categories/desktop-app/atom.xml" rel="self"/>
+  <link href="http://wikihuang.github.io/"/>
+  <updated>2016-12-05T10:44:33+08:00</updated>
+  <id>http://wikihuang.github.io/</id>
+  <author>
+    <name><![CDATA[wikihuang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[TTS真人語音-念電子書給你聽]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/30/tts/"/>
+    <updated>2016-09-30T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/30/tts</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  此乃舊的教學文，現在win8以上的版本的內健語音都有不錯的英文語音，不需在另外購買。
+</div>
+<div id="intro">
+    <img src="http://wikihuang.github.io/images/software/desktop-app/tts/00_demo.jpg" class="demo_img" alt="你常需要閱讀大量的原文書嗎?是否常會覺得看得眼睛實在好累，如果有人可以用唸的給我們聽，那該有多幸福~~
+NeoSpeech TTS真人語音，就可以實現你這個小小的夢想!
+超擬真的發音，讓你擺脫電腦語音總是讓你聽得很不舒服的壞印象。並搭配lingoes(靈格斯)這套免費的翻譯軟體，讓你從此可用更有效率的方法來學習。" />
+    <p>你常需要閱讀大量的原文書嗎?是否常會覺得看得眼睛實在好累，如果有人可以用唸的給我們聽，那該有多幸福~~
+NeoSpeech TTS真人語音，就可以實現你這個小小的夢想!
+超擬真的發音，讓你擺脫電腦語音總是讓你聽得很不舒服的壞印象。並搭配lingoes(靈格斯)這套免費的翻譯軟體，讓你從此可用更有效率的方法來學習。</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>一開始時，若是想要了解此套TTS真人語音工具是否符合自己的需求，可至其官網www.neospeech.com/default.aspx，來進行試用。你只需要貼上一段你所想要試聽的文字，並選取指定要發音的語音(從英文、中文、日文等語言都有)，可立刻聽到其語音的發音效果了。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_01.jpg" alt="/images/software/desktop-app/tts/TTS_01.jpg" /></p>
+
+<p>如果不知道要輸入什麼文字才好，想直接看語音朗讀的範例的話，可至另一個網站(這個網站的網路購物功能較方便)http://www.reallusion.com/creative/creative_NeoSpeech.aspx，你可看到每一個語音都有一個代表的人物，並會念一小段新聞給你聽，試著去聽聽看你會最喜歡那一個語音</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_02.jpg" alt="/images/software/desktop-app/tts/TTS_02.jpg" /></p>
+
+<p>如果你覺得某個語音真得很適合你的話，在剛才的網頁往下移動就會看到購買資訊了。有多種購買的方案，一次買2個語音以上會有打折，但我個人認為買一套就夠了(像我是買Paul，$19.95元，台幣600元左右)。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_03.jpg" alt="/images/software/desktop-app/tts/TTS_03.jpg" /></p>
+
+<p>購買並付費完成後，會e-mail給你該軟體的下載網址，和你個人專屬的序號，來驗證你為合法的使用者。至於如何驗證，mail中會提供給你說明文件，所以筆者就不介紹了。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_04.jpg" alt="/images/software/desktop-app/tts/TTS_04.jpg" /></p>
+
+<p>安裝完TTS，要如何使用該語音的功能呢?<br />你可以選擇使用lingoes(靈格斯)，設定其語音朗讀的部份，你可看到多了一個VW Paul的語音可供選用。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_05.jpg" alt="/images/software/desktop-app/tts/TTS_05.jpg" /></p>
+
+<p>指定好要朗讀的語音後，接下來只需要設定快速鍵就可控制撥放語音的功能了。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_06.jpg" alt="/images/software/desktop-app/tts/TTS_06.jpg" /></p>
+
+<p>設定完成!!接下來，打開你要朗讀的文件，後選取你想聽的該段文字，接下你剛才所設的朗讀快速鍵(如:ctrl+F12)你就會聽到如真人般發音的語音了。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/tts/TTS_07.jpg" alt="/images/software/desktop-app/tts/TTS_07.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Touchcursor自訂方向鍵]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/30/touchcursor/"/>
+    <updated>2016-09-30T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/30/touchcursor</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/software/desktop-app/touchcursor/00_demo.jpg" class="demo_img" alt="打程式碼時，最討厭的就是按方向鍵。因為明明只是要移動某個字的焦點位置，做些許的修改，但卻得讓手離開打字區，飛快的按一下方向鍵，然後又衝到打字區繼續打字。如果要修改的字多一些，這樣的動作不斷的重覆，手一定會移到抽筋。
+打字已經很累了，有辦法減少這種不必要的動作嗎?
+有的!可以運用touchcursor這套軟猖，可讓你只要壓住住空白鍵，便可自由切換移動和輸入模式，讓你不用在辛苦的移動方向鍵!" />
+    <p>打程式碼時，最討厭的就是按方向鍵。因為明明只是要移動某個字的焦點位置，做些許的修改，但卻得讓手離開打字區，飛快的按一下方向鍵，然後又衝到打字區繼續打字。如果要修改的字多一些，這樣的動作不斷的重覆，手一定會移到抽筋。
+打字已經很累了，有辦法減少這種不必要的動作嗎?
+有的!可以運用touchcursor這套軟猖，可讓你只要壓住住空白鍵，便可自由切換移動和輸入模式，讓你不用在辛苦的移動方向鍵!</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>在介紹touchcursor之前，我們先來看看目前的程式編輯器，如何切換輸入和移動模式。例如，vim可借由按esc切換為移動模式。Sublime text則可自訂快速鍵，例如可自訂alt+h為向左移的方向鍵。但並非所有的文本編輯器都支援自訂快速鍵，既然如此，最理想的情況就是運用一個獨立的應用程式，來統一控制切換移動和輸入模式，讓所有的編輯器都能用統一用相同的快速鍵來移動方向鍵。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/touchcursor/touchcursor (2).jpg" alt="/images/software/desktop-app/touchcursor/touchcursor (2).jpg" /></p>
+
+<p>這就是touchcursor的強大功能，使用方法很簡單，安裝完後，只要按住空白鍵不放，便會切換到移動模式。方別按下i-j-k-l，就可做為方向鍵的移動，放開空白鍵後，就可立即恢復為輸入模式。這樣就不用在不停的離開打字區去按方向鍵了，便可大大的減輕打字時所造成的肌肉酸痛。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/touchcursor/touchcursor (3).jpg" alt="/images/software/desktop-app/touchcursor/touchcursor (3).jpg" /></p>
+
+<p>如果你對預設的按鍵設定不滿意，你也可到自訂區來自訂按鍵。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/touchcursor/touchcursor (4).jpg" alt="/images/software/desktop-app/touchcursor/touchcursor (4).jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[替影片做筆記-potplayer]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/30/potplayer-note/"/>
+    <updated>2016-09-30T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/30/potplayer-note</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/software/desktop-app/potplayer-note/00_demo.jpg" class="demo_img" alt="看教學影片時，是否常會感覺影片的內容很長，儘管影片的內容很豐富，但是不能像書本一樣，有清楚的目錄，來讓我們在學習時能了解影片的內容結構，以便在重要的地方做筆記。
+是否有軟體可讓我們替教學影片做筆記呢?有的!potplayer便是可做影片筆記的軟體。清楚的記錄下，影片中的第幾分幾秒的筆記和圖片內容，讓你的筆記圖片並茂，一目了然。" />
+    <p>看教學影片時，是否常會感覺影片的內容很長，儘管影片的內容很豐富，但是不能像書本一樣，有清楚的目錄，來讓我們在學習時能了解影片的內容結構，以便在重要的地方做筆記。
+是否有軟體可讓我們替教學影片做筆記呢?有的!potplayer便是可做影片筆記的軟體。清楚的記錄下，影片中的第幾分幾秒的筆記和圖片內容，讓你的筆記圖片並茂，一目了然。</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>首先，我們先來看potplayer書籤瀏覽器的效果(快速鍵alt+z)，在此我們先以fighttips.com的健身教學影片為例，你可看到在potplayer的幫助下，我們能很輕鬆的看到影片的圖文筆記，讓你了解關鍵的動作的影片位置，方便日後查詢。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/potplayer-note/potplayer-note (1).jpg" alt="/images/software/desktop-app/potplayer-note/potplayer-note (1).jpg" /></p>
+
+<p>如果看到影片中的關鍵圖片想將其截取出來，可按ctrl+e，即可截圖。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/potplayer-note/potplayer-note (2).jpg" alt="/images/software/desktop-app/potplayer-note/potplayer-note (2).jpg" /></p>
+
+<p>至於新增書籤的方法，只要按下快速鍵p，就可在想做重點的部份做筆記。會彈跳出一視窗，讓你可根據目前的時間位置，寫下筆記。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/potplayer-note/potplayer-note (3).jpg" alt="/images/software/desktop-app/potplayer-note/potplayer-note (3).jpg" /></p>
+
+<p>如果你的教學影片是需要較為仔細的文字描述(例如程式教學影片)，那麼建議你可將文字的描述寫在紙本上，並寫下註解和所對應的時間。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/potplayer-note/potplayer-note (4).jpg" alt="/images/software/desktop-app/potplayer-note/potplayer-note (4).jpg" /></p>
+
+<p>日後觀看筆記時，如果想仔細了解某段時間的影片內容，在potplayer輸入時間，就能跳到該影片的位置(快速鍵g)。用這樣的方式來做影片筆記，就可以很明確的知道自己在這個教學影片中學到了什麼。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/potplayer-note/potplayer-note (5).jpg" alt="/images/software/desktop-app/potplayer-note/potplayer-note (5).jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dexpot虛擬多個桌面]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/30/dexpot/"/>
+    <updated>2016-09-30T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/30/dexpot</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/software/desktop-app/dexpot/00_demo.jpg" class="demo_img" alt="編寫程式碼時，總是常需要在不同的應用程式間來回切換。例如，編輯程式時用sublime-text，管理程式用netbean，查文件用firefox，但桌面只有一個，來回不斷的開啟、縮小這些應用程式真的很麻煩，如果能夠有多個桌面，來分別切換不同的應用程式就好了。
+Dexpot就是能些擬多個桌面的軟體，你可運用快速鍵，或切換桌面的按鈕，就能切換到你指定的桌面，來操做你需要的應用程式，再也不需要不斷的開關視窗。" />
+    <p>編寫程式碼時，總是常需要在不同的應用程式間來回切換。例如，編輯程式時用sublime-text，管理程式用netbean，查文件用firefox，但桌面只有一個，來回不斷的開啟、縮小這些應用程式真的很麻煩，如果能夠有多個桌面，來分別切換不同的應用程式就好了。
+Dexpot就是能些擬多個桌面的軟體，你可運用快速鍵，或切換桌面的按鈕，就能切換到你指定的桌面，來操做你需要的應用程式，再也不需要不斷的開關視窗。</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>首先，在沒有使用dexpot之前，所有的應用程式只能共同顯示在同的桌面內。因此，使用時，需不停的對不同應用程式開開關關，相當不方便。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/dexpot/dexpot (1).jpg" alt="/images/software/desktop-app/dexpot/dexpot (1).jpg" /></p>
+
+<p>在使用了dexpot之後，預設會出現4個些虛擬的桌面，讓你指定哪一個桌面，要放入指定的應用程式。例如，我把firefox，放在第2個些虛擬桌面，日後如需變改，也可放到其它虛擬桌面內。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/dexpot/dexpot (2).jpg" alt="/images/software/desktop-app/dexpot/dexpot (2).jpg" /></p>
+
+<p>些外，你也可自訂快速鍵，來切換視窗。例如:alt+1，切換到視窗1。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/dexpot/dexpot (3).jpg" alt="/images/software/desktop-app/dexpot/dexpot (3).jpg" /></p>
+
+<p>設定完成後，你的電腦就會有4個虛擬桌面可以互相切換了。你可自行指定哪一個應用程式要放在哪一個桌面內，從此以後，再也不用不停的開關不同的應用程式了。</p>
+<p><img src="http://wikihuang.github.io/images/software/desktop-app/dexpot/dexpot (4).jpg" alt="/images/software/desktop-app/dexpot/dexpot (4).jpg" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>

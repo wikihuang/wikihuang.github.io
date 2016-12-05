@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Outlook的RSS功能-管理youtube教學影片 - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="你常看youtube上的影片嗎?youtube上的影片學習資源真的很多，但隨著閱讀的量變多，就變得愈難管理。 也許在你看完一部影片後，想將它分類，標示為你已將看過的、難度較高的等等不同分類，以便未來知道自己曾經看過什麼樣內容的影片。 但youtube內建的瀏覽介面， &hellip;">
+  <meta name="keywords" content="e-learning">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/10/08/rss-outlook/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/10/08/rss-outlook/">
+  <meta property="og:title" content="Outlook的RSS功能-管理youtube教學影片 - wikihuang進行式">
+  <meta property="og:description" content="你常看youtube上的影片嗎?youtube上的影片學習資源真的很多，但隨著閱讀的量變多，就變得愈難管理。 也許在你看完一部影片後，想將它分類，標示為你已將看過的、難度較高的等等不同分類，以便未來知道自己曾經看過什麼樣內容的影片。 但youtube內建的瀏覽介面，並沒有辦法讓你一目了然的了解自己所設定的分類。 那要如何才能用更有效率的介面，來分類我們所曾經學習過的影片呢? 有的! &hellip;">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Outlook的RSS功能-管理youtube教學影片
+        
+    </h1>
+    
+  </header>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  此乃舊的教學文，其中的youtube RSS API已經不再被youtube支援，如仍有rss的需求，需使用新版的youtube api
+</div>
+<div id="intro">
+    <img src="/images/software/e-learning/rss-outlook/00_demo.jpg" class="demo_img" alt="你常看youtube上的影片嗎?youtube上的影片學習資源真的很多，但隨著閱讀的量變多，就變得愈難管理。
+也許在你看完一部影片後，想將它分類，標示為你已將看過的、難度較高的等等不同分類，以便未來知道自己曾經看過什麼樣內容的影片。
+但youtube內建的瀏覽介面，並沒有辦法讓你一目了然的了解自己所設定的分類。
+那要如何才能用更有效率的介面，來分類我們所曾經學習過的影片呢?
+有的!只要善用youtube提供的RSS API(http://gdata.youtube.com/demo/)，並和outlook合用，就可有效的管理你曾經看過的影片內容。
+如下圖，可到到其自訂分類影片的功能，可依自訂資料夾、顏色、日期等來自行分類。
+接下來的教學，我會以如何管理youtube上的英文學習資源為範例，來讓大家了解如何達成自訂youtube影片分類的效果。" />
+    <p>你常看youtube上的影片嗎?youtube上的影片學習資源真的很多，但隨著閱讀的量變多，就變得愈難管理。
+也許在你看完一部影片後，想將它分類，標示為你已將看過的、難度較高的等等不同分類，以便未來知道自己曾經看過什麼樣內容的影片。
+但youtube內建的瀏覽介面，並沒有辦法讓你一目了然的了解自己所設定的分類。
+那要如何才能用更有效率的介面，來分類我們所曾經學習過的影片呢?
+有的!只要善用youtube提供的RSS API(http://gdata.youtube.com/demo/)，並和outlook合用，就可有效的管理你曾經看過的影片內容。
+如下圖，可到到其自訂分類影片的功能，可依自訂資料夾、顏色、日期等來自行分類。
+接下來的教學，我會以如何管理youtube上的英文學習資源為範例，來讓大家了解如何達成自訂youtube影片分類的效果。</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>本範例的目標為:取得有關engVid.com線上英文家教中的Emma老師的所有教學影片。你可將滑鼠移到該系例影片的作者照片上，出現的網頁連結的最後一段字串，就是作者的名稱了(作者名稱為:EnglishTeacherEmma)。</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_01.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_01.jpg" /></p>
+
+<p>取得作者名稱後，接下來請至youtue的API網站(http://gdata.youtube.com/demo/)來取得該教學影片的RSS網址。<br />Youtube的API可依多種不同的方式來取得你想要的影片資料，有依作者、撥放清單、關鍵字、受歡迎度~等等不同分類，我們先來學如何使用作者名稱來取得其RSS資料。<br />分別在以下欄位輸入資料:<br />Number of results:50(將讀取數設為最大值50，不然會依預設值，只有讀入25筆資料)<br />Outpus format:RSS 2.0(由於是要給outlook讀取用，所以設為RSS 2.0)<br />Ordering:Published(依發佈日期來排序，不然會讀入一些很舊的影片，我們希望總是以讀入最新的影片為優先)<br />Author name:EnglishTeacherEmma(剛才在youtube上取得的影片作者名稱)</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_02.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_02.jpg" /></p>
+
+<p>依序輸入後，會看到，Resulting URI的欄位後自動產生一串RSS網址(http://gdata.youtube.com/feeds/base/videos?max-results=50&amp;alt=rss&amp;orderby=published&amp;author=englishTeacherEmma)。點選Submit的按鈕後，如果你看到一大串的Response資料出現的話，就代表這個網址是正確的，確定讀得到資料。<br />確定成功後，就把這段網址給複製起來，準備傳至outlook。</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_03.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_03.jpg" /></p>
+
+<p>Outllook要加入RSS的方法非常簡單，先在左側欄的RSS上點選滑鼠右鍵，後點選&quot;新增RSS摘要&quot;。</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_04.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_04.jpg" /></p>
+
+<p>接下來，貼入剛才所取得的RSS資料網址。</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_05.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_05.jpg" /></p>
+
+<p>接下確定後，就可看到所讀入的RSS影片資料了，預設的資料夾名稱為Videos，日後你可自行改為你要的分類名稱。</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_06.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_06.jpg" /></p>
+
+<p>依照上述的方法，日後你可以自行加入你有興趣的youtube影片，並加以分類。以我的使用經驗為例，你可看到我所加入的英文學習課程，如對話類:<br />podEnglish(https://www.youtube.com/user/podEnglish)<br />twominenglish(https://www.youtube.com/user/twominenglish)<br />單字片語類:<br />lettalk(https://www.youtube.com/user/learnexmumbai)<br />EnglishTeacherAdam(https://www.youtube.com/user/EnglishTeacherAdam)<br />AlexESLvid(https://www.youtube.com/user/AlexESLvid)<br /><br />並將這些課程，分為介繫詞、不定詞等自訂類別。如果遇到比較難的課程，會以紅色做為標記，日後在去處理。透過這種分類方法 ，你就能很清楚的知道自己曾經讀過什麼，讓未來的你在面對類似的題目時，可從過去讀過的資料來找出答案。<br />擅用youtube上的學習資源，你將會在在資訊爆炸的時代更加的得心應手。</p>
+<p><img src="/images/software/e-learning/rss-outlook/youtube-rss_07.jpg" alt="/images/software/e-learning/rss-outlook/youtube-rss_07.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/e-learning/'>e-learning</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/e-learning/'>e-learning</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/10/08/rss-outlook/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/10/08/rss-outlook/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/09/30/tts/" title="Previous Post: TTS真人語音-念電子書給你聽">&laquo; TTS真人語音-念電子書給你聽</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/10/08/voiceTube-repeat/" title="Next Post: 單句反覆功能-找出英文不懂的句子">單句反覆功能-找出英文不懂的句子 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item active" href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/tts/">TTS真人語音-念電子書給你聽</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/touchcursor/">Touchcursor自訂方向鍵</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/potplayer-note/">替影片做筆記-potplayer</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 108.57142857142857%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 117.14285714285714%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 108.57142857142857%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 108.57142857142857%'>$.proxy(1)</a> <a href='/blog/tags/accordion' style='font-size: 108.57142857142857%'>accordion(1)</a> <a href='/blog/tags/animate' style='font-size: 117.14285714285714%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 117.14285714285714%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 108.57142857142857%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 108.57142857142857%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 117.14285714285714%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 125.71428571428572%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 108.57142857142857%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 108.57142857142857%'>config(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(7)</a> <a href='/blog/tags/data' style='font-size: 108.57142857142857%'>data(1)</a> <a href='/blog/tags/delegate' style='font-size: 108.57142857142857%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 134.28571428571428%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 117.14285714285714%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 108.57142857142857%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 117.14285714285714%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 108.57142857142857%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 108.57142857142857%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 108.57142857142857%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 117.14285714285714%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 117.14285714285714%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 108.57142857142857%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 117.14285714285714%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 117.14285714285714%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 108.57142857142857%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 108.57142857142857%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 108.57142857142857%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 108.57142857142857%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 108.57142857142857%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 117.14285714285714%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 117.14285714285714%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 108.57142857142857%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 117.14285714285714%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 108.57142857142857%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 151.42857142857144%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 117.14285714285714%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 108.57142857142857%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 108.57142857142857%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 117.14285714285714%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 117.14285714285714%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

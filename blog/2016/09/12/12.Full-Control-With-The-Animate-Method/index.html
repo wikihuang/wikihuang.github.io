@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3.5_控制動畫效果 - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="控制文字縮放、物件置中、圓角化的動畫效果">
+  <meta name="keywords" content="parseInt,animate">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/09/12/12.Full-Control-With-The-Animate-Method/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/09/12/12.Full-Control-With-The-Animate-Method/">
+  <meta property="og:title" content="3.5_控制動畫效果 - wikihuang進行式">
+  <meta property="og:description" content="控制文字縮放、物件置中、圓角化的動畫效果">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-09-12T10:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        3.5_控制動畫效果
+        
+    </h1>
+    
+  </header>
+
+<div id="refBox" class="alert alert-info">
+
+    <address>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true">原著影片網址:</span>
+        <a href=https://tutsplus.com/lesson/creating-custom-effect-methods/>https://tutsplus.com/lesson/creating-custom-effect-methods/</a>
+    </address>
+</div>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/00_demo.jpg" class="demo_img" alt="控制文字縮放、物件置中、圓角化的動畫效果" />
+    <p>控制文字縮放、物件置中、圓角化的動畫效果</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">點選按鈕，放大文字</a></li>
+  <li><a href="#fontsize" id="markdown-toc-fontsize">轉換fontSize為數值型態，達成遞增字體大小的效果</a></li>
+  <li><a href="#cssfont-sizecolor" id="markdown-toc-cssfont-sizecolor">css同時改變font-size和color</a></li>
+  <li><a href="#animatefontsizewidth" id="markdown-toc-animatefontsizewidth">animate()改變fontSize和width</a></li>
+  <li><a href="#animate" id="markdown-toc-animate">animate()執行完第一次特效後，接續其它動作</a></li>
+  <li><a href="#animatequeue" id="markdown-toc-animatequeue">animate()的queue參數，如何影響動畫撥放時間</a></li>
+  <li><a href="#css" id="markdown-toc-css">css置中功能</a></li>
+  <li><a href="#animate-1" id="markdown-toc-animate-1">animate()置中功能</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">圓角效果</a></li>
+</ul>
+<hr />
+
+<h2 id="section">點選按鈕，放大文字</h2>
+
+<p>點選按鈕時，&lt;div class=&quot;box&quot;&gt;內的文字大小設為25px</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.44.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.44.71.jpg" /></p>
+
+<p>運行結果，文字大小為25px的畫面</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.49.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.49.71.jpg" /></p>
+
+<p>統一變數為box，以減少jquery的dom搜尋次數</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.56.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.56.29.jpg" /></p>
+
+<p>運行結果，修改後，設文字大小的功仍然正常運作</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.58.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.58.71.jpg" /></p>
+
+<h2 id="fontsize">轉換fontSize為數值型態，達成遞增字體大小的效果</h2>
+
+<p>整理為閉包，且用console.log(fontSize)來測試預設字體的大小</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.45.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.45.71.jpg" /></p>
+
+<p>運行結果，console中檢測，預設font-size大小為16px</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.49.88.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.49.88.jpg" /></p>
+
+<p>檢測fontSize(字型大小)的變數型態</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.56.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.56.29.jpg" /></p>
+
+<p>運行結果，fontSize型態為字串，字串是不能做數字運算的，所以要轉換為數字型態</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.57.50.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.57.50.jpg" /></p>
+
+<p>使用parseInt()來轉換為數字後，測試是否能做數字運數(fontSize+5)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.46.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.46.71.jpg" /></p>
+
+<p>運行結果，數字由原先的16，經數字運算後變為21了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.52.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.52.46.jpg" /></p>
+
+<p>這次寫成fontSize+=5，使文字每點選一次變遞增5</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.09.54.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.09.54.jpg" /></p>
+
+<p>運行結果，每按一次按鈕便可遞增字型大小</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.31.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.31.00.jpg" /></p>
+
+<p>改為較短的寫法，寫成+=5就好</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.47.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.47.62.jpg" /></p>
+
+<p>運行結果，較短的寫法仍可成功遞增字體大小</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.51.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.51.21.jpg" /></p>
+
+<h2 id="cssfont-sizecolor">css同時改變font-size和color</h2>
+
+<p>也可同時修改多個css，如改成遞減字型大小，並將字設為白色。但若每修改一個樣式，就寫一個.css()太麻煩了。</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.28.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.28.21.jpg" /></p>
+
+<p>有多個css樣式要設定時，可用將樣式寫在該{}內，統一為一個物件，以便一同修改css樣式</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.57.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.57.38.jpg" /></p>
+
+<p>運行結果，成功運行，字大小和字顏色一同被改變了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.58.33.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.58.33.jpg" /></p>
+
+<h2 id="animatefontsizewidth">animate()改變fontSize和width</h2>
+
+<p>將box.css改為box.animate就是動畫效果的設定了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.09.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.09.71.jpg" /></p>
+
+<p>運行結果，定型遞增動畫成功運行，不過字的顏色沒變，因animate()不支援改字顏色</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.15.33.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.15.33.jpg" /></p>
+
+<p>同時遞加字型大小、寬度(注意，不用寫px喔)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.05.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.05.71.jpg" /></p>
+
+<p>運行結果，字型大小和寬度同步遞增</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.14.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.14.38.jpg" /></p>
+
+<p>檢測原始碼，可看到animate()是快速修改style屬性，以得到動畫的效果</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.39.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.39.38.jpg" /></p>
+
+<p>讓動畫在3秒內跑完</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.57.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.57.21.jpg" /></p>
+
+<p>運行結果，動畫在3秒內變化完成</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.09.08.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.09.08.38.jpg" /></p>
+
+<h2 id="animate">animate()執行完第一次特效後，接續其它動作</h2>
+
+<p>執行完swing特效後，執行console.log(&#x27;completed&#x27;)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.19.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.19.75.jpg" /></p>
+
+<p>運行結果，成功在執行完特效後，並console出complete</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.23.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.23.46.jpg" /></p>
+
+<p>運用animate()的complete和step的方法，來分別記錄完成時和運作時的訊息</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.08.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.08.75.jpg" /></p>
+
+<p>運行結果，成功console出動畫進行時和完成時的記錄</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.11.96.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.11.96.jpg" /></p>
+
+<p>運用step()來觀察fontSize遞增的變化</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.49.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.49.12.jpg" /></p>
+
+<p>運行結果，成功console出遞增的字型大小</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.55.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.55.08.jpg" /></p>
+
+<p>在5秒內遞增字型大小為5後，接下來的5秒，改為遞增為10</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.22.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.22.71.jpg" /></p>
+
+<p>運行結果，成功運行二次字型遞增動畫</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.26.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.26.08.jpg" /></p>
+
+<p>在5秒內遞增字型大小為5後，接下來的3秒(3000)，上邊距移動500px</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.08.58.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.08.58.jpg" /></p>
+
+<p>運行結果，成功運行，字體變大後，上邊距變為500px的效果(記得box的css要設為relative，否則top無法運作)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.11.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.11.71.jpg" /></p>
+
+<h2 id="animatequeue">animate()的queue參數，如何影響動畫撥放時間</h2>
+
+<p>queue設為false時，2個動畫加起來的時間為3000(第一個500，第2個2500)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.50.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.50.71.jpg" /></p>
+
+<p>queue設為true時，2個動畫加起來的時間為3500(第一個500，第2個3000)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.14.10.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.14.10.79.jpg" /></p>
+
+<h2 id="css">css置中功能</h2>
+
+<p>接下來的目地是，算出視窗的寬度後，以完成置中</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.47.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.47.21.jpg" /></p>
+
+<p>運行結果，box的左上角的確是置中了，但我們是希望以box的中心置中</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.53.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.53.62.jpg" /></p>
+
+<p>用視窗寬度的一半減去box寬度的一半，來算出置中位置</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.07.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.07.71.jpg" /></p>
+
+<p>運行結果，減去box寬度的一半後，很接近置中了，但還有padding要處理</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.11.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.11.17.jpg" /></p>
+
+<p>outerWidth()等於width+padding的長度</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.49.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.49.75.jpg" /></p>
+
+<p>運行結果，很接近置中了，但還有預設的margin要處理</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.00.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.00.00.jpg" /></p>
+
+<p>設定body{ margin:0;}</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.18.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.18.62.jpg" /></p>
+
+<p>運行結果，置中成功了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.20.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.20.75.jpg" /></p>
+
+<p>如果margin不想設為0，那要如何置中呢?</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.23.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.23.75.jpg" /></p>
+
+<p>這次box的位置設定，改為absolute</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.31.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.31.71.jpg" /></p>
+
+<p>運行結果，但這樣按鈕會被box蓋住，按不到喔</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.41.83.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.41.83.jpg" /></p>
+
+<p>直接設為absoulte是行不通的，所以先改回來為relative</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.44.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.44.71.jpg" /></p>
+
+<p>改為按鈕點選後，才將box的位置排列設為absolute</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.53.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.53.71.jpg" /></p>
+
+<p>運行結果，置中成功了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.58.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.58.71.jpg" /></p>
+
+<h2 id="animate-1">animate()置中功能</h2>
+
+<p>之所以堅持要改為absolute的排列方式，是因為animate()一定要將位置排列設為absolute才可正常運作，不然這種置中的問題，只是修正margin為0就可以了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.20.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.20.21.jpg" /></p>
+
+<p>運行結果，置中動畫成功</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.22.67.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.22.67.jpg" /></p>
+
+<p>分別算出置中位置的寬度(w)和高度(h)的位置，以達成水平和垂直位置都置中的效果</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.50.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.50.71.jpg" /></p>
+
+<p>運行結果，水平和垂直置中動畫成功</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.55.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.55.00.jpg" /></p>
+
+<p>使用兩次animate()來達成，先水平移動，後垂置移動的置中效果</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.14.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.14.71.jpg" /></p>
+
+<p>運行結果，成功運行先水平，後垂直置中的動畫</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.19.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.19.75.jpg" /></p>
+
+<p>這次設定動畫的撥放時間為2秒(2000)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.34.54.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.34.54.jpg" /></p>
+
+<p>運行結果，成功運行2秒內運行先水平後垂直的動畫</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.38.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.38.46.jpg" /></p>
+
+<h2 id="section-1">圓角效果</h2>
+
+<p>置中動畫完成了，現在來設定圓角效果(borderRadius)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.13.04.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.13.04.jpg" /></p>
+
+<p>運行結果，成功運行圓角化動畫(可以考慮用css寫就好)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.14.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.14.79.jpg" /></p>
+
+<p>這次改用css的寫法來設圓角</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.23.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.23.71.jpg" /></p>
+
+<p>運用addClass()來加入剛寫好的圓角樣式</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.28.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.28.71.jpg" /></p>
+
+<p>運行結果，圓角效果成功了(不過還沒有動畫喔)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.31.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.31.71.jpg" /></p>
+
+<p>寫入-webkit-transition: border-radius 1;(1秒內執行完圓角動畫效果)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.44.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.44.21.jpg" /></p>
+
+<p>運行結果，成功出現圓角動畫了(但是不同瀏灠器有不一樣的動畫寫法)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.50.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.50.08.jpg" /></p>
+
+<p>分別為-webkit(google chrome用)、-moz(firefox用)、-o(opera用)、-ms(IE用)</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.08.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.08.71.jpg" /></p>
+
+<p>運行結果，不同瀏灠器都可正常運行動畫了</p>
+<p><img src="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.23.67.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.23.67.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-09-12T10:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jquery-30day/'>jquery-30day</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/animate/'>animate</a>, <a class='tag' href='/blog/tags/parseint/'>parseInt</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/09/12/12.Full-Control-With-The-Animate-Method/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/09/12/12.Full-Control-With-The-Animate-Method/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/09/12/11.Creating-Custom-Effect-Methods/" title="Previous Post: 3.4_產生自製特效">&laquo; 3.4_產生自製特效</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/09/12/13.Homework-Solution/" title="Next Post: 3.6_淡出和滑動特效">3.6_淡出和滑動特效 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/tts/">TTS真人語音-念電子書給你聽</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/touchcursor/">Touchcursor自訂方向鍵</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/potplayer-note/">替影片做筆記-potplayer</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 108.57142857142857%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 117.14285714285714%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 108.57142857142857%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 108.57142857142857%'>$.proxy(1)</a> <a href='/blog/tags/accordion' style='font-size: 108.57142857142857%'>accordion(1)</a> <a href='/blog/tags/animate' style='font-size: 117.14285714285714%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 117.14285714285714%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 108.57142857142857%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 108.57142857142857%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 117.14285714285714%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 125.71428571428572%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 108.57142857142857%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 108.57142857142857%'>config(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(7)</a> <a href='/blog/tags/data' style='font-size: 108.57142857142857%'>data(1)</a> <a href='/blog/tags/delegate' style='font-size: 108.57142857142857%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 134.28571428571428%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 117.14285714285714%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 108.57142857142857%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 117.14285714285714%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 108.57142857142857%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 108.57142857142857%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 108.57142857142857%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 117.14285714285714%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 117.14285714285714%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 108.57142857142857%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 117.14285714285714%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 117.14285714285714%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 108.57142857142857%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 108.57142857142857%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 108.57142857142857%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 108.57142857142857%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 108.57142857142857%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 117.14285714285714%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 117.14285714285714%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 108.57142857142857%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 117.14285714285714%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 108.57142857142857%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 151.42857142857144%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 117.14285714285714%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 108.57142857142857%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 108.57142857142857%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 117.14285714285714%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 117.14285714285714%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>網頁畫重點-Wired-Marker! - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="網路上有許多有用的資料，有些資料的量非常的多，不是幾天內就可以讀完的。只時，能否做重點標記就變得非常重要，但是網頁無法像書本一樣可直接做重點整理。想要畫重點，往往得將其內容下載下來，或是傳至endnote後，在另外做編輯。 但這些方法在使用上不是這麼的直覺，有沒有方法能在不另外下載的情況下， &hellip;">
+  <meta name="keywords" content="plugin,firefox,english">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/09/24/wiredmarker-toeic/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/09/24/wiredmarker-toeic/">
+  <meta property="og:title" content="網頁畫重點-Wired-Marker! - wikihuang進行式">
+  <meta property="og:description" content="網路上有許多有用的資料，有些資料的量非常的多，不是幾天內就可以讀完的。只時，能否做重點標記就變得非常重要，但是網頁無法像書本一樣可直接做重點整理。想要畫重點，往往得將其內容下載下來，或是傳至endnote後，在另外做編輯。 但這些方法在使用上不是這麼的直覺，有沒有方法能在不另外下載的情況下，直接在該網頁上做記號嗎? 有的!運用Wired-Marker這套firefox外掛，就可完成此功能! &hellip;">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-09-24T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        網頁畫重點-Wired-Marker!
+        
+    </h1>
+    
+  </header>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  此乃舊的教學文，其中的聯合報所提供的toeic資源連結已經消失了，但是大家還是可以看此文章學習wiredmarker的應用
+</div>
+<div id="intro">
+    <img src="/images/software/browser-plugin/wiredmarker-toeic/00_demo.jpg" class="demo_img" alt="
+網路上有許多有用的資料，有些資料的量非常的多，不是幾天內就可以讀完的。只時，能否做重點標記就變得非常重要，但是網頁無法像書本一樣可直接做重點整理。想要畫重點，往往得將其內容下載下來，或是傳至endnote後，在另外做編輯。
+但這些方法在使用上不是這麼的直覺，有沒有方法能在不另外下載的情況下，直接在該網頁上做記號嗎?
+有的!運用Wired-Marker這套firefox外掛，就可完成此功能!
+以下的教學，我會以如何用Wired-Marker來將多益的線上聽力線題做重點分類為例，來讓大家了解如何使用Wired-Marker來管理你網頁的重點分類。" />
+    <p>
+網路上有許多有用的資料，有些資料的量非常的多，不是幾天內就可以讀完的。只時，能否做重點標記就變得非常重要，但是網頁無法像書本一樣可直接做重點整理。想要畫重點，往往得將其內容下載下來，或是傳至endnote後，在另外做編輯。
+但這些方法在使用上不是這麼的直覺，有沒有方法能在不另外下載的情況下，直接在該網頁上做記號嗎?
+有的!運用Wired-Marker這套firefox外掛，就可完成此功能!
+以下的教學，我會以如何用Wired-Marker來將多益的線上聽力線題做重點分類為例，來讓大家了解如何使用Wired-Marker來管理你網頁的重點分類。</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>首先，由於Wired-Marker(https://addons.mozilla.org/en-US/firefox/addon/wired-marker/)是firefox的外掛，所以請用firefox進行安裝。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_01.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_01.jpg" /></p>
+
+<p>安裝完Wired-Marker後，可使用鍵盤快速鍵Alt+X，就會看到左側欄位出現Wired-Marker用來放網頁註記的欄位了。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_02.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_02.jpg" /></p>
+
+<p>接下來，讓我們來實際感受它畫重點的強大功能。<br />首先，連到你想要畫重點的網站，本教學以聯合報的多益試題(http://www.udncollege.com/learning/pages/toeic900.jsp?head=9)為範例，你可看到這兒有許多的多益練習題。<br />那要如何用Wired-Marker來將讀過的內容加以註記呢?</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_03.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_03.jpg" /></p>
+
+<p>第一步，在Wired-Marker的欄位中，點選右鍵，後選擇-Create an empty folder，新增一個分類用的資料夾。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_04.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_04.jpg" /></p>
+
+<p>會出現一個視窗，來讓你設定該資料夾的標題，你也可點選Customize按鈕，來自訂該資料夾的顏色。我們將其Title設為toeic_06(用來放多益6月份的資料)，並設定標記的顏色為紅色。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_05.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_05.jpg" /></p>
+
+<p>完成資料夾的設定後，你就會看到欄位內已新增了該才自訂的分類資料夾。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_06.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_06.jpg" /></p>
+
+<p>完成了Wired-Marker的資料夾和顏色的設定後，接下來，就來實際畫重點吧!<br />我們第一個要畫重點的題目為&quot;2011.6.30(四)資訊題&quot;的題目。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_07.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_07.jpg" /></p>
+
+<p>點選進去後，可看到其聽力試題。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_08.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_08.jpg" /></p>
+
+<p>現在要做重點管理的題目為-2011.06.30，用此標題再生成一個分類用資料夾，以做重點的集中管理。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_09.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_09.jpg" /></p>
+
+<p>現在就可以開始做測驗了，做的過程中，一定會有不懂的地方。此時，可以選取其不懂的部份，直接拖曳到剛才生成的資料夾內(2011.06.30)。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_10.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_10.jpg" /></p>
+
+<p>就這樣不斷的重覆的做這個拖曳的動作來畫重點，你就會看到，你不懂的部份都被設為紅色的標記了。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_11.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_11.jpg" /></p>
+
+<p>用這種方法，每天一點點的標記你不懂的地方，就能將你過去所讀過的部份清楚的記錄下來。要是遇到特別難的問題，也可用不同的顏色清楚的表示出來(如我是用代表憂慮的藍色，來代表特別難的問題)。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_12.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_12.jpg" /></p>
+
+<p>最後，你可依你自己的喜好，來自行分類你所讀過的內容。以我的命名方式為例，編號1到4，代表多益的part1(照片描述)到part4(簡短獨白)的題目。而每種題型的情境又各有不同，又可分為研討會、詢問、人的動作等，將各種情境善加分類，日後遇到相似的題目時，就能更快的做答。</p>
+<p><img src="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_13.jpg" alt="/images/software/browser-plugin/wiredmarker-toeic/wiredmarker-toeic_13.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-09-24T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/browser-plugin/'>browser-plugin</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/english/'>english</a>, <a class='tag' href='/blog/tags/firefox/'>firefox</a>, <a class='tag' href='/blog/tags/plugin/'>plugin</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/09/24/wiredmarker-toeic/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/09/24/wiredmarker-toeic/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/09/24/gmonkey/" title="Previous Post: greasemonkey自訂護眼網頁背景">&laquo; greasemonkey自訂護眼網頁背景</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/09/30/dexpot/" title="Next Post: dexpot虛擬多個桌面">dexpot虛擬多個桌面 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/tts/">TTS真人語音-念電子書給你聽</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/touchcursor/">Touchcursor自訂方向鍵</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/potplayer-note/">替影片做筆記-potplayer</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 108.57142857142857%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 117.14285714285714%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 108.57142857142857%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 108.57142857142857%'>$.proxy(1)</a> <a href='/blog/tags/accordion' style='font-size: 108.57142857142857%'>accordion(1)</a> <a href='/blog/tags/animate' style='font-size: 117.14285714285714%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 117.14285714285714%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 108.57142857142857%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 108.57142857142857%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 117.14285714285714%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 125.71428571428572%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 108.57142857142857%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 108.57142857142857%'>config(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(7)</a> <a href='/blog/tags/data' style='font-size: 108.57142857142857%'>data(1)</a> <a href='/blog/tags/delegate' style='font-size: 108.57142857142857%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 134.28571428571428%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 117.14285714285714%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 108.57142857142857%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 117.14285714285714%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 108.57142857142857%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 108.57142857142857%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 108.57142857142857%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 117.14285714285714%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 117.14285714285714%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 108.57142857142857%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 117.14285714285714%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 117.14285714285714%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 108.57142857142857%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 108.57142857142857%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 108.57142857142857%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 108.57142857142857%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 108.57142857142857%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 117.14285714285714%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 117.14285714285714%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 108.57142857142857%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 117.14285714285714%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 108.57142857142857%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 151.42857142857144%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 117.14285714285714%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 108.57142857142857%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 108.57142857142857%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 117.14285714285714%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 117.14285714285714%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

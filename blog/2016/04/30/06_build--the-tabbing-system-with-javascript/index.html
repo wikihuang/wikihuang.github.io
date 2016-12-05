@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>06_頁籤切換頁面 - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="運用javascript，達成點選頁籤，來切換不同頁面的功能。並運用類別判斷是否有開啟js的功能，以便使用不需js的方式來顯示資料。">
+  <meta name="keywords" content="js">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/04/30/06_build--the-tabbing-system-with-javascript/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/04/30/06_build--the-tabbing-system-with-javascript/">
+  <meta property="og:title" content="06_頁籤切換頁面 - wikihuang進行式">
+  <meta property="og:description" content="運用javascript，達成點選頁籤，來切換不同頁面的功能。並運用類別判斷是否有開啟js的功能，以便使用不需js的方式來顯示資料。">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-04-30T14:57:25+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        06_頁籤切換頁面
+        
+    </h1>
+    
+  </header>
+
+<div id="refBox" class="alert alert-info">
+
+    <address>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true">原著影片網址:</span>
+        <a href=http://net.tutsplus.com/tutorials/site-builds/convert-a-warm-cheerful-web-design-to-html-and-css/#chapter6>http://net.tutsplus.com/tutorials/site-builds/convert-a-warm-cheerful-web-design-to-html-and-css/#chapter6</a>
+    </address>
+</div>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/00_demo.jpg" class="demo_img" alt="運用javascript，達成點選頁籤，來切換不同頁面的功能。並運用類別判斷是否有開啟js的功能，以便使用不需js的方式來顯示資料。" />
+    <p>運用javascript，達成點選頁籤，來切換不同頁面的功能。並運用類別判斷是否有開啟js的功能，以便使用不需js的方式來顯示資料。</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#js" id="markdown-toc-js">確認js可以運行</a></li>
+  <li><a href="#documentjscss" id="markdown-toc-documentjscss">document新增類別js，來區分不同功能的css</a></li>
+  <li><a href="#js-ultabheadingjshtml" id="markdown-toc-js-ultabheadingjshtml">新增js變數-ul、tabHeading，用js來代表html物件</a></li>
+  <li><a href="#tabslth4gt" id="markdown-toc-tabslth4gt">不顯示tabs之內的&lt;h4&gt;</a></li>
+  <li><a href="#ltulgt" id="markdown-toc-ltulgt">只顯示第一個&lt;ul&gt;，其餘不顯示</a></li>
+  <li><a href="#section" id="markdown-toc-section">完成點選頁籤標題，來切換頁面的功能</a></li>
+</ul>
+<hr />
+
+<h2 id="js">確認js可以運行</h2>
+
+<p>目前頁籤標題的部份，還需要運用javascript，才能達成點按頁籤標題切換頁籤頁面的效果</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.00.32.53.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.00.32.53.jpg" /></p>
+
+<p>為了完成頁籤點按的功能，需運用jquery，因此在置入jquery.min.js後，在置入自訂的script.js</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.08.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.08.00.jpg" /></p>
+
+<p>為了確認scripts.js可運作，先寫alert(&#x27;hi&#x27;)來確保js可正確運行</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.12.53.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.01.12.53.jpg" /></p>
+
+<h2 id="documentjscss">document新增類別js，來區分不同功能的css</h2>
+
+<p>為了確保沒有開啟js的瀏灠器也可正常顯示頁籤功能(tab)，需設置有開啟js的和沒開啟js的二種tab顯示方式。因此能運行js的瀏灠器會套用類別名稱className = &#x27;.js&#x27;，用來區分二種樣式的不同。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.02.22.07.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.02.22.07.jpg" /></p>
+
+<h2 id="js-ultabheadingjshtml">新增js變數-ul、tabHeading，用js來代表html物件</h2>
+
+<p>開始寫js的部份，程式初始化時(Site.init())，先取得代表頁籤頁面(tabs)的變數</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.20.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.20.93.jpg" /></p>
+
+<p>先返回html的部份，觀察頁籤頁面(tabs)，所包含的物件有哪些，你會看到它是由3個&lt;ul&gt;所組成(comments、categories、archieves)。程式碼太多的話，可點選最左側的欄位，將程式碼暫時收合，方便觀察</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.37.40.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.37.40.jpg" /></p>
+
+<p>可看到程式碼收合後，更能看清楚其架構</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.43.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.03.43.93.jpg" /></p>
+
+<p>返回js的編輯畫面， 新增變數ul來代表所有tabs之內的&lt;ul&gt;</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.18.20.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.18.20.jpg" /></p>
+
+<p>新增變數tabHeadings，代表頁籤標題</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.44.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.04.44.93.jpg" /></p>
+
+<h2 id="tabslth4gt">不顯示tabs之內的&lt;h4&gt;</h2>
+
+<p>js可以運作的版本，必需把頁籤頁面中不需要的標題&lt;h4&gt;給隱藏住，我們不需要讓使用者看到多餘的標題。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.10.27.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.10.27.jpg" /></p>
+
+<p>運行結果， 可看到目前的頁籤頁面中，有多餘的標題，那要如何把它們隱藏呢?</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.15.20.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.15.20.jpg" /></p>
+
+<p>返回js的編輯畫面， 可以考慮用jquery的remove()的方法，先找到tabs內所有的&lt;h4&gt;再將其移除</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.36.47.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.05.36.47.jpg" /></p>
+
+<p>但直接修改css會更簡單，將.tabs內的&lt;h4&gt;設定為不要顯示。<br />完成了移除不必要標題的功能</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.14.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.14.93.jpg" /></p>
+
+<h2 id="ltulgt">只顯示第一個&lt;ul&gt;，其餘不顯示</h2>
+
+<p>接下來，要製做的功能為:隱藏所有的頁籤頁面(除了第一個以外)</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.33.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.33.00.jpg" /></p>
+
+<p>uls.not(&#x27;:first&#x27;).hide();//除了第一個&lt;ul&gt;之外，其餘都隱藏。<br />此外，故意寫錯，把ul寫成uls，觀察firebug如何顯示錯誤。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.55.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.06.55.87.jpg" /></p>
+
+<p>運行結果， 可看到console的除錯資訊，讓你知道變數寫錯了。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.08.53.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.08.53.jpg" /></p>
+
+<p>將變數全部修正為uls</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.14.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.14.93.jpg" /></p>
+
+<p>運行結果， 完成了只顯示第一個頁籤頁面，而其餘都隱藏的功能。不過，這是jquery的寫法，我們可以單單用css就可完成此功能了，接下來， 來用css的寫法來完成此功能。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.19.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.19.93.jpg" /></p>
+
+<p>先將所有.tab內的&lt;ul&gt;都設為不要顯示，在加入只有第一個&lt;ul&gt;需顯示的功能</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.59.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.07.59.87.jpg" /></p>
+
+<p>但是這樣要寫二行，太麻煩了。可將此二行的功能整理為一行就好。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.33.13.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.33.13.jpg" /></p>
+
+<p>完成後，替此段css留段註解。<br />完成了只顯示第一個頁籤頁面的功能。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.44.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.44.87.jpg" /></p>
+
+<h2 id="section">完成點選頁籤標題，來切換頁面的功能</h2>
+
+<p>接下來， 要完成點選頁籤標題，來切換頁面的功能</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.59.73.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.08.59.73.jpg" /></p>
+
+<p>委派&lt;li&gt;來監聽click事件，新增變數li來代表目前被點選的&lt;li&gt;</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.34.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.34.80.jpg" /></p>
+
+<p>新增變數hash，用來代表所點選的超連結的路徑</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.45.87.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.45.87.jpg" /></p>
+
+<p>變數設完後，下一步為:改變目前所點選的&lt;li&gt;的樣式，讓使用者知道目前所點選的是哪一個&lt;li&gt;</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.54.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.09.54.80.jpg" /></p>
+
+<p>利用siblings()來取得同一層的所有&lt;li&gt;，用removeClass()先把目前的樣式給移除掉</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.34.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.34.80.jpg" /></p>
+
+<p>使用end()來跳回目前點選的&lt;li&gt;，並用addClass()來加入樣式。完成了設定點選標題，設定標題樣式的功能。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.58.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.10.58.00.jpg" /></p>
+
+<p>接下來， 要取得目前所點選的超連結，以便切換到所對應的頁籤頁面</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.27.00.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.27.00.jpg" /></p>
+
+<p>hash變數代表目前所點選的超連結路徑</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.36.80.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.11.36.80.jpg" /></p>
+
+<p>接下來， 要顯示所對應的頁籤頁面</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.20.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.20.93.jpg" /></p>
+
+<p>先隱藏所有的uls，用filter()來過濾出目前所點選的頁面，並只顯示目前所點選的頁面。</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.29.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.12.29.93.jpg" /></p>
+
+<p>如果只用show()的話，就只會單純的顯示頁面。<br />因此，可以運用特效函數，如:fadeIn()造成淡入的效果，來使頁面更加活潑</p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.26.93.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.26.93.jpg" /></p>
+
+<p>由於點選超連結時，系統會有預設的動作。這些預設的動作會影響到我們自製的點選動作，所以使用e.preventDefault();來將預設的動作關閉。<br /></p>
+<p><img src="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.48.60.jpg" alt="/images/coding-note/html/psd-to-html/06_build  the tabbing system with javascript/06_build  the tabbing system with javascript-0.13.48.60.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-04-30T14:57:25+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/psd-to-html/'>psd-to-html</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/js/'>js</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/04/30/06_build--the-tabbing-system-with-javascript/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/04/30/06_build--the-tabbing-system-with-javascript/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/04/30/05d_buildCss_footer_section/" title="Previous Post: 05d_footer">&laquo; 05d_footer</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/04/30/07_style-the-form-elements/" title="Next Post: 07_表單樣式">07_表單樣式 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/tts/">TTS真人語音-念電子書給你聽</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/touchcursor/">Touchcursor自訂方向鍵</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/potplayer-note/">替影片做筆記-potplayer</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 108.57142857142857%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 117.14285714285714%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 108.57142857142857%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 108.57142857142857%'>$.proxy(1)</a> <a href='/blog/tags/accordion' style='font-size: 108.57142857142857%'>accordion(1)</a> <a href='/blog/tags/animate' style='font-size: 117.14285714285714%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 117.14285714285714%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 108.57142857142857%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 108.57142857142857%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 117.14285714285714%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 125.71428571428572%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 108.57142857142857%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 108.57142857142857%'>config(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(7)</a> <a href='/blog/tags/data' style='font-size: 108.57142857142857%'>data(1)</a> <a href='/blog/tags/delegate' style='font-size: 108.57142857142857%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 134.28571428571428%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 117.14285714285714%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 108.57142857142857%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 117.14285714285714%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 108.57142857142857%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 108.57142857142857%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 108.57142857142857%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 117.14285714285714%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 117.14285714285714%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 108.57142857142857%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 117.14285714285714%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 117.14285714285714%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 108.57142857142857%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 108.57142857142857%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 108.57142857142857%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 108.57142857142857%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 108.57142857142857%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 117.14285714285714%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 117.14285714285714%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 108.57142857142857%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 117.14285714285714%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 108.57142857142857%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 151.42857142857144%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 117.14285714285714%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 108.57142857142857%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 108.57142857142857%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 117.14285714285714%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 117.14285714285714%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

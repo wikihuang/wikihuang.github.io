@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>降低螢幕亮度-讓閱讀更舒適 - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="現代人接訊資訊往往得看電子書，但電子書看久了，又感到眼睛不舒服。 此時就會想念起紙本書的閱讀方式，因為紙本書看久了，眼睛也不會感到不舒服。要是看電子書可以和看紙本書一樣舒服就好了~現在公認最適合閱讀電子書的工具，就是亞馬遜推出的kindle啦! &hellip;">
+  <meta name="keywords" content="release,monitor,tool">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/08/17/monitor-adjust/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/08/17/monitor-adjust/">
+  <meta property="og:title" content="降低螢幕亮度-讓閱讀更舒適 - wikihuang進行式">
+  <meta property="og:description" content="現代人接訊資訊往往得看電子書，但電子書看久了，又感到眼睛不舒服。 此時就會想念起紙本書的閱讀方式，因為紙本書看久了，眼睛也不會感到不舒服。要是看電子書可以和看紙本書一樣舒服就好了~現在公認最適合閱讀電子書的工具，就是亞馬遜推出的kindle啦! 到底kindle螢幕的顯示方式和一般電腦的螢幕有何不同?為什麼它較適合用來閱讀?要如何將一般的電腦螢幕調整為最適合閱讀的顯示方式呢?">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-08-17T16:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        降低螢幕亮度-讓閱讀更舒適
+        
+    </h1>
+    
+  </header>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/release/monitor-adjust/00_demo.jpg" class="demo_img" alt="現代人接訊資訊往往得看電子書，但電子書看久了，又感到眼睛不舒服。
+此時就會想念起紙本書的閱讀方式，因為紙本書看久了，眼睛也不會感到不舒服。要是看電子書可以和看紙本書一樣舒服就好了~現在公認最適合閱讀電子書的工具，就是亞馬遜推出的kindle啦!
+到底kindle螢幕的顯示方式和一般電腦的螢幕有何不同?為什麼它較適合用來閱讀?要如何將一般的電腦螢幕調整為最適合閱讀的顯示方式呢?" />
+    <p>現代人接訊資訊往往得看電子書，但電子書看久了，又感到眼睛不舒服。
+此時就會想念起紙本書的閱讀方式，因為紙本書看久了，眼睛也不會感到不舒服。要是看電子書可以和看紙本書一樣舒服就好了~現在公認最適合閱讀電子書的工具，就是亞馬遜推出的kindle啦!
+到底kindle螢幕的顯示方式和一般電腦的螢幕有何不同?為什麼它較適合用來閱讀?要如何將一般的電腦螢幕調整為最適合閱讀的顯示方式呢?</p>
+</div>
+<!--more-->
+
+<hr />
+
+<p>我們先來分析kindle和平板電腦顯示上的差異。<br />下圖是kindle的顯示方示，看起來灰灰暗暗的，很不起眼。和平板電腦明亮而清楚的顯示方式比較起來，平板電腦真是吸引人的多。但是平板電腦的顯示方示，較適合用於圖片和影片的觀看，適合重視影音感受的使用者。<br />但是，如果是以閱讀文字為需求的人，電腦螢幕稍微看久一點，眼睛就會感到很不舒服。此時，kindle閱讀器，那種灰灰暗暗的顯示方式，反而是最適合眼睛閱讀的方式。<br /></p>
+<p><img src="/images/release/monitor-adjust/monitor-adjust_01.jpg" alt="/images/release/monitor-adjust/monitor-adjust_01.jpg" /></p>
+
+<p>但是kindle是專門為閱讀而設計的，電子書若要進行管理，使用性上還是電腦好用，因為有較多的應用程式、也不用在進行文件格式轉檔的動作。那要如何調整電腦螢幕的顯示方式，讓你的眼睛不會感到過於疲勞呢?<br />這個議題，已有相當多的方法，如降底藍光的軟體、戴偏光眼鏡、護眼螢幕等等…，這些方法都有一個共通點-&gt;&quot;降低螢幕所產生的光&quot;。既然如此，最簡單的解決方法，就是直接降低螢幕的亮度和對比。<br />打開你常閱讀的pdf文件，開始調整螢幕的亮度和對比，調到你感到有些徧暗的程度，一開始可能會感到有些不適應，因為你以經習慣於螢幕預設的明亮而又對比鮮明的畫面了，會感覺螢幕太暗了一些。(每台螢幕的調整介面都會略有不同，但大至上都有左右調整的按鈕&lt; &gt;，和menu按鍵)<br />但回想一下之前介紹的kindle的文字顯示的畫面，你就會知道灰灰暗暗的螢幕顯示，是最適合用於閱讀的。</p>
+<p><img src="/images/release/monitor-adjust/monitor-adjust_02.jpg" alt="/images/release/monitor-adjust/monitor-adjust_02.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-08-17T16:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/release/'>release</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/monitor/'>monitor</a>, <a class='tag' href='/blog/tags/release/'>release</a>, <a class='tag' href='/blog/tags/tool/'>tool</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/08/17/monitor-adjust/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/08/17/monitor-adjust/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/08/17/chair/" title="Previous Post: 提昇工作效率-先找張能放鬆的椅子">&laquo; 提昇工作效率-先找張能放鬆的椅子</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/09/12/01-Hello-jQuery/" title="Next Post: 2.1_哈囉，jQuery">2.1_哈囉，jQuery &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/tts/">TTS真人語音-念電子書給你聽</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/touchcursor/">Touchcursor自訂方向鍵</a>
+    
+    <a class="list-group-item " href="/blog/2016/09/30/potplayer-note/">替影片做筆記-potplayer</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 108.57142857142857%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 117.14285714285714%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 108.57142857142857%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 108.57142857142857%'>$.proxy(1)</a> <a href='/blog/tags/accordion' style='font-size: 108.57142857142857%'>accordion(1)</a> <a href='/blog/tags/animate' style='font-size: 117.14285714285714%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 117.14285714285714%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 108.57142857142857%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 108.57142857142857%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 117.14285714285714%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 125.71428571428572%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 108.57142857142857%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 108.57142857142857%'>config(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(7)</a> <a href='/blog/tags/data' style='font-size: 108.57142857142857%'>data(1)</a> <a href='/blog/tags/delegate' style='font-size: 108.57142857142857%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 134.28571428571428%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 117.14285714285714%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 108.57142857142857%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 117.14285714285714%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 108.57142857142857%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 108.57142857142857%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 108.57142857142857%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 117.14285714285714%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 117.14285714285714%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 108.57142857142857%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 117.14285714285714%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 117.14285714285714%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 108.57142857142857%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 108.57142857142857%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 108.57142857142857%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 108.57142857142857%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 108.57142857142857%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 117.14285714285714%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 117.14285714285714%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 108.57142857142857%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 117.14285714285714%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 108.57142857142857%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 151.42857142857144%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 117.14285714285714%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 108.57142857142857%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 108.57142857142857%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 117.14285714285714%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 117.14285714285714%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

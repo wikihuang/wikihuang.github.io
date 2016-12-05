@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jquery-30day | wikihuang進行式]]></title>
+  <link href="http://wikihuang.github.io/blog/categories/jquery-30day/atom.xml" rel="self"/>
+  <link href="http://wikihuang.github.io/"/>
+  <updated>2016-12-05T10:44:33+08:00</updated>
+  <id>http://wikihuang.github.io/</id>
+  <author>
+    <name><![CDATA[wikihuang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[3.8_圖片輪撥Slider_物件導向]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/12/15.Prototypal-Inheritance-and-Refactoring-the-Slider/"/>
+    <updated>2016-09-12T10:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/12/15.Prototypal-Inheritance-and-Refactoring-the-Slider</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/00_demo.jpg" class="demo_img" alt="運用prototype屬性，達成物件導向的繼承功能。
+重構圖片輪撥的slider功能，使其程式結構更完整。" />
+    <p>運用prototype屬性，達成物件導向的繼承功能。
+重構圖片輪撥的slider功能，使其程式結構更完整。</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#js" id="markdown-toc-js">js結構化寫法</a></li>
+  <li><a href="#js-functionobject" id="markdown-toc-js-functionobject">js的資料型態-function等於object</a></li>
+  <li><a href="#prototype" id="markdown-toc-prototype">prototype屬性介紹</a></li>
+  <li><a href="#instancethis" id="markdown-toc-instancethis">類別產生實例(instance)之後，this的不同</a></li>
+  <li><a href="#instancemethod" id="markdown-toc-instancemethod">類別產生多個實例(instance)之後，重覆的屬性和方法(method)</a></li>
+  <li><a href="#prototype-1" id="markdown-toc-prototype-1">運用prototype屬性，在父層宣告方法</a></li>
+  <li><a href="#html-slider" id="markdown-toc-html-slider">傳送html物件給類別-Slider，來設定屬性和方法</a></li>
+  <li><a href="#section" id="markdown-toc-section">點選按鈕，移動圖片</a></li>
+  <li><a href="#current" id="markdown-toc-current">current變數遞增遞減，控制圖片前後移動</a></li>
+  <li><a href="#current-1" id="markdown-toc-current-1">修正位移第一張和最後一張圖片的current判斷式</a></li>
+  <li><a href="#slider" id="markdown-toc-slider">完成結構化的Slider外掛</a></li>
+</ul>
+<hr />
+
+<h2 id="js">js結構化寫法</h2>
+
+<p>上一章中，我們已經完成了slider來捲動圖片的功能，這一章我們我使其寫法更加結構化，以便讓日後的程式碼更易擴充新功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.00.06.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.00.06.71.jpg" /></p>
+
+<p>介紹javascript的prototype的一個學習網站-&gt;scriptjunkie</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.01.11.92.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.01.11.92.jpg" /></p>
+
+<p>另 一個為Modulus的學習網站</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.01.42.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.01.42.71.jpg" /></p>
+
+<h2 id="js-functionobject">js的資料型態-function等於object</h2>
+
+<p>我們至今都已有一些寫javascript的經驗了，我們都很熟悉於宣告一個陣列，如:var arr=[1,2,3]，而如要新增一個陣列物件可用其push()的方法。但是當你使用push()的時後，你有沒有想過，這個push()是怎樣來的?javascript並沒有class(類別物件)，那樣如何建立此方法psuh()?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.02.40.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.02.40.71.jpg" /></p>
+
+<p>因此，javasctip一定有其它的型態可達成class(類別)的功能，我們開始逐漸偵測各種變數的型態。首先，先測試Array的態態，輸入dir(Array)來判斷其型態為何，結果Array的型態為function</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.02.52.88.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.02.52.88.jpg" /></p>
+
+<p>也可用typeof的方式測試變數型態，一樣測出來為function</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.02.57.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.02.57.71.jpg" /></p>
+
+<p>這次換測試Object的型態，結果也一樣是function</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.03.01.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.03.01.29.jpg" /></p>
+
+<p>function竟然包含了屬性和方法!這代表了在javascript中的function型態，等同於其它程式語言的class</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.03.16.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.03.16.71.jpg" /></p>
+
+<h2 id="prototype">prototype屬性介紹</h2>
+
+<p>解說因為prototype屬性的原因，任何由Array所產生的物件(如:arr =  new Array())，都可使用包含在ptototype的方法，但是只有呼叫new array()產生實例時，才能被使用，才會佔用到記憶體</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.04.10.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.04.10.71.jpg" /></p>
+
+<h2 id="instancethis">類別產生實例(instance)之後，this的不同</h2>
+
+<p>尚未產生新的實例(instance)以前，this代表為window</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.04.39.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.04.39.71.jpg" /></p>
+
+<p>new Slider();//用來產生slider實例</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.04.54.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.04.54.71.jpg" /></p>
+
+<p>運行結果，console出Slider物件內的this為Slider//產生實例後this就不再是window了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.05.00.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.05.00.71.jpg" /></p>
+
+<h2 id="instancemethod">類別產生多個實例(instance)之後，重覆的屬性和方法(method)</h2>
+
+<p>在此Slider物件內，新增自訂的屬性direction和方法move()，並透過Slider.move()來執行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.05.46.50.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.05.46.50.jpg" /></p>
+
+<p>運行結果，成功執行自訂的方法，console出moving字串</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.05.48.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.05.48.17.jpg" /></p>
+
+<p>產生2個Slider()的實例，slider和slider2，並用console.dir()觀察其內部的變數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.06.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.06.71.jpg" /></p>
+
+<p>運行結果，可看到2個實例化的slider，都擁有各自獨立的屬性和方法。但我們不需要複製出這麼多的方法(move()只要一個就夠了，沒必要個自獨立為一個)。所以要如何利用物件導向的方法，來做到在其父層宣告方法後，在讓子層去繼承就好了呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.10.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.10.71.jpg" /></p>
+
+<h2 id="prototype-1">運用prototype屬性，在父層宣告方法</h2>
+
+<p>使用prototype的屬性，讓move()宣告在父層，以便之後其子層可直接繼承。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.41.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.41.71.jpg" /></p>
+
+<p>運行結果，可看到_proto_的物件內新增了move()的方法，這樣的寫法就不會產生重覆的move()了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.56.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.06.56.71.jpg" /></p>
+
+<p>可看到所產生的2個實例都可使用move()的方法。那是因為使用prototype在父層宣告方法後，子層繼承了父層的原因</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.07.11.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.07.11.12.jpg" /></p>
+
+<p>運行結果，可看到2個slider和slider2的實例，都執行了move()，輸出字串moving</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.07.11.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.07.11.71.jpg" /></p>
+
+<p>direction變數是宣告在slider物件內，而非prototype內。因此在各別實例化後，direction變數便會各自獨立(輸入forward和backward，這2個參數是各自獨立的)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.20.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.20.12.jpg" /></p>
+
+<p>運行結果，分別測出2個direction變數分別為forward和backward</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.21.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.21.71.jpg" /></p>
+
+<p>強調在prototype宣告的方法(父層)，仍可使用在子層宣告的變數direction</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.47.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.47.62.jpg" /></p>
+
+<p>運行結果，成功合用位於父層的方法move()，和子層的變數direction來完成javascript內物件導向的基本應用</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.50.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.08.50.71.jpg" /></p>
+
+<p>再次建議大家如要了解javascript物件導向的繼承概念，請看網站scriptjunkie的教學-</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.09.01.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.09.01.71.jpg" /></p>
+
+<h2 id="html-slider">傳送html物件給類別-Slider，來設定屬性和方法</h2>
+
+<p>學會了基礎的繼承概念後，接下來我們開始一步步的將上一課程的Slider圖片捲動的功能，轉為更具結構的寫法。<br />首先，建立一個類別Slider，並將$(&#x27;div.slider&#x27;)，傳入此類別來供後續動作<br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.09.59.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.09.59.17.jpg" /></p>
+
+<p>先確定html的物件&lt;div class=&quot;slider&quot;&gt;&lt;/div&gt;，有傳入Slider類別內了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.10.01.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.10.01.75.jpg" /></p>
+
+<p>function Slider(container,nav)//接收容納圖片的div.slider做為container參數，和放置按鈕的#slider-nav為nav參數，來加以設定Slider的屬性和方法。<br /><br />Slider.prototype.transition//運算圖片的徧移位置<br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.15.15.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.15.15.71.jpg" /></p>
+
+<h2 id="section">點選按鈕，移動圖片</h2>
+
+<p>slider.transition(-1800)//圖片移動間距設為-1800</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.16.52.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.16.52.71.jpg" /></p>
+
+<p>運行結果，沒看到圖片?!因為移動了錯誤的div，包含圖片的div為$(&#x27;div.slider ul&#x27;)而非$(&#x27;div.slider&#x27;)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.01.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.01.71.jpg" /></p>
+
+<p>將Slider傳入的參數改為$(&#x27;div.slider ul&#x27;)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.16.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.16.71.jpg" /></p>
+
+<p>運行結果，正確位移-1800側image4的位置</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.21.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.21.17.jpg" /></p>
+
+<p>依此類推，位移0為image1,-600為image2,-1200為image3</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.34.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.34.75.jpg" /></p>
+
+<p>Slider.transition();//如果沒有輸入任何位移的數值，預計是會依序移動的</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.45.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.45.71.jpg" /></p>
+
+<p>運行結果，點選Next按鈕，此功能尚未成功運作，因為尚未寫入current數值變動，來達到圖片移動的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.48.67.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.17.48.67.jpg" /></p>
+
+<h2 id="current">current變數遞增遞減，控制圖片前後移動</h2>
+
+<p>透過判斷點選按鈕所傳入的dir參數是否為&#x27;next&#x27;，來決定current要遞增或是遞減。<br />使用xx?xx:xx的判斷式為if else的簡寫法，你可自行選擇判斷式的寫法。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.20.23.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.20.23.71.jpg" /></p>
+
+<p>在console中解說~~的功能//boolean值轉數字，true轉為1，false轉為0。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.21.19.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.21.19.71.jpg" /></p>
+
+<p>(div === &#x27;next&#x27;)//為true,經~~轉為數值1<br />(div === &#x27;prev&#x27;)//為false,經~~轉為數值0</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.22.08.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.22.08.71.jpg" /></p>
+
+<p>dir等於&#x27;next&#x27;時，this.current遞增1，否則遞增-1</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.24.15.58.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.24.15.58.jpg" /></p>
+
+<p>運行結果，console檢測，點按next數值遞1, 點按prev遞減1</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.24.26.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.24.26.29.jpg" /></p>
+
+<p>但減過頭會有負值產生喔，所以需修改判斷式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.24.38.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.24.38.71.jpg" /></p>
+
+<h2 id="current-1">修正位移第一張和最後一張圖片的current判斷式</h2>
+
+<p>pos小於0時，就跳至圖片的最後一張</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.26.42.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.26.42.21.jpg" /></p>
+
+<p>運行結果，在第一張img時，點選prev，console出this.current為3(已成功完成從第一張跳至最後一張的判斷式)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.26.46.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.26.46.71.jpg" /></p>
+
+<p>在console中解說%符號的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.24.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.24.71.jpg" /></p>
+
+<p>2%4 (2除以4，餘數為2)<br />1%4(1除以4，餘數為1)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.36.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.36.17.jpg" /></p>
+
+<p>4%4 (4除以4，餘數為0)，根據此特性，第一張圖時，pos為0</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.48.25.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.48.25.jpg" /></p>
+
+<p>pos(目前的圖片)%this.imgsLen(全部圖片數)<br />//第一張圖時，current為0，按next，(0+1)%4=1<br />//第二張圖時，current為1，按next，(1+1)%4=2<br />//第三張圖時，current為2，按next，(2+1)%4=3<br />//第四張圖時，current為3，按next，(3+1)%4=0(就會跳回第一張了)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.51.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.27.51.71.jpg" /></p>
+
+<p>作者使用skitch plus(手寫繪圖工具)，來說曘%運算餘數的概念<br />6%4=2</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.28.37.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.28.37.71.jpg" /></p>
+
+<h2 id="slider">完成結構化的Slider外掛</h2>
+
+<p>改名為setCurrent並回傳運算後的pos值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.30.08.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.30.08.71.jpg" /></p>
+
+<p>運用已完成的setCurrent的方法，來傳入移動方向的參數，來運到圖片前後移動的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.30.53.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.30.53.71.jpg" /></p>
+
+<p>運行結果，成功達成點按prev圖片跳至前一個，點按next圖片圖片跳至下一個的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.30.59.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.30.59.71.jpg" /></p>
+
+<p>但是圖片捲動的scrollbar還沒有隱藏</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.31.14.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.31.14.71.jpg" /></p>
+
+<p>那是因為目前的css檔中，.slider{overflow:scroll;}//需設定為hiddeen才能將scrollbar隱藏</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.31.21.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.31.21.71.jpg" /></p>
+
+<p>$(&#x27;div.slider&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;)//只有javascript有運作的瀏灠器才需將scrollbar設為hidden，關閉javascript的使用者，還是需要保留scrollbar，才留移動圖片。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.31.40.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.31.40.38.jpg" /></p>
+
+<p>新增的container變數，取代原先的$(&#x27;div.slider ul&#x27;)傳給new Slider()。<br />Slider.nav.show()改成slider.nav，因要將控制是否要顯示的部份傳到獨立的slider.js來進行控制。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.16.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.16.71.jpg" /></p>
+
+<p>this.nav = nav.show();//由傳入的nav參數來控制顯示</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.29.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.29.29.jpg" /></p>
+
+<p>運行結果，scrollbar消失了，且功能正常運行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.38.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.38.71.jpg" /></p>
+
+<p>把javascript先刪掉，看看無js時，只有css的功能是否正常</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.44.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.44.71.jpg" /></p>
+
+<p>運行結果，沒有js時，按鈕成功隱藏，只讓使用者透過scrollbar移動圖片的功能正常運行。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.47.33.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.32.47.33.jpg" /></p>
+
+<p>結論，成功完成結構化的slider外掛。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.33.26.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/15.Prototypal-Inheritance-and-Refactoring-the-Slider/15.Prototypal-Inheritance-and-Refactoring-the-Slider-0.33.26.71.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3.7_圖片輪撥Slider]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/12/14.The-Obligatory-Slider/"/>
+    <updated>2016-09-12T10:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/12/14.The-Obligatory-Slider</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/00_demo.jpg" class="demo_img" alt="了解如何透過點選向前、向後的按鈕，運用遞增、遞減的邏輯運算，來完成圖片輪播的slider特效" />
+    <p>了解如何透過點選向前、向後的按鈕，運用遞增、遞減的邏輯運算，來完成圖片輪播的slider特效</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">完成效果介紹</a></li>
+  <li><a href="#sliderslider-nav" id="markdown-toc-sliderslider-nav">slider和slider-nav的原始結構</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">設定樣式-1</a></li>
+  <li><a href="#pxltdivgt" id="markdown-toc-pxltdivgt">大量圖片水平排列在600px的&lt;div&gt;內</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">設定樣式-2</a></li>
+  <li><a href="#js" id="markdown-toc-js">將控制圖片移動的js寫入閉包內</a></li>
+  <li><a href="#nextprev" id="markdown-toc-nextprev">測試點選next和prev按鈕的功能</a></li>
+  <li><a href="#myvaluemyvalue" id="markdown-toc-myvaluemyvalue">myValue++和++myvalue運算上的不同</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">圖片向前移動</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">圖片前後移動</a></li>
+</ul>
+<hr />
+
+<h2 id="section">完成效果介紹</h2>
+
+<p>展示完成品，為可循序切換圖片的slider播放功能。並且第一頁可跳至最後一頁，最後一頁可跳至第一頁</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.00.08.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.00.08.71.jpg" /></p>
+
+<p>本章的css和js會分別獨立為各自的檔案(slider.css和slider.js)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.01.10.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.01.10.71.jpg" /></p>
+
+<h2 id="sliderslider-nav">slider和slider-nav的原始結構</h2>
+
+<p>運用&lt;div&gt;、&lt;ul&gt;、&lt;li&gt;及&lt;img&gt;來建立slider的html架構</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.01.59.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.01.59.71.jpg" /></p>
+
+<p>運行結果，4個&lt;img&gt;垂直排列的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.02.03.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.02.03.71.jpg" /></p>
+
+<p>設定data-dir以供日後程式判斷該按鈕的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.03.13.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.03.13.71.jpg" /></p>
+
+<p>運行結果，成功列出Previous和Next二個按鈕</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.03.26.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.03.26.71.jpg" /></p>
+
+<h2 id="section-1">設定樣式-1</h2>
+
+<p>如果流灠器的javascript功能關閉了，#slider-nav就設為隱藏，不讓使用者看到按鈕</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.03.41.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.03.41.75.jpg" /></p>
+
+<p>設定margin使其置中顯示</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.04.56.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.04.56.71.jpg" /></p>
+
+<h2 id="pxltdivgt">大量圖片水平排列在600px的&lt;div&gt;內</h2>
+
+<p>解示為何要讓&lt;ul&gt;的外層多包一層&lt;div class=&quot;slider&quot;&gt;，而不直接用&lt;ul&gt;就好。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.05.21.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.05.21.79.jpg" /></p>
+
+<p>因為要將&lt;ul&gt;的寬度設非常的寬，寬達10000px，且可容納在只有600px的&lt;div class=&quot;slider&quot;&gt;之內</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.05.41.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.05.41.71.jpg" /></p>
+
+<p>運用width:inherit來讓.slider和&lt;body&gt;同寬為600px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.06.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.06.71.jpg" /></p>
+
+<p>設定&lt;ul&gt;的寬度為超長的10000px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.21.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.21.71.jpg" /></p>
+
+<p>運行結果，由於&lt;ul&gt;寬度設為10000px的原因，水平捲軸可拉超遠，遠到看不到圖片的程度。那要如何隱藏那條超長的水平捲軸呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.25.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.25.71.jpg" /></p>
+
+<p>設定.slider的overflow:hidden來隱藏那條超長的水平捲軸</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.39.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.39.62.jpg" /></p>
+
+<p>運行結果，在develper工具內檢視，可看到&lt;ul&gt;仍為10000px，但是已經看不到那超長的水平捲軸。這樣使用者就不會拉水平捲軸拉到看不到圖片的程度了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.51.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.06.51.71.jpg" /></p>
+
+<p>設定&lt;li&gt;的float為left，讓圖片水平排列</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.07.01.25.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.07.01.25.jpg" /></p>
+
+<p>運行結果，雖在可見範圍&lt;div&gt;內只能看到image1，但是其餘&lt;li&gt;內的圖片都隱藏在&lt;div&gt;內</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.07.13.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.07.13.71.jpg" /></p>
+
+<p>設定該&lt;ul&gt;的margin-left為-600px，便會看到image2(每個圖片寬度差距為-600，以此類推可用設定margin的距離來達到控制圖片移動的效果)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.07.39.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.07.39.71.jpg" /></p>
+
+<h2 id="section-2">設定樣式-2</h2>
+
+<p>先取消#slider-nav的隱藏，並設定其內部按鈕的樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.08.22.42.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.08.22.42.jpg" /></p>
+
+<p>運行結果，設好間距、圓角等樣式的button</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.08.29.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.08.29.12.jpg" /></p>
+
+<p>讓#slider-nav繼續隱藏</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.08.41.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.08.41.75.jpg" /></p>
+
+<p>並設定.slider的overflow為scroll(使&lt;div class=&quot;slider&quot;&gt;具備水平捲軸)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.09.01.42.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.09.01.42.jpg" /></p>
+
+<p>運行畫面，出現水平捲軸，讓使用者捲動圖片(即使流灠器不開啟javascript,也可開放捲動圖片的功能來觀看圖片)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.09.04.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.09.04.29.jpg" /></p>
+
+<h2 id="js">將控制圖片移動的js寫入閉包內</h2>
+
+<p>javascript不同的函式庫，如jquery、Mootool，都會使用$符號，如何不使它們的功能相衝突，最好的方法就是使用閉包了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.10.18.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.10.18.71.jpg" /></p>
+
+<p>透過jquery來運算html物件，並用變數做代表。並透過show()來讓原本已被設為隱藏的#slider-nav顯示出來</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.14.40.88.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.14.40.88.jpg" /></p>
+
+<p>運行結果，實現用jquery執行讓按鈕層的#slider-nav出現的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.14.43.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.14.43.71.jpg" /></p>
+
+<p>將其overflow設為hidden，因為能夠運行javascript的流灠器，就不該出現水平捲軸的效果(因為只需用按鈕控制圖片移動即可)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.14.56.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.14.56.71.jpg" /></p>
+
+<h2 id="nextprev">測試點選next和prev按鈕的功能</h2>
+
+<p>測試按鈕的點選功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.15.40.83.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.15.40.83.jpg" /></p>
+
+<p>運行結果，成功console出clicked的訊息</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.15.45.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.15.45.75.jpg" /></p>
+
+<p>透過變數direction來判斷此點按按鈕為prev或是next</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.16.15.42.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.16.15.42.jpg" /></p>
+
+<p>運行結果，成功經點選按鈕後，取得next和prev的字串，以判斷是那個按鈕被按了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.16.17.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.16.17.71.jpg" /></p>
+
+<h2 id="myvaluemyvalue">myValue++和++myvalue運算上的不同</h2>
+
+<p>解說此寫法-(direction === &#x27;next&#x27;) ? ++current : --current;等同於if(direction ===&#x27;next&#x27; ){current+=1}else{current-=1}</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.18.50.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.18.50.71.jpg" /></p>
+
+<p>開始解說myValue++和++myValue的不同<br />console.log(myValue++);//輸出1，因為只負責運行++的動作，變數沒有立刻刷新<br />console.log(myValue);//輸出2<br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.19.59.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.19.59.12.jpg" /></p>
+
+<p>console.log(++myValue);//輸出2，運行++的動作後立即刷新<br />console.log(myValue);//輸出2</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.20.23.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.20.23.71.jpg" /></p>
+
+<h2 id="section-3">圖片向前移動</h2>
+
+<p>if(current === 0){//預設值current=1代表第一張圖片，只有當圖片為第一張時，使用者又點選prev按鈕，才會使current=0。<br />current == imgsLen;//由於已經是第一張圖片，再上去沒圖片了，所以將current設為最後一張。<br />direction ===  &#x27;next&#x27;;}//</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.22.13.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.22.13.71.jpg" /></p>
+
+<p>最後一張圖片時，後面已經沒圖片了，使用者又點選next按鈕，就設定current=1來跳回第一張</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.22.53.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.22.53.71.jpg" /></p>
+
+<p>margin-left設為-=600，因此點選next按鈕時，會不斷向後捲動圖片</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.24.56.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.24.56.71.jpg" /></p>
+
+<p>點選Next按鈕時，圖片依序捲動image1-&gt;image2-&gt;image3-&gt;image4，但是image4後就超過了，而且尚未具備跳回第一張的功能。下一步開始為動態改變margin-left，使其可控制方向。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.26.12.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.26.12.71.jpg" /></p>
+
+<h2 id="section-4">圖片前後移動</h2>
+
+<p>loc = imgWidth;//圖片的寬度為600，這也是圖片每次要位移的距離<br /><br />else if (current -1 ===imgsLen){<br />current = 1;//跳回第一張，<br />loc=0;}//loc代表margin-left的數值，第一張margin-left:0，第二張margin-left:-600，每一張遞減600<br /><br />var unit;//代表現在是遞減-=還是遞增+=<br /><br />if(direction &amp;&amp; loc !==0)//loc為0時(第一張圖，又按Prev的情況)，是不需要unit(-=,+=)的計算的，直接設定margin-left為0即可<br /><br /><br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.28.20.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.28.20.12.jpg" /></p>
+
+<p>運行結果，圖片可依序往左右移動，但是在第一張時，點選Prev應跳至第4張，卻跳至第2張，是那兒寫錯了呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.29.36.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.29.36.75.jpg" /></p>
+
+<p>由於loc代表位移的距離，所以如要從第一張跳至最後一張，位移距離要為全部圖片的加總-totalImagesWidth</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.30.13.58.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.30.13.58.jpg" /></p>
+
+<p>運行結果，跑超過了，是那寫錯了?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.30.27.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.30.27.17.jpg" /></p>
+
+<p>位移距離loc應改為:全部圖片的總寬減去最後一張圖片的寬度才對，totalImgsWidth - imgWidth</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.00.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.00.46.jpg" /></p>
+
+<p>運行結果，完成第一張圖按Prev後，成功跳至最後一張的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.05.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.05.12.jpg" /></p>
+
+<p>在&lt;ul&gt;內大量新增&lt;li&gt;，此功能仍可成運行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.39.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.39.71.jpg" /></p>
+
+<p>運行結果，成功運行大量圖片循序轉動的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.54.83.jpg" alt="/images/coding-note/javascript/jQuery-30day/14.The-Obligatory-Slider/14.The-Obligatory-Slider-0.31.54.83.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3.6_淡出和滑動特效]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/12/13.Homework-Solution/"/>
+    <updated>2016-09-12T10:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/12/13.Homework-Solution</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/00_demo.jpg" class="demo_img" alt="淡出和滑動的自訂特效(FadeSldieToggle)，來了解特效反覆切換(toggle)和自訂特效速度等方法" />
+    <p>淡出和滑動的自訂特效(FadeSldieToggle)，來了解特效反覆切換(toggle)和自訂特效速度等方法</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">確定自製動畫能運行</a></li>
+  <li><a href="#animatepadding" id="markdown-toc-animatepadding">animate()的padding問題修正</a></li>
+  <li><a href="#ltdivgtdisplaynone" id="markdown-toc-ltdivgtdisplaynone">設定&lt;div&gt;的display:none</a></li>
+  <li><a href="#animatetoggle" id="markdown-toc-animatetoggle">animate()的toggle應用</a></li>
+  <li><a href="#jquery" id="markdown-toc-jquery">jquery的鍊結功能</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">傳送自訂參數給自訂的動畫</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">第一個動畫執行完後，接續下個函式動作</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">判斷有無傳入參數，以執行不同動作</a></li>
+</ul>
+<hr />
+
+<h2 id="section">確定自製動畫能運行</h2>
+
+<p>如何自製fadeSlideToggle()特效?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.00.04.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.00.04.71.jpg" /></p>
+
+<p>運用$.fn來擴充自訂的特效FadeSlideToggle，使該自訂特效能夠如內訂的jquery特效般來被使用。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.01.53.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.01.53.21.jpg" /></p>
+
+<p>運行結果，成功console出自訂的訊息</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.01.59.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.01.59.71.jpg" /></p>
+
+<h2 id="animatepadding">animate()的padding問題修正</h2>
+
+<p>fadeToggle為切換透明度(opacity)，slideToggle為切換高度(height)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.02.44.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.02.44.71.jpg" /></p>
+
+<p>執行0.5秒內高度降為0的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.06.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.06.71.jpg" /></p>
+
+<p>運行結果，運行縮減高度的動畫(但是padding會造成高度問題，沒有完全的讓高度降為0)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.13.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.13.12.jpg" /></p>
+
+<p>移除掉.box{padding:1em;}，就可讓高度縮減的功能完全正常</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.18.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.18.71.jpg" /></p>
+
+<h2 id="ltdivgtdisplaynone">設定&lt;div&gt;的display:none</h2>
+
+<p>同時運作高度和透明度降為0的動畫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.43.88.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.43.88.jpg" /></p>
+
+<p>運行結果，成功運行動畫(但在console檢示，仍可看到&lt;div class=&quot;box&quot;&gt;，因為只是高度和透明度看不到而已，&lt;div&gt;仍然存在，需修改display屬性，才能完全隱藏)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.57.58.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.03.57.58.jpg" /></p>
+
+<p>設定display:none，就可以完全隱藏了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.04.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.04.46.jpg" /></p>
+
+<h2 id="animatetoggle">animate()的toggle應用</h2>
+
+<p>這次將height首opacity設為toggle(可反覆切換的屬性)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.17.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.17.79.jpg" /></p>
+
+<p>運行結果，設定為togle後，一樣是成功運行高度和透明度改變的動畫，但觀察其原始碼，可看到&lt;div class=&quot;box&quot;&gt;的display屬性被設為none了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.25.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.25.71.jpg" /></p>
+
+<p>而且toggle可以反覆切換，出現和消失的動畫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.42.96.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.04.42.96.jpg" /></p>
+
+<h2 id="jquery">jquery的鍊結功能</h2>
+
+<p>想讓此自製的動畫具備jquery的chaining(鍊結)的功能(執行完動畫後，執行addClass(&#x27;testing&#x27;);)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.03.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.03.17.jpg" /></p>
+
+<p>運行結果，console中顯示錯誤訊息(因為此自製的特效尚未回傳jquery物件，所以無法達成鍊結的功能)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.08.50.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.08.50.jpg" /></p>
+
+<p>所要記得要在自訂的特效內寫入return，以回傳此jquery物件，以便執行下一步動作</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.31.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.31.08.jpg" /></p>
+
+<p>運行結果，動畫成功運行。檢示其原始碼，可看到成功在動畫執行完後，執行了addClass(&#x27;testing&#x27;)，使&lt;div class=&quot;box&quot;&gt;成功加入了testing的樣式。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.40.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.05.40.79.jpg" /></p>
+
+<h2 id="section-1">傳送自訂參數給自訂的動畫</h2>
+
+<p>自訂數值500做為speed參數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.13.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.13.71.jpg" /></p>
+
+<p>運行結果，動畫速度改為0.5秒內撥放完畢了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.14.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.14.71.jpg" /></p>
+
+<p>什麼都不輸入，也可正常運作，因為jquery有預設的速度</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.20.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.20.71.jpg" /></p>
+
+<p>這回設定為，如果沒輸入速度，便設定速度為2000</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.42.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.42.29.jpg" /></p>
+
+<p>運行結果，動畫在2秒內跑完</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.45.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.06.45.71.jpg" /></p>
+
+<h2 id="section-2">第一個動畫執行完後，接續下個函式動作</h2>
+
+<p>解說內建的jquery特效是如何在特效執行完後，在往下執行下一個內建的特效，例如slideDown執行完後，在執行swing的特效</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.07.14.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.07.14.12.jpg" /></p>
+
+<p>其實swing的功能，就如同寫入function(){}而已，你可在自訂的function()內，加入你自己想要的特效功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.07.19.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.07.19.38.jpg" /></p>
+
+<p>把function(){}當作參數傳入自訂特效中，以便讓特效執行完後，執行該自訂的function</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.23.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.23.71.jpg" /></p>
+
+<p>運行結果，成功在動畫執行完後，console出complete字串</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.29.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.29.71.jpg" /></p>
+
+<p>將之前的寫法function(){fn())改為fn就可以了，沒有必要在多寫一個function()來呼叫fn</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.43.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.43.71.jpg" /></p>
+
+<p>記得不可以寫成fn()，因為這樣會直接執行fn()，而不會等到特效跑完後才執行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.48.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.08.48.08.jpg" /></p>
+
+<p>運行結果，修改完fn的寫法後，成功在動畫執行完後，console出complete字串</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.09.13.54.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.09.13.54.jpg" /></p>
+
+<h2 id="section-3">判斷有無傳入參數，以執行不同動作</h2>
+
+<p>如果沒有輸入動畫執行完後，所要執行的函數，那fn的值會為何?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.09.31.88.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.09.31.88.jpg" /></p>
+
+<p>運行結果，console出fn為undefined</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.09.36.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.09.36.71.jpg" /></p>
+
+<p>所以要如判斷fn的值是否為函式形態呢?<br />至jquery的函式庫中查-isFunction來判斷此參數是否為函式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.13.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.13.17.jpg" /></p>
+
+<p>如果是函式形態，便console出&#x27;is a function&#x27;，否則為&#x27;is undefined&#x27;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.35.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.35.71.jpg" /></p>
+
+<p>運行結果，成功判斷出沒有輸入函式的情況，is undefined</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.37.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.37.71.jpg" /></p>
+
+<p>這次為測式有輸入函式的情況</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.44.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.44.75.jpg" /></p>
+
+<p>運行結果，成功console出有輸入函式時的判斷，is a function</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.48.25.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.48.25.jpg" /></p>
+
+<p>解說在jquery函式庫中，有許多判斷型態的方法，如:isFunction、isArray、isWindow等等~~</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.56.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/13.Homework-Solution/13.Homework-Solution-0.10.56.71.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3.5_控制動畫效果]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/12/12.Full-Control-With-The-Animate-Method/"/>
+    <updated>2016-09-12T10:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/12/12.Full-Control-With-The-Animate-Method</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/00_demo.jpg" class="demo_img" alt="控制文字縮放、物件置中、圓角化的動畫效果" />
+    <p>控制文字縮放、物件置中、圓角化的動畫效果</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">點選按鈕，放大文字</a></li>
+  <li><a href="#fontsize" id="markdown-toc-fontsize">轉換fontSize為數值型態，達成遞增字體大小的效果</a></li>
+  <li><a href="#cssfont-sizecolor" id="markdown-toc-cssfont-sizecolor">css同時改變font-size和color</a></li>
+  <li><a href="#animatefontsizewidth" id="markdown-toc-animatefontsizewidth">animate()改變fontSize和width</a></li>
+  <li><a href="#animate" id="markdown-toc-animate">animate()執行完第一次特效後，接續其它動作</a></li>
+  <li><a href="#animatequeue" id="markdown-toc-animatequeue">animate()的queue參數，如何影響動畫撥放時間</a></li>
+  <li><a href="#css" id="markdown-toc-css">css置中功能</a></li>
+  <li><a href="#animate-1" id="markdown-toc-animate-1">animate()置中功能</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">圓角效果</a></li>
+</ul>
+<hr />
+
+<h2 id="section">點選按鈕，放大文字</h2>
+
+<p>點選按鈕時，&lt;div class=&quot;box&quot;&gt;內的文字大小設為25px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.44.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.44.71.jpg" /></p>
+
+<p>運行結果，文字大小為25px的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.49.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.01.49.71.jpg" /></p>
+
+<p>統一變數為box，以減少jquery的dom搜尋次數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.56.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.56.29.jpg" /></p>
+
+<p>運行結果，修改後，設文字大小的功仍然正常運作</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.58.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.02.58.71.jpg" /></p>
+
+<h2 id="fontsize">轉換fontSize為數值型態，達成遞增字體大小的效果</h2>
+
+<p>整理為閉包，且用console.log(fontSize)來測試預設字體的大小</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.45.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.45.71.jpg" /></p>
+
+<p>運行結果，console中檢測，預設font-size大小為16px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.49.88.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.49.88.jpg" /></p>
+
+<p>檢測fontSize(字型大小)的變數型態</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.56.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.56.29.jpg" /></p>
+
+<p>運行結果，fontSize型態為字串，字串是不能做數字運算的，所以要轉換為數字型態</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.57.50.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.03.57.50.jpg" /></p>
+
+<p>使用parseInt()來轉換為數字後，測試是否能做數字運數(fontSize+5)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.46.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.46.71.jpg" /></p>
+
+<p>運行結果，數字由原先的16，經數字運算後變為21了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.52.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.04.52.46.jpg" /></p>
+
+<p>這次寫成fontSize+=5，使文字每點選一次變遞增5</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.09.54.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.09.54.jpg" /></p>
+
+<p>運行結果，每按一次按鈕便可遞增字型大小</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.31.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.31.00.jpg" /></p>
+
+<p>改為較短的寫法，寫成+=5就好</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.47.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.47.62.jpg" /></p>
+
+<p>運行結果，較短的寫法仍可成功遞增字體大小</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.51.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.05.51.21.jpg" /></p>
+
+<h2 id="cssfont-sizecolor">css同時改變font-size和color</h2>
+
+<p>也可同時修改多個css，如改成遞減字型大小，並將字設為白色。但若每修改一個樣式，就寫一個.css()太麻煩了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.28.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.28.21.jpg" /></p>
+
+<p>有多個css樣式要設定時，可用將樣式寫在該{}內，統一為一個物件，以便一同修改css樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.57.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.57.38.jpg" /></p>
+
+<p>運行結果，成功運行，字大小和字顏色一同被改變了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.58.33.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.06.58.33.jpg" /></p>
+
+<h2 id="animatefontsizewidth">animate()改變fontSize和width</h2>
+
+<p>將box.css改為box.animate就是動畫效果的設定了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.09.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.09.71.jpg" /></p>
+
+<p>運行結果，定型遞增動畫成功運行，不過字的顏色沒變，因animate()不支援改字顏色</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.15.33.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.07.15.33.jpg" /></p>
+
+<p>同時遞加字型大小、寬度(注意，不用寫px喔)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.05.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.05.71.jpg" /></p>
+
+<p>運行結果，字型大小和寬度同步遞增</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.14.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.14.38.jpg" /></p>
+
+<p>檢測原始碼，可看到animate()是快速修改style屬性，以得到動畫的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.39.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.39.38.jpg" /></p>
+
+<p>讓動畫在3秒內跑完</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.57.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.08.57.21.jpg" /></p>
+
+<p>運行結果，動畫在3秒內變化完成</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.09.08.38.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.09.08.38.jpg" /></p>
+
+<h2 id="animate">animate()執行完第一次特效後，接續其它動作</h2>
+
+<p>執行完swing特效後，執行console.log(&#x27;completed&#x27;)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.19.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.19.75.jpg" /></p>
+
+<p>運行結果，成功在執行完特效後，並console出complete</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.23.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.10.23.46.jpg" /></p>
+
+<p>運用animate()的complete和step的方法，來分別記錄完成時和運作時的訊息</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.08.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.08.75.jpg" /></p>
+
+<p>運行結果，成功console出動畫進行時和完成時的記錄</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.11.96.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.11.96.jpg" /></p>
+
+<p>運用step()來觀察fontSize遞增的變化</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.49.12.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.49.12.jpg" /></p>
+
+<p>運行結果，成功console出遞增的字型大小</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.55.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.11.55.08.jpg" /></p>
+
+<p>在5秒內遞增字型大小為5後，接下來的5秒，改為遞增為10</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.22.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.22.71.jpg" /></p>
+
+<p>運行結果，成功運行二次字型遞增動畫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.26.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.12.26.08.jpg" /></p>
+
+<p>在5秒內遞增字型大小為5後，接下來的3秒(3000)，上邊距移動500px</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.08.58.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.08.58.jpg" /></p>
+
+<p>運行結果，成功運行，字體變大後，上邊距變為500px的效果(記得box的css要設為relative，否則top無法運作)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.11.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.11.71.jpg" /></p>
+
+<h2 id="animatequeue">animate()的queue參數，如何影響動畫撥放時間</h2>
+
+<p>queue設為false時，2個動畫加起來的時間為3000(第一個500，第2個2500)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.50.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.13.50.71.jpg" /></p>
+
+<p>queue設為true時，2個動畫加起來的時間為3500(第一個500，第2個3000)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.14.10.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.14.10.79.jpg" /></p>
+
+<h2 id="css">css置中功能</h2>
+
+<p>接下來的目地是，算出視窗的寬度後，以完成置中</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.47.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.47.21.jpg" /></p>
+
+<p>運行結果，box的左上角的確是置中了，但我們是希望以box的中心置中</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.53.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.15.53.62.jpg" /></p>
+
+<p>用視窗寬度的一半減去box寬度的一半，來算出置中位置</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.07.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.07.71.jpg" /></p>
+
+<p>運行結果，減去box寬度的一半後，很接近置中了，但還有padding要處理</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.11.17.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.11.17.jpg" /></p>
+
+<p>outerWidth()等於width+padding的長度</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.49.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.16.49.75.jpg" /></p>
+
+<p>運行結果，很接近置中了，但還有預設的margin要處理</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.00.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.00.00.jpg" /></p>
+
+<p>設定body{ margin:0;}</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.18.62.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.18.62.jpg" /></p>
+
+<p>運行結果，置中成功了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.20.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.20.75.jpg" /></p>
+
+<p>如果margin不想設為0，那要如何置中呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.23.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.23.75.jpg" /></p>
+
+<p>這次box的位置設定，改為absolute</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.31.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.31.71.jpg" /></p>
+
+<p>運行結果，但這樣按鈕會被box蓋住，按不到喔</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.41.83.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.41.83.jpg" /></p>
+
+<p>直接設為absoulte是行不通的，所以先改回來為relative</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.44.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.44.71.jpg" /></p>
+
+<p>改為按鈕點選後，才將box的位置排列設為absolute</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.53.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.53.71.jpg" /></p>
+
+<p>運行結果，置中成功了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.58.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.17.58.71.jpg" /></p>
+
+<h2 id="animate-1">animate()置中功能</h2>
+
+<p>之所以堅持要改為absolute的排列方式，是因為animate()一定要將位置排列設為absolute才可正常運作，不然這種置中的問題，只是修正margin為0就可以了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.20.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.20.21.jpg" /></p>
+
+<p>運行結果，置中動畫成功</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.22.67.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.22.67.jpg" /></p>
+
+<p>分別算出置中位置的寬度(w)和高度(h)的位置，以達成水平和垂直位置都置中的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.50.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.50.71.jpg" /></p>
+
+<p>運行結果，水平和垂直置中動畫成功</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.55.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.18.55.00.jpg" /></p>
+
+<p>使用兩次animate()來達成，先水平移動，後垂置移動的置中效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.14.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.14.71.jpg" /></p>
+
+<p>運行結果，成功運行先水平，後垂直置中的動畫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.19.75.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.19.75.jpg" /></p>
+
+<p>這次設定動畫的撥放時間為2秒(2000)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.34.54.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.34.54.jpg" /></p>
+
+<p>運行結果，成功運行2秒內運行先水平後垂直的動畫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.38.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.19.38.46.jpg" /></p>
+
+<h2 id="section-1">圓角效果</h2>
+
+<p>置中動畫完成了，現在來設定圓角效果(borderRadius)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.13.04.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.13.04.jpg" /></p>
+
+<p>運行結果，成功運行圓角化動畫(可以考慮用css寫就好)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.14.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.14.79.jpg" /></p>
+
+<p>這次改用css的寫法來設圓角</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.23.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.23.71.jpg" /></p>
+
+<p>運用addClass()來加入剛寫好的圓角樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.28.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.28.71.jpg" /></p>
+
+<p>運行結果，圓角效果成功了(不過還沒有動畫喔)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.31.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.31.71.jpg" /></p>
+
+<p>寫入-webkit-transition: border-radius 1;(1秒內執行完圓角動畫效果)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.44.21.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.44.21.jpg" /></p>
+
+<p>運行結果，成功出現圓角動畫了(但是不同瀏灠器有不一樣的動畫寫法)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.50.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.20.50.08.jpg" /></p>
+
+<p>分別為-webkit(google chrome用)、-moz(firefox用)、-o(opera用)、-ms(IE用)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.08.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.08.71.jpg" /></p>
+
+<p>運行結果，不同瀏灠器都可正常運行動畫了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.23.67.jpg" alt="/images/coding-note/javascript/jQuery-30day/12.Full-Control-With-The-Animate-Method/12.Full-Control-With-The-Animate-Method-0.21.23.67.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3.4_產生自製特效]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/09/12/11.Creating-Custom-Effect-Methods/"/>
+    <updated>2016-09-12T10:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/09/12/11.Creating-Custom-Effect-Methods</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/00_demo.jpg" class="demo_img" alt="修改jquery內建的animate()的寫法，並結合slideDown()和slideUp()的特效，而產生自製的特效" />
+    <p>修改jquery內建的animate()的寫法，並結合slideDown()和slideUp()的特效，而產生自製的特效</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#animate" id="markdown-toc-animate">複製animate()的原始碼，修改為自製特效</a></li>
+  <li><a href="#section" id="markdown-toc-section">呼叫自製特效</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">執行完特效後，再執行其它動作</a></li>
+  <li><a href="#cssmargin" id="markdown-toc-cssmargin">用css修正特效所產生的margin問題</a></li>
+  <li><a href="#jquerydom" id="markdown-toc-jquerydom">減少jquery的dom搜尋次數，統一為一個變數</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">整理為閉包</a></li>
+</ul>
+<hr />
+
+<h2 id="animate">複製animate()的原始碼，修改為自製特效</h2>
+
+<p>上一章學會了套用內建的特效了，此章我們自己來做特效</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.00.06.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.00.06.71.jpg" /></p>
+
+<p>在jquery的函式庫中，解說內建的slideDown，slideUp等特效，如何搭佩animate()來使用</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.00.32.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.00.32.71.jpg" /></p>
+
+<p>複製jquery函式庫中，animate()的部份，準備貼入sublime中，來修改成自製特效</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.01.07.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.01.07.46.jpg" /></p>
+
+<h2 id="section">呼叫自製特效</h2>
+
+<p>自行設定了名為flash的特效，點選&lt;h1&gt;時，就會執行該自訂特效，執行console.log(&#x27;hi there&#x27;)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.02.06.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.02.06.00.jpg" /></p>
+
+<p>運行結果，成功執行console.log(&#x27;hi there&#x27;)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.02.07.00.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.02.07.00.jpg" /></p>
+
+<h2 id="section-1">執行完特效後，再執行其它動作</h2>
+
+<p>要如何在跑完特效後，在執行console.log()呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.03.16.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.03.16.71.jpg" /></p>
+
+<p>將後續執行的函數做為第2個參數，將要自訂的動作寫在function(){}裡面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.03.34.33.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.03.34.33.jpg" /></p>
+
+<p>運行結果，成功執行動畫跑完後，在做下一步動作的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.03.37.08.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.03.37.08.jpg" /></p>
+
+<p>滑入後，暫停2 秒再滑出的特效</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.02.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.02.71.jpg" /></p>
+
+<h2 id="cssmargin">用css修正特效所產生的margin問題</h2>
+
+<p>運行結果，成功運行滑入、暫停、滑出的特效，但是如果在按第2次，特效會有margin的間距問題，如下。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.07.96.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.07.96.jpg" /></p>
+
+<p>執行特效時，&lt;h1&gt;和&lt;p&gt;間距的部分會有很微小的移動，那是因為&lt;p&gt;的margin沒有設為0</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.09.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.09.71.jpg" /></p>
+
+<p>設定&lt;p&gt;的margin-top為0</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.31.04.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.31.04.jpg" /></p>
+
+<p>運行結果，修正margin問題後，成功運行特效</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.37.92.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.37.92.jpg" /></p>
+
+<h2 id="jquerydom">減少jquery的dom搜尋次數，統一為一個變數</h2>
+
+<p>減戶$(this)的重覆呼叫，整理為一個變數$this</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.56.29.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.04.56.29.jpg" /></p>
+
+<p>減少$(&#x27;div.content&#x27;)的呼叫，整理為變數content</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.06.15.46.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.06.15.46.jpg" /></p>
+
+<p>運行結果，成功運行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.06.18.79.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.06.18.79.jpg" /></p>
+
+<h2 id="section-2">整理為閉包</h2>
+
+<p>整理為閉包，以便未來和其它程式碼區隔</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.06.45.71.jpg" alt="/images/coding-note/javascript/jQuery-30day/11.Creating-Custom-Effect-Methods/11.Creating-Custom-Effect-Methods-0.06.45.71.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>
