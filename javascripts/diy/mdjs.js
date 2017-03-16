@@ -14,8 +14,8 @@ function init() {
     scrollToP();
     createH3ByImg();
     toggleSingleImg();
-    imgSameRate(true, 400, 300);
-    imgSameRate(false, 700, 500);
+    // imgSameRate(true, 400, 300);
+    // imgSameRate(false, 700, 500);
     processToc();
     //imgPrefix();
     //insertRef();
