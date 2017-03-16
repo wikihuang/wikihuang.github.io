@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    var is_article =$('article.hentry')[0];
+    var is_article = $('article.hentry')[0];
 
-    if(is_article){
+    if (is_article) {
 
         init();
     }
@@ -185,12 +185,10 @@ function imgSameRate(is_demo, scale_w, scale_h) {
 
 function processToc() {
     var $toc = $('ul#markdown-toc').clone();
-    if($toc[0]){
+    if ($toc[0]) {
         $('#content aside').append(
             "<div id='toc_window' class='panel panel-info '>        <div class='panel-heading text-right'>文章目錄<a href='#' id='modal_switch'><span></span>        </a>        </div>        <div id='modal_content' class='panel-body'>        </div>    </div>"
         );
-
-
 
 
         $('#modal_content').html($toc);
