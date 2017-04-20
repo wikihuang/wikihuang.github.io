@@ -14,6 +14,7 @@ function init() {
     scrollToP();
     createH3ByImg();
     toggleSingleImg();
+    //todo browser img size different 
     // imgSameRate(true, 400, 300);
     // imgSameRate(false, 700, 500);
     processToc();
