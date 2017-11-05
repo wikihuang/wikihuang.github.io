@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: react.js-essential-training | wikihuang進行式]]></title>
+  <link href="http://wikihuang.github.io/blog/categories/react-dot-js-essential-training/atom.xml" rel="self"/>
+  <link href="http://wikihuang.github.io/"/>
+  <updated>2017-11-05T14:19:40+08:00</updated>
+  <id>http://wikihuang.github.io/</id>
+  <author>
+    <name><![CDATA[wikihuang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[3.2_Creating-components-with-createClass()]]></title>
+    <link href="http://wikihuang.github.io/blog/2017/09/08/3.2_Creating-components-with-createClass()/"/>
+    <updated>2017-09-08T14:55:54+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2017/09/08/3.2_Creating-components-with-createClass()</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="https://cdn.lynda.com/courses/496905-636178337879413310_338x600_thumb.jpg" />
+    <p>Eve demonstrates how to create your first official component. When you look at a user interface designed with React, you can think of it as just being an organized collection of components. The purpose of each component is to display data. Learn how to create a SkiDayCount component using React.createClass.</p>
+</div>
+<!--more-->
+
+<hr class="hrTop" />
+
+<p>collection of components.</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.00.05.343.jpg" alt="" /></p>
+
+<p>SCSS files that we’ll need for our application.</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.00.34.759.jpg" alt="" /></p>
+
+<p>So, we’ve created a component using "react.createclass."</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.03.02.512.jpg" alt="" /></p>
+
+<p>And instead of rendering this div, we are going to render</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.03.17.219.jpg" alt="" /></p>
+
+<p>So sometimes we’ll have some errors pop up where it says,</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.03.47.830.jpg" alt="" /></p>
+
+<p>export const "SkiDayCount" so that I can import</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.04.01.918.jpg" alt="" /></p>
+
+<p>We’ve already run npm start, so it’s running our</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.04.10.395.jpg" alt="" /></p>
+
+<p>And if we open up our react developer tools,</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.04.21.120.jpg" alt="" /></p>
+
+<p>we should see that we have the ski day count being rendered</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.2_Creating-components-with-createClass()\3.2_Creating-components-with-createClass()-00.04.24.480.jpg" alt="" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3.3_Adding-component-properties]]></title>
+    <link href="http://wikihuang.github.io/blog/2017/09/08/3.3_Adding-component-properties/"/>
+    <updated>2017-09-08T11:24:16+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2017/09/08/3.3_Adding-component-properties</id>
+    <content type="html"><![CDATA[<!--more-->
+<p>And we’re actually going to start with our index file.</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.3_Adding-component-properties\3.3_Adding-component-properties-00.00.22.500.jpg" alt="" /></p>
+
+<p>and then our goal is going to be set to 100.</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.3_Adding-component-properties\3.3_Adding-component-properties-00.00.49.503.jpg" alt="" /></p>
+
+<p>here and we’ll say this.props.backcountry.</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.3_Adding-component-properties\3.3_Adding-component-properties-00.01.45.868.jpg" alt="" /></p>
+
+<p>make this days and finally here outside</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.3_Adding-component-properties\3.3_Adding-component-properties-00.01.58.490.jpg" alt="" /></p>
+
+<p>And this span is going to display this props goal.</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.3_Adding-component-properties\3.3_Adding-component-properties-00.02.17.847.jpg" alt="" /></p>
+
+<p>we should see that all of this data</p>
+
+<p><img src="/images/videonote\00_ts-js_all\React.js-Essential-Training\3_React-Components\3.3_Adding-component-properties\3.3_Adding-component-properties-00.02.21.457.jpg" alt="" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>

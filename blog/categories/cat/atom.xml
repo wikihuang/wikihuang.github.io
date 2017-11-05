@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Cat | wikihuang進行式]]></title>
+  <link href="http://wikihuang.github.io/blog/categories/cat/atom.xml" rel="self"/>
+  <link href="http://wikihuang.github.io/"/>
+  <updated>2017-11-05T14:19:40+08:00</updated>
+  <id>http://wikihuang.github.io/</id>
+  <author>
+    <name><![CDATA[wikihuang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[3.1_Planning-an-ActivityCounter]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/3.1_Planning-an-ActivityCounter/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/3.1_Planning-an-ActivityCounter</id>
+    <content type="html"><![CDATA[<p>called The Activity Counter.</p>
+
+<p><img src="/images/coding-note/00_ts-js_all\React.js-Essential-Training\3_React-Components\3.1_Planning-an-ActivityCounter\3.1_Planning-an-ActivityCounter-00.00.12.634.jpg" alt="" /></p>
+
+<p>You'll need a location,</p>
+
+<p><img src="/images/coding-note/00_ts-js_all\React.js-Essential-Training\3_React-Components\3.1_Planning-an-ActivityCounter\3.1_Planning-an-ActivityCounter-00.00.40.596.jpg" alt="" /></p>
+
+<p>So for mine I'm going to have resort,</p>
+
+<p><img src="/images/coding-note/00_ts-js_all\React.js-Essential-Training\3_React-Components\3.1_Planning-an-ActivityCounter\3.1_Planning-an-ActivityCounter-00.00.47.710.jpg" alt="" /></p>
+
+<p>So, this is what my data would look like here.</p>
+
+<p><img src="/images/coding-note/00_ts-js_all\React.js-Essential-Training\3_React-Components\3.1_Planning-an-ActivityCounter\3.1_Planning-an-ActivityCounter-00.00.55.675.jpg" alt="" /></p>
+
+<p>and you'd have location, date,</p>
+
+<p><img src="/images/coding-note/00_ts-js_all\React.js-Essential-Training\3_React-Components\3.1_Planning-an-ActivityCounter\3.1_Planning-an-ActivityCounter-00.01.01.152.jpg" alt="" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[I Am Title]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/2.1_Jekyll-and-YAML/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/2.1_Jekyll-and-YAML</id>
+    <content type="html"><![CDATA[<p>our blog by setting up the site's configuration.</p>
+
+<p><img src="../../image/2_Configuring-Jekyll/2.1_Jekyll-and-YAML/2.1_Jekyll-and-YAML-00.00.03.045.jpg" alt="" /></p>
+
+<p>this is what's known as a YAML front matter.</p>
+
+<p><img src="../img/2_Configuring-Jekyll/2.1_Jekyll-and-YAML/2.1_Jekyll-and-YAML-00.01.17.151.jpg" alt="" /></p>
+
+<p>Of course, that's not the only thing we can do with YAML.</p>
+
+<p><img src="../img/2_Configuring-Jekyll/2.1_Jekyll-and-YAML/2.1_Jekyll-and-YAML-00.01.46.886.jpg" alt="" /></p>
+
+<p>to a W3C spec, although it's not.</p>
+
+<p><img src="../img/2_Configuring-Jekyll/2.1_Jekyll-and-YAML/2.1_Jekyll-and-YAML-00.02.03.367.jpg" alt="" /></p>
+
+<p>different syntax examples.</p>
+
+<p><img src="../img/2_Configuring-Jekyll/2.1_Jekyll-and-YAML/2.1_Jekyll-and-YAML-00.02.12.351.jpg" alt="" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[1.1_installing]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/04/30/1.1_installing/"/>
+    <updated>2016-04-30T14:57:25+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/04/30/1.1_installing</id>
+    <content type="html"><![CDATA[<p>the Windows key and R to open a command prompt.</p>
+
+<p><img src="/images/videonote\00_python_all\Up-and-Running-with-Python\1_Preparing-the-Development-Environment\1.1_installing\1.1_installing-00.00.26.602.jpg" alt="" /></p>
+
+<p>And you can see that I'm using Python 2.7.5 on my computer.</p>
+
+<p><img src="/images/videonote\00_python_all\Up-and-Running-with-Python\1_Preparing-the-Development-Environment\1.1_installing\1.1_installing-00.00.44.127.jpg" alt="" /></p>
+
+<p>There's the 2.7 line, and then there's the 3 line.</p>
+
+<p><img src="/images/videonote\00_python_all\Up-and-Running-with-Python\1_Preparing-the-Development-Environment\1.1_installing\1.1_installing-00.01.15.416.jpg" alt="" /></p>
+
+<p>download section, and if I click on Download there's releases</p>
+
+<p><img src="/images/videonote\00_python_all\Up-and-Running-with-Python\1_Preparing-the-Development-Environment\1.1_installing\1.1_installing-00.02.17.605.jpg" alt="" /></p>
+
+<p>Now, it's a funny thing about Windows.</p>
+
+<p><img src="/images/videonote\00_python_all\Up-and-Running-with-Python\1_Preparing-the-Development-Environment\1.1_installing\1.1_installing-00.03.25.133.jpg" alt="" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>
