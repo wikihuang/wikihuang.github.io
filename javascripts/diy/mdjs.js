@@ -1,8 +1,11 @@
 $(document).ready(function () {
     var is_article = $('article.hentry')[0];
+
     if (is_article) {
+
         init();
     }
+
 });
 function init() {
     "use strict";
@@ -43,8 +46,7 @@ function toggleAllImg() {
     //## toggle img by a
     var $toc = $('#markdown-toc');
     var h3 = "<hr><h3><a data-open_status='1' onclick='toggleImgByH3(this);return false' >收合全部圖片</a></h3>"
-    // $(h3).insertAfter($toc);
-    $(h3).insertBefore("hr.hrTop");
+    $(h3).insertAfter($toc);
 }
 function toggleImgByH3(e) {
     var $this = $(e);
@@ -154,12 +156,15 @@ function imgSameRate(is_demo, scale_w, scale_h) {
     var $content_img = $('.page-content img').not($demo_img);
     var $img = (is_demo) ? $demo_img : $content_img;
     $img.each(function (i) {
+
         //移除目前設定的影像長寬
         $(this).removeAttr('width');
         $(this).removeAttr('height');
+
         //取得影像實際的長寬
         var imgW = $(this).width();
         var imgH = $(this).height();
+
         //計算縮放比例
         var w = scale_w / imgW;
         var h = scale_h / imgH;
@@ -169,12 +174,17 @@ function imgSameRate(is_demo, scale_w, scale_h) {
         } else {
             pre = w;
         }
+
         //設定目前的縮放比例
         $(this).width(imgW * pre);
         $(this).height(imgH * pre);
+
     });
+
+
 }
-function processToc() {
+
+function processToc() {//todolater 1 toc for tocbot
     var $toc = $('ul#markdown-toc').clone();
     if ($toc[0]) {
         $('#content aside').append(
@@ -183,12 +193,14 @@ function processToc() {
         $('#modal_content').html($toc);
         $("#modal_switch>span").addClass('glyphicon glyphicon-collapse-down');
 //     $('#modal_switch').text('open/close')
-        $('#modal_switch>span').click(function () {// todo click a or span
+//         $('#modal_switch>span').click(function () {
+        $('#modal_switch').parent().click(function () {
             var $this = $(this);
-            if ($this.hasClass("glyphicon-collapse-down")) {
-                $this.addClass("glyphicon-collapse-up").removeClass("glyphicon-collapse-down");
+            var $span  = $this.find('span');
+            if ($span.hasClass("glyphicon-collapse-down")) {
+                $span.addClass("glyphicon-collapse-up").removeClass("glyphicon-collapse-down");
             } else {
-                $this.addClass("glyphicon-collapse-down").removeClass("glyphicon-collapse-up");
+                $span.addClass("glyphicon-collapse-down").removeClass("glyphicon-collapse-up");
             }
             $('#modal_content').slideToggle();
             // $('#modal_content').attr('height','0px');
