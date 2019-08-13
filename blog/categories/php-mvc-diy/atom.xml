@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Php-mvc-diy | wikihuang進行式]]></title>
+  <link href="http://wikihuang.github.io/blog/categories/php-mvc-diy/atom.xml" rel="self"/>
+  <link href="http://wikihuang.github.io/"/>
+  <updated>2019-08-12T16:33:45+08:00</updated>
+  <id>http://wikihuang.github.io/</id>
+  <author>
+    <name><![CDATA[wikihuang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mvc_05_differentUser_edit_delete]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/10/08/mvc_05_differentUser_edit_delete/"/>
+    <updated>2016-10-08T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/10/08/mvc_05_differentUser_edit_delete</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/00_demo.jpg" class="demo_img" alt="I updated the CSS styles but all the PHP remains the same from part 4. Here we cover several topics (Not in order): ACL, CRUD without AJAX, Path Fix, and a few minor things." />
+    <p>I updated the CSS styles but all the PHP remains the same from part 4. Here we cover several topics (Not in order): ACL, CRUD without AJAX, Path Fix, and a few minor things.</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#usersrole" id="markdown-toc-usersrole">新增users資料表欄位role，設定不同的使用者權限</a></li>
+  <li><a href="#section" id="markdown-toc-section">根據使用者登入的權限，來判斷是否要出現編輯使用者的超連結</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">顯示所有使用者的資料</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">新增使用者</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">刪除使用者</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">編輯使用者</a></li>
+  <li><a href="#urlserver" id="markdown-toc-urlserver">改變URL常數為遠端SERVER的網址</a></li>
+</ul>
+<hr />
+
+<h2 id="usersrole">新增users資料表欄位role，設定不同的使用者權限</h2>
+
+<p>進入phpMyAdmin，在users資料表內，新增欄位role，並設定其資料型別為ENUM，和3個值為default、admin、owner。此role欄位的目地是，在使用者登入時，判斷其使用者的身份，來根據其使用權限來顯示不同資料。例如，只有管理者權限的才能修改其它使用者的其料，一般的使用者則不行。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.42.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.42.53.jpg" /></p>
+
+<p>改變使用者jesse的權限為owner，這樣jesse就能被允許進入管理使用者資料的介面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.56.53.jpg" /></p>
+
+<p>新增使用者joe，並設其權限為default，代表為一般使用者</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.03.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.03.12.53.jpg" /></p>
+
+<h2 id="section">根據使用者登入的權限，來判斷是否要出現編輯使用者的超連結</h2>
+
+<p>使用者登入時，login_model.php就會去資料庫讀取使用者的role欄值資料，來取得使用者的登入權限。你可運用echo data[&#x27;role&#x27;]來確定是否有成功取得權限的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.04.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.04.57.53.jpg" /></p>
+
+<p>確認有取得使用者的權限資料($data[&#x27;role&#x27;])之後，新增Session變數role來代表使用者的權限資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.23.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.23.00.jpg" /></p>
+
+<p>由於登入成功後，就會跳到controllers/dashboard.php，因此在這觀察$_SESSION的值是否有成功設定了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.56.53.jpg" /></p>
+
+<p>運行結果， 成功取得session變數，可看到取得了登入權限的變數role，和已登入的變數loggedIn</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.58.67.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.58.67.jpg" /></p>
+
+<p>在之前的課程中，我們是利用Session的loggedIn變數的布林值來判斷是要出現login或是logout的超連結</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.06.58.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.06.58.53.jpg" /></p>
+
+<p>現在在使用者登入成功後，我們要透過session的role變數，來判斷使用者的登入權限，以決定是否要顯示Users的超連結(Users的超連結是用來進入管理使用者的介面)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.03.53.jpg" /></p>
+
+<p>運行結果， 使用joe的帳號登入，由於joe的登入權限是一般使用者(defaults)，登入後，將不會看到管理員才能用的超連結。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.15.53.jpg" /></p>
+
+<p>一般的使用者登入後，不會出現管理人員使用的超連結。這樣就完成了運用session的role變數，來判斷使用者權限，顯示不同資料的功能了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.16.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.16.13.jpg" /></p>
+
+<h2 id="section-1">顯示所有使用者的資料</h2>
+
+<p>複製controllers/dashboard.php並命名為新的檔案controll/ers/user.php，因為這二個檔案的功能非常的相近，都是去處理資料庫的資料。Dashboard.php用來處理data資料表、user.php用來管理users資料表</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.37.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.37.13.jpg" /></p>
+
+<p>修改controllers/user.php的內容，新增變數$role來取得使用者的登入權限，並運用render()來指定要顯示的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.21.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.21.93.jpg" /></p>
+
+<p>在資料夾views\user之內新增檔案index.php，做為controllers/user.php所對應的要顯示的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.39.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.39.53.jpg" /></p>
+
+<p>在views/user/index.php，寫入&lt;h1&gt;User&lt;/h1&gt;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.55.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.55.93.jpg" /></p>
+
+<p>運行結果， 用管理員的身份登入後，點選超連結Users，就成功得跳到所對應的頁面，出現了&lt;h1&gt;標題User</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.00.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.00.40.jpg" /></p>
+
+<p>之前的課程中，logout()用來跳到指定網址的寫法為<br />header(&#x27;location: ../login&#x27;)，這樣只能跳到網址的相對位置。現在改為<br />header(&#x27;location: &#x27; .URL. &#x27;login&#x27;)才能跳到網址的絕對位置<br /></p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.49.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.49.60.jpg" /></p>
+
+<p>controllers/user.php要負責產生、編輯、刪去使用者資料等3種功能，因此分別新增create()、edit()、delete()等3個函式來分別處理這些功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.02.53.jpg" /></p>
+
+<p>新增models/user_model.php做為之後要用來處理users資料表的sql運算用的檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.12.53.jpg" /></p>
+
+<p>在user_model.php中新增userList()，用來讀取users資料表的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.22.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.22.53.jpg" /></p>
+
+<p>新增變數userList，用來接收來自model-&gt;userList()所讀取出的users資料表的資料，以便將接收到的userList資料顯示至所對應的頁面上(views/user/index.php)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.36.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.36.20.jpg" /></p>
+
+<p>在views/user/index.php中輸出userList變數，觀察是否有成功接收到userList的變數資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.54.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.54.53.jpg" /></p>
+
+<p>運行結果， 成功顯示出userList變數的資料，取得了來自users資料表的使用者資料了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.57.53.jpg" /></p>
+
+<h2 id="section-2">新增使用者</h2>
+
+<p>成功取得users資料表的資料userList之後，運用foreach()將使用者的資料用表格的方示顯示。<br />並新增一表單，用來讓管理者新增使用者用，此表單會將表單欄位內的資料運用action的屬性，將資料傳至controllers/user.php內的函式create()來處理</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.27.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.27.60.jpg" /></p>
+
+<p>為了確認controllers/user.php內的函式create()能否執行，寫入echo 1，看看是否會輸出數字1，以確認從表單新增使用者的功能是否能成功執行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.31.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.31.20.jpg" /></p>
+
+<p>運行結果， 點選表單的Submit按鈕，觀察是否能成功執行從表單新增使用者的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.34.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.34.53.jpg" /></p>
+
+<p>成功輸出字串1，這代表資料能成功傳到controllers/user.php的函式create()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.35.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.35.27.jpg" /></p>
+
+<p>在controllers/user.php的create()，運用$_POST來取得來自表單的資料，並用陣列變數$data來代表來自表單的資料。最後，將$data傳至相對應的model來處理新增使用者的sql指令</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.22.02.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.22.02.07.jpg" /></p>
+
+<p>user_model.php接收到新增使用者的$data資料後，運用sql的insert指令，來將資料寫入users資料表中</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.05.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.05.00.jpg" /></p>
+
+<p>運行結果， 在表單輸入新的使用者的資料後，就會成功的將資料寫入資料表內，並同時顯示在網頁上。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.32.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.32.53.jpg" /></p>
+
+<p>進入phpMyAdmin，在users資料表內可看到成功新增了新的使用者</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.38.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.38.20.jpg" /></p>
+
+<p>將使用者資料成功運用model來寫入資料庫後，需運用header()將網址跳回user畫面的網址，不然會跳到user/create而呈現出空白的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.26.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.26.11.53.jpg" /></p>
+
+<h2 id="section-3">刪除使用者</h2>
+
+<p>刪除資料時，需要先取得要刪除資料的id值，因此需確認點選delete時，能正確的將對應的id資料傳送至controllers/user的delete($id)，因此超連結寫為&lt;a href=&quot;&#x27;.URL.&#x27;user/delete/&#x27;.$value[&#x27;id&#x27;] /&gt;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.01.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.01.93.jpg" /></p>
+
+<p>controllers/user.php的delete($id)，接受到要刪除資料的id值後，傳給相對應的model進行資料庫的處理，刪除完後，一樣運用header()來跳回user的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.15.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.15.93.jpg" /></p>
+
+<p>user_model.php取得要刪除資料的id值後，運用sql的delete指令，將該筆id的資料從users資料表刪除</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.05.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.05.93.jpg" /></p>
+
+<p>運行結果， 點選Delete，資料就可被刪去了，完成了刪除使用者資料的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.09.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.09.13.jpg" /></p>
+
+<h2 id="section-4">編輯使用者</h2>
+
+<p>接下來， 我們來處理編輯使用者資料的部份。在controllers/user.php的edit($id)，將$id傳入對應的model函式userSingleList($id)，來取得此筆id的使用者資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.12.53.jpg" /></p>
+
+<p>user_model.php的userSingleList($id)會運用sql的select指令來取得該筆id的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.46.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.46.53.jpg" /></p>
+
+<p> 在views/user/index.php新增編輯用的超連結，點選該筆超連結時，會將id資料傳送至controllers/user.php的edit()，來執行編輯該筆使用者資料的動作</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.30.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.30.53.jpg" /></p>
+
+<p>運行結果， 點選Edit的超連結，觀察是否會成功出現該筆使用者的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.00.jpg" /></p>
+
+<p>成功的出現所點選的使用者資料了。接下來， 就是製作編輯使用者資料的介面，來處理此筆id的使用者資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.80.jpg" /></p>
+
+<p>在views/user/edit.php內新增編輯使用者資料的表單，將使用者的資料寫入表單的輸入欄位中，讓管理人員在編輯使用者資料時，可知道原有的資料是什麼，以便修改為新的資料。編輯完後，點選submit，會將資料傳至controllers/user.php的editSave($id)(注意:這部份原文的作者寫錯了，作者本來是想寫為user/editSave的，但是寫錯為userSave/edit，之後作者會發現並修改)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.33.58.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.33.58.00.jpg" /></p>
+
+<p>controllers/user.php需進行接收表單欄位的資料，作者認為這樣的修改並儲存表單資料的動作之前有在create()寫過相似的程式碼，因此將相似的程式碼貼入editSave($id)，一樣都是接收$_POST變數的表單欄位資料，只是修改對應的model函式為editSave($data)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.34.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.34.15.53.jpg" /></p>
+
+<p>運行結果， 出現錯誤，userSave not found</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.26.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.26.20.jpg" /></p>
+
+<p>此時原文作者發現他表單的action屬性寫錯了，之前寫錯為userSave/edit，因該要寫為user/editSave，才能正確的將資料傳至controllers/user.php的editSave()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.36.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.36.07.jpg" /></p>
+
+<p>user_model.php的editSave($data)從controllers/user.php的editSave($id)接收到要編輯的使用者資料後，運用sql的UPDATE指令，來更新原有的資料表資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.13.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.13.07.jpg" /></p>
+
+<p>由於controllers/user.php的editSave($id)需傳送此筆資料的id給相對應的model來進行運算，因此新增變數$data[&#x27;id&#x27;]來代表id值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.20.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.20.87.jpg" /></p>
+
+<p>運行結果， 點選第一筆資料的Edit超連結</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.22.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.22.73.jpg" /></p>
+
+<p>將原本的login欄位資料從test2改為jesse，點選Submit觀察使用者資料是否會被成功修改</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.27.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.27.47.jpg" /></p>
+
+<p>運行結果， 成功的將資用者的資料從test2改為jesse了，完成了編輯使用者資料的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.28.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.28.53.jpg" /></p>
+
+<h2 id="urlserver">改變URL常數為遠端SERVER的網址</h2>
+
+<p>如果你想將目前所完成的專案從測試用的網址移到正式的網址時，需要改變常數URL的值，例如作者是將常數URL從http://workspace/mvc改為http://jream.com/test/</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.38.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.38.07.53.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mvc_04_db_insrt_jquery-post]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/10/08/mvc_04_db_insrt_jquery-post/"/>
+    <updated>2016-10-08T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/10/08/mvc_04_db_insrt_jquery-post</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/00_demo.jpg" class="demo_img" alt="We do some XHR (AJAX) Calls within our MVC. If you need help here are other tutorials:" />
+    <p>We do some XHR (AJAX) Calls within our MVC. If you need help here are other tutorials:</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#viewjavascript" id="markdown-toc-viewjavascript">view加入javascript的功能</a></li>
+  <li><a href="#section" id="markdown-toc-section">運來新增使用者資料的表單</a></li>
+  <li><a href="#jsdashboardphp" id="markdown-toc-jsdashboardphp">js接收表單輸入的資料，後傳給dashboard.php</a></li>
+  <li><a href="#dashboardmodelphpdata" id="markdown-toc-dashboardmodelphpdata">dashboard_model.php新增資料至data資料表</a></li>
+  <li><a href="#ltdiv-idquotlistinsetsquotgtdata" id="markdown-toc-ltdiv-idquotlistinsetsquotgtdata">&lt;div id="listInsets"&gt;顯示data資料表的資料</a></li>
+  <li><a href="#json" id="markdown-toc-json">輸入的參數轉為json格式</a></li>
+  <li><a href="#id" id="markdown-toc-id">點選刪除用的超連結，刪除該id的資料</a></li>
+</ul>
+<hr />
+
+<h2 id="viewjavascript">view加入javascript的功能</h2>
+
+<p>接下來， 我們新增一個陣列變數js。這個js變數是用來放入js檔案的所在路徑的。如此一來，當我們要指定哪一個view要放入什麼js檔案時，就可以讓controller透過js變數來指定要放入的js檔案路徑。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.00.52.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.00.52.47.jpg" /></p>
+
+<p>讓我們先來確定views內的檔案header.php，是否能正確的取得此js變數。運用isset()來確定js變數是否已經被設定了，有的話輸出數字1。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.22.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.22.13.jpg" /></p>
+
+<p>運行結果， 成功顯示數字1，這代表views/header.php可以正確的取得來自controller/dashboard.php的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.26.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.26.53.jpg" /></p>
+
+<p>確定js陣列變數資料可被views/header.php取得後，我們運用foreach()來將陣列內的資料逐一列出，整合為javascript的html標記</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.09.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.09.00.jpg" /></p>
+
+<p>把js的陣列變數寫入js檔案的路徑資料，就完成了從controller指定js檔案路徑，讓view來讀取的功能了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.33.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.33.00.jpg" /></p>
+
+<p>我們的js是放在views資料夾內，因此檔案路徑字串要加入&#x27;views/&#x27;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.43.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.43.27.jpg" /></p>
+
+<p>運行結果， 成功運行出default.js的alert()的功能，出現警告視窗，並顯示1。這代表javascript的功能沒問題了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.46.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.46.53.jpg" /></p>
+
+<h2 id="section">運來新增使用者資料的表單</h2>
+
+<p>在controllers/dashboard.php中，新增函式xhrInsert()，這是之後當views/dashboard/index.php的表單資料要傳送過來時，用來通知model用的</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.04.53.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.04.53.00.jpg" /></p>
+
+<p>在views/dashboard/index.php中，寫入&lt;form&gt;來完成表單功能，並在action屬性上指定網址參數dashboard/xhrInsert，這相當於呼叫controllers/dashboard.php的xhrInsert()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.13.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.13.00.jpg" /></p>
+
+<p>運行結果， login後，成功出現dashboard的表單功能。表單的功能完成後，接下來， 我們要運用jquery來讓表單的資料可傳給php來做運算</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.22.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.22.87.jpg" /></p>
+
+<p>我們先為此表單取id名稱為randomInsert</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.35.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.35.87.jpg" /></p>
+
+<h2 id="jsdashboardphp">js接收表單輸入的資料，後傳給dashboard.php</h2>
+
+<p>接下來， 就可用運此表單的id名稱#randomInsert，來進行傳送表單內資料的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.08.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.08.13.jpg" /></p>
+
+<p>在表單內的輸入欄位輸入測試用字串test，可看到在firebug的Console內成功的讀取到這個來自表單的資料text=test(因為欄位屬性為text，而值為test，所以經過serialize()後，資料為text=test)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.22.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.22.53.jpg" /></p>
+
+<p>在確定表單的資料可被取得後，運用$.post()將表單的資料傳到php，成功的話出現alert(1)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.14.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.14.53.jpg" /></p>
+
+<p>運行結果， 在表單輸入測試用的字串h，就可看到成功出現了alert()的視窗，這代表資料已經可成功傳給php了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.19.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.19.93.jpg" /></p>
+
+<p>此外，從Console視窗可看到，成功的傳送資料到網址http://workspace/mvc/dashboard/xhrInsert，這代表資料傳到了controllers/dashboard.php之中的xhrInsert()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.23.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.23.20.jpg" /></p>
+
+<h2 id="dashboardmodelphpdata">dashboard_model.php新增資料至data資料表</h2>
+
+<p>確定controllers/dashboard.php可收到執行xhrInsert()的訊息後，接下來， 就是呼叫對應的model，執行$this-&gt;model-&gt;xhrInsert()，來進行將資料寫入資料庫的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.54.67.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.54.67.jpg" /></p>
+
+<p>新增models/dashboard_model.php，這個檔案是用來處理寫入和讀取資料庫資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.03.53.jpg" /></p>
+
+<p>先觀察是否能取得來自表單的資料，看是否能顯示$_POST[&#x27;text&#x27;]的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.32.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.32.27.jpg" /></p>
+
+<p>運行結果， 在表單輸入測試用的字串vv，就可在console視窗看到回傳值傳為vv。這代表models/dashboard_model.php可成功取得來自表單的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.43.53.jpg" /></p>
+
+<p>進入phpMyAdmin，新增資料表，並命名為data。這資料表是用來儲放表單所寫入資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.09.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.09.02.53.jpg" /></p>
+
+<p>運用PDO的prepare()和sql的insert指令來將資料寫入資料表中</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.52.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.52.53.jpg" /></p>
+
+<p>運行結果， 在表單內輸入測試用字串asdf，可看到資料成功的傳到controllers/dashboard.php的xhrInsert()。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.59.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.59.00.jpg" /></p>
+
+<p>返回phpMyAdmin，可看到資料表成功的寫入從表單寫入的資料了，完成了從表單寫入資料到資料表的功能了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.03.53.jpg" /></p>
+
+<h2 id="ltdiv-idquotlistinsetsquotgtdata">&lt;div id="listInsets"&gt;顯示data資料表的資料</h2>
+
+<p>接下來， 我們要完成讀取資料表資料，並將資料顯示在網頁的功能。因此新增一個&lt;div&gt;，並命名為listInserts，用來插入來自資料表的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.55.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.55.20.jpg" /></p>
+
+<p>在controllers/dashboard.php中，新增函式xhrGetListings()，用來傳送要讀取資料表的訊息給對應的model</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.14.00.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.14.00.33.jpg" /></p>
+
+<p>在models/dashboard_model.php中，寫入讀取資料表的函式xhrGetListings()，運用PDO的函式來讀取資料表，並運用json_encode()將資料轉為json格式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.17.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.17.15.53.jpg" /></p>
+
+<p>運用$.get()來接收來自資料庫的資料，會呈現為json的格式，如{&quot;id&quot;:&quot;1&quot;，&quot;text&quot;:&quot;asdf&quot;}</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.04.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.04.53.jpg" /></p>
+
+<p>運行結果，可看到成功讀到資料表的資料，並呈現為json格式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.08.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.08.53.jpg" /></p>
+
+<p>將來自data資料表的資料，用迴圈的方式附加至#listInserts之內。這樣就完成了將data資料表的資料顯示在網頁上的功能了。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.11.53.jpg" /></p>
+
+<h2 id="json">輸入的參數轉為json格式</h2>
+
+<p>我們之前已經完成了從表單寫入資料到資料表內，和把資料表資料讀出並顯示在網頁的功能。<br />接下來，我們要將這二個功能整合在一起，從表單寫入資料後，就會立即寫入資料表內，並立刻顯示在網頁上。<br />因此，先從表單傳送資料的$.post()來觀察，看傳送資料給server端的php後，是否有成功回傳資料給js</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.51.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.51.53.jpg" /></p>
+
+<p>運行結果， 在表單內輸入測試用字串f，是有成功的傳到php了，但是卻沒有回傳值(Resonse)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.59.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.59.87.jpg" /></p>
+
+<p>觀察dashboard_model.php的xhrInsert()，原來是因為之前沒有使用json_encode()來將表單輸入的值輸出，補寫json_enocde($text)之後，就可回傳值給js了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.12.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.12.87.jpg" /></p>
+
+<p>運行結果， 表單輸入測試用字串f，成功傳php端取得json格式的回傳值&quot;f&quot;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.15.53.jpg" /></p>
+
+<p>接下來，我們希望能完成一個介面，這介面可讓使用者用來讀取、新增、刪取資料表的資料。我們剛才已完成了讀取、新增的功能，接下來為刪除的功能。<br />因此在附加資料到#listInserts的同時，也同時加入了用來點選的超連結，以便完成刪除資料的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.11.53.jpg" /></p>
+
+<p>在刪除了的超連結中，加入class=&quot;del&quot;，以便能更明確的指定此超連結是用來刪除用的</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.37.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.37.53.jpg" /></p>
+
+<p>由於如果要透過點選超連結，來刪除指定的該列資料的話，需要知道這一列資料的id，才可以成功刪除。<br />因此顯示在網頁上的資料，也需具備id的資料，因此運用db-&gt;lastInsertId()來取得最新一筆加入資料表的資料。<br />將所需的資料表的資料整理於$data變數後，在用json_encode()將資料輸出</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.52.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.52.00.jpg" /></p>
+
+<p>運行結果， 可看到當輸入測試用字串aaaa時，成功從php取得json格式的回傳值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.56.53.jpg" /></p>
+
+<p>回傳值有成功取得了，但為何讀取回傳值後，顯示的結果確是undefined呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.01.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.01.53.jpg" /></p>
+
+<p>出錯的原因是，因為$.post()傳資料出去後，取回的格式需設為json，才能正確的讀回json格式的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.51.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.51.53.jpg" /></p>
+
+<h2 id="id">點選刪除用的超連結，刪除該id的資料</h2>
+
+<p>確定可以取得json資料後，將超連結的rel屬性設為資料表每一列資料的id值，目地是點選超連結後，能根據所對應的id值,來刪除所對應的資料庫資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.14.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.14.53.jpg" /></p>
+
+<p>運行結果，點選刪除用的超連結時，可看到rel的屬性為所對應的id值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.27.53.jpg" /></p>
+
+<p>我們運用jquery的attr()來取得rel的值，並新增變數id來代表rel的值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.48.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.48.13.jpg" /></p>
+
+<p>運行結果， 點選刪除用的超連結時，成功取得id值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.54.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.54.13.jpg" /></p>
+
+<p>接下來，在models/dashboard_model.php運用sql指令delete來刪除該id位址的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.09.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.09.53.jpg" /></p>
+
+<p>在controllers/dashboard.php呼叫相對應的model檔案，以完成傳送刪除資料的指令給model的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.45.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.45.53.jpg" /></p>
+
+<p>在刪除資料庫的資料前，我們先來測試是否能成功刪除網頁上的dom元件。因此，新增變數delItem用來代表所點選的超連結，並運用parent()來找到該超連結的父層&lt;div&gt;，並運用remove()將該層&lt;div&gt;整個刪去。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.42.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.42.53.jpg" /></p>
+
+<p>運行結果， 點選刪除用的超連結後，成功刪除網頁上的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.54.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.54.53.jpg" /></p>
+
+<p>接下來， 我們來刪除資料庫上的資料，運用PDO的execute()來執行刪除的指令。這樣就完成了所有的刪除功能了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.25.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.25.53.jpg" /></p>
+
+<p>現在，所有來自資料庫的資料都可被經點選後刪去了。但是，當我們剛從表單輸入一個字串test，成功顯示在畫面後，想立刻用點選的方式將之刪除，卻刪不掉，為何只有空新增的元件無法成功用點選的方式刪去呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.39.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.39.53.jpg" /></p>
+
+<p>那是因為剛新增的元件尚未立刻bind到網頁的元件內，改用live來bind，就能成功的完成刪除功能了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.32.36.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.32.36.53.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mvc_03_db_login]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/10/08/mvc_03_db_login/"/>
+    <updated>2016-10-08T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/10/08/mvc_03_db_login</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/00_demo.jpg" class="demo_img" alt="In this tutorial we make some changes and create a login form with a database connection;" />
+    <p>In this tutorial we make some changes and create a login form with a database connection;</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#databasephppdo" id="markdown-toc-databasephppdo">Database.php繼承PDO的功能</a></li>
+  <li><a href="#controllersloginphpmodel" id="markdown-toc-controllersloginphpmodel">controllers/login.php加入讀取資料庫的Model</a></li>
+  <li><a href="#modellibscontrollerphp" id="markdown-toc-modellibscontrollerphp">讀取Model的功能搬至libs/Controller.php</a></li>
+  <li><a href="#login" id="markdown-toc-login">基本的login畫面</a></li>
+  <li><a href="#loginmodelphpsql" id="markdown-toc-loginmodelphpsql">login_model.php用來讀資料庫用的sql指令</a></li>
+  <li><a href="#section" id="markdown-toc-section">建立資料庫的使用者資料</a></li>
+  <li><a href="#md5" id="markdown-toc-md5">讀取經過md5()加密後的使用者資料</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">判斷使用者是否存在</a></li>
+  <li><a href="#dashboard" id="markdown-toc-dashboard">登入成功後，dashboard顯示使用者登入後的資料</a></li>
+  <li><a href="#session" id="markdown-toc-session">Session記錄有無登入</a></li>
+  <li><a href="#headerphploginlogout" id="markdown-toc-headerphploginlogout">header.php依有無登入切換超連結為login或logout</a></li>
+  <li><a href="#configdatabasephp" id="markdown-toc-configdatabasephp">config/database.php定義資料庫連結的常數</a></li>
+</ul>
+<hr />
+
+<h2 id="databasephppdo">Database.php繼承PDO的功能</h2>
+
+<p>新增libs/Database.php做為連接資料庫用的檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.00.29.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.00.29.53.jpg" /></p>
+
+<p>確認php.ini的extension=php_pdo_mysql.dll有無啟用</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.03.53.jpg" /></p>
+
+<p>讓Database.php繼承PDO功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.17.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.17.53.jpg" /></p>
+
+<p>如想了解有關更多PDO的應用，請至PHP官網</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.26.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.26.53.jpg" /></p>
+
+<p>在libs/Database.php的__construct()中，寫入連接資料庫所需的參數，資料庫名稱、登入用帳密等</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.37.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.37.53.jpg" /></p>
+
+<h2 id="controllersloginphpmodel">controllers/login.php加入讀取資料庫的Model</h2>
+
+<p>進入phpmyadmin新增資料庫，取名為mvc</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.53.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.53.53.jpg" /></p>
+
+<p>libs/Model.php中，新增全域變數db用來代表Database</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.23.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.23.53.jpg" /></p>
+
+<p>新增models/login_model.php，並繼承libs/Model.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.47.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.47.53.jpg" /></p>
+
+<p>我們希望當controllers/login執行時，能一併執行與其同名稱的model，所以在index()中require同名稱的login_model.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.04.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.04.59.53.jpg" /></p>
+
+<p>在index.php中，讀入&#x27;libs/Database.php&#x27;，就完成了model和database的功能了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.12.53.jpg" /></p>
+
+<p>運行結果， login的功能成功執行，代表model的資料庫連接上沒有問題</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.16.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.16.53.jpg" /></p>
+
+<h2 id="modellibscontrollerphp">讀取Model的功能搬至libs/Controller.php</h2>
+
+<p>接下來， 我們將讀取model的功能集中在libs/Controller.php裡，這樣設計的話，不論哪一個controller要呼叫model時，只要透過libs/Controller.php的loadModel()就可以呼叫model了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.07.55.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.07.55.53.jpg" /></p>
+
+<p>loadModel會接第一個網址參數的參數，例如輸入http://mvc/login，就會傳入login的參數，而調用models/login_model.php。成功完成了loadModel()統一讀取model的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.08.58.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.08.58.53.jpg" /></p>
+
+<p>在loadModel()功能統合完model的讀取功能後，就可以將之前暫時用來讀model的功能刪除了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.12.53.jpg" /></p>
+
+<p>運行結果， login的功能成功執行，代表loadModel()成功整合讀取model的功能了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.18.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.18.53.jpg" /></p>
+
+<p>如想確讀login_model.php是否有成功讀取，可在__construct()內輸入測試用字串，看能否成功輸出。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.36.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.36.13.jpg" /></p>
+
+<p>運行結果， 成功輸出測試用字串，代表login_model.php真的有被讀到</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.38.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.38.07.jpg" /></p>
+
+<h2 id="login">基本的login畫面</h2>
+
+<p>剛才我自已經完成了login的controller和model的功能，接下來來製作login的view的部份，因此新增views/login/index.php，並寫入輸入帳密的表單功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.48.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.48.53.jpg" /></p>
+
+<p>運行結果， 得到了基本的login畫面，後續的動作，就是讓使用者輸入帳密資料後，能傳送到login_model.php，進行資料庫的讀寫動作。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.50.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.50.53.jpg" /></p>
+
+<p>當表單的帳密輸入完後，點選submit按鈕，表單就會送出網址參數login/run，也就是執行controllers/login.php之內的run()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.15.53.jpg" /></p>
+
+<h2 id="loginmodelphpsql">login_model.php用來讀資料庫用的sql指令</h2>
+
+<p>在controllers/login.php內的函式run()，執行model的功能。<br />這是實現controller和model互通非常重要的部份，你可以發現身為controller的login.php只負責通知model去執行，而不用去處理任何參數的運算。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.35.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.35.53.jpg" /></p>
+
+<p>models/login_model.php，負責將表單傳入的帳密資料傳到資料庫中，再將資料顯示出來處理。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.35.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.35.53.jpg" /></p>
+
+<p>運行結果， 出現錯誤，因為資料表尚未建立</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.43.53.jpg" /></p>
+
+<h2 id="section">建立資料庫的使用者資料</h2>
+
+<p>進入phpmyadmin，再mvc資料庫中建立資料表users</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.56.53.jpg" /></p>
+
+<p>新增3個欄位，id、login、password，分別建立其資料型別和長度。而因為password之後要存放md5加密過後的資料，所以長度設長點，長度設為32。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.19.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.19.53.jpg" /></p>
+
+<p>資料表的欄位設定好後，用Insert的方式，來新增一名使用者，並設定其帳號和密碼。完成了資料表的功能。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.48.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.48.27.jpg" /></p>
+
+<h2 id="md5">讀取經過md5()加密後的使用者資料</h2>
+
+<p>models/login_model.php運用parent::__construct()來執行父層的建構式，以確保能使用全域變數db，來使用資料庫功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.07.53.jpg" /></p>
+
+<p>計劃將資料表的使用者資料讀出</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.37.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.37.53.jpg" /></p>
+
+<p>運行結果， 只有輸出空的陣列，是哪寫錯了?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.41.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.41.07.jpg" /></p>
+
+<p>出錯的原因是因為之前寫入的密碼是有經過MD5加密過的，因此輸入的密碼欄(password)也需經過MD5來進行加密，才會符合</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.58.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.58.87.jpg" /></p>
+
+<p>運行結果， 成功輸出使用者的id資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.17.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.17.03.53.jpg" /></p>
+
+<h2 id="section-1">判斷使用者是否存在</h2>
+
+<p>但我們也要考慮如果輸入的帳密不存在於資料表的情況，我們使用rowCount()來計算符合輸入條件的數量，如果大於0，代表有此使用者，讓其登入。否則的話，就出現錯誤訊息，代表輸入的帳密有誤。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.11.53.jpg" /></p>
+
+<h2 id="dashboard">登入成功後，dashboard顯示使用者登入後的資料</h2>
+
+<p>login的功能確定完成後，我們要開始計劃登入後的畫面。登入成功後，要顯示使用者的個人資料。我們規劃為dashboard，並用之前教過的方法依序完成controller和view的相關檔案。先新增controllers/dashboard.php，並運用render()來指定要顯示的頁面為dashboard/index</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.43.53.jpg" /></p>
+
+<p>新增views/dashboard/index.php做為dashboard的頁面，並寫入輸出字串</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.01.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.01.53.jpg" /></p>
+
+<p>運行結果， 網址列上輸入dashboard時，成功跳到dashboard的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.09.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.09.33.jpg" /></p>
+
+<h2 id="session">Session記錄有無登入</h2>
+
+<p>新增libs/Session.php用來處理session變數(用來儲放使用者登入資料用)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.28.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.28.53.jpg" /></p>
+
+<p>在libs/Session.php內，分別寫入新增、設定、取得、銷毀session變數的函式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.03.53.jpg" /></p>
+
+<p>在index.php中，require &#x27;libs/Session.php&#x27;，這樣整個網站都能取得對session變數的控制權了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.12.53.jpg" /></p>
+
+<p>運用session變數的用意是在記錄這名使用者之前是否有登入過了，如果有登入過就不用在進入輸入帳密的畫面，直接登入就好。<br />因此，我們運用Session::get(&#x27;loggedIn&#x27;)，來取得是否有此筆session資料，沒有資料的話就跳回login的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.22.10.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.22.10.53.jpg" /></p>
+
+<p>login_model.php的功能是用來讀取資料庫的使用者資料的，現在加入判斷式，如果使用者存在，就新增並設定session變數&#x27;loggedIn&#x27;，並跳到dashboard的頁面，不存在則跳回login的頁面。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.05.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.05.53.jpg" /></p>
+
+<p>完成了session的功能了後，我們再用jesse的帳密登入</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.12.53.jpg" /></p>
+
+<p>運行結果， 成功登入，進入dashboard的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.13.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.13.40.jpg" /></p>
+
+<p>我們已經完成了登入功能了，接下來是登出功能，寫為函式logout()，登出後，就將session變數銷毀，並跳回login的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.36.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.36.53.jpg" /></p>
+
+<h2 id="headerphploginlogout">header.php依有無登入切換超連結為login或logout</h2>
+
+<p>我們現在已經完成了登入和登出的功能了，因此在介面的部份，就需要讓使用者可點選連結來切換登入和登出。因此借由判斷session變數&#x27;loggedIn&#x27;的值，來決定要顯示logout或login的連結</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.25.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.25.57.53.jpg" /></p>
+
+<p>目前完成的session功能中，由於我們要確保整個網頁都能運用session變數，因此只要有用到session變數的地方，我們都會運用Session::init()來宣告session變數。但是，如果已經有宣告過了，然後又再次宣告的話，程式就會出現警告訊息，警告我們已經有宣告過了。警告並不是錯誤，因此不至會影響到程式的運作。如果要暫時忽略警告的話，可加入@符號。<br />至於運用get()取得session的變數前，我們加入isset()來判斷此session變數是否存在後再回傳，才不會傳回空值而造成錯誤。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.42.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.42.53.jpg" /></p>
+
+<p>運行結果， 成功完成logout的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.45.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.45.53.jpg" /></p>
+
+<h2 id="configdatabasephp">config/database.php定義資料庫連結的常數</h2>
+
+<p>在config/database.php中，寫入連結資料庫所需用到的常數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.33.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.33.53.jpg" /></p>
+
+<p>將libs/Database.php連結資料庫所需的參數，改為傳入從config/database.php所寫的常數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.58.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.58.53.jpg" /></p>
+
+<p>運行結果， 設完資料庫的常數後，login和logout功能依然正確運行。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.29.16.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.29.16.53.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mvc_02_css_define]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/10/08/mvc_02_css_define/"/>
+    <updated>2016-10-08T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/10/08/mvc_02_css_define</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/00_demo.jpg" class="demo_img" alt="In this PHP MVC Tutorial we&#x27;ll improve on part 1 and make a pretty looking view, handle the URL&#x27;s better and get some chicks in while we program" />
+    <p>In this PHP MVC Tutorial we&#x27;ll improve on part 1 and make a pretty looking view, handle the URL&#x27;s better and get some chicks in while we program</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#controllerindexphp" id="markdown-toc-controllerindexphp">網址沒輸入參數時，讓預設的controller設為index.php</a></li>
+  <li><a href="#viewsindexindexphpheaderphpfooterphp" id="markdown-toc-viewsindexindexphpheaderphpfooterphp">views/index/index.php放入header.php和footer.php</a></li>
+  <li><a href="#controllerthis-gtview-gtrender" id="markdown-toc-controllerthis-gtview-gtrender">controller透過$this-&gt;view-&gt;render()來顯示畫面</a></li>
+  <li><a href="#css" id="markdown-toc-css">套用css效果</a></li>
+  <li><a href="#jquery" id="markdown-toc-jquery">套用jquery</a></li>
+  <li><a href="#login" id="markdown-toc-login">點選連結後login</a></li>
+  <li><a href="#help" id="markdown-toc-help">help畫面</a></li>
+  <li><a href="#libsviewphprenderview" id="markdown-toc-libsviewphprenderview">libs/view.php運用render()來統一置入view的檔案</a></li>
+  <li><a href="#libsviewphpview" id="markdown-toc-libsviewphpview">libs/view.php判斷是否要置入view的檔案</a></li>
+  <li><a href="#config" id="markdown-toc-config">config內的檔案定義網址參數</a></li>
+</ul>
+<hr />
+
+<h2 id="controllerindexphp">網址沒輸入參數時，讓預設的controller設為index.php</h2>
+
+<p>網址列上沒有輸入controler的參數時，會出現錯誤</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.35.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.35.53.jpg" /></p>
+
+<p>因此需用isset()來判斷$(_GET[&#x27;url&#x27;])是否有得到網址參數了，有的話以變數$url代表網址參數，沒有的話設為$url設為null</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.59.53.jpg" /></p>
+
+<p>如果$url[0]的值為null的話，就代表沒有取得網址參數，沒有指定要呼叫哪一個controller，那就設controllers/index.php為預設的controller</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.41.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.41.53.jpg" /></p>
+
+<p>運行結果，workspace/mvc/indx的結果會等同於workspace/mvc ，因為沒有輸入參數時，預設的controller已設為index</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.53.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.53.93.jpg" /></p>
+
+<h2 id="viewsindexindexphpheaderphpfooterphp">views/index/index.php放入header.php和footer.php</h2>
+
+<p>views/header.php負責放入css檔</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.02.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.02.27.53.jpg" /></p>
+
+<p>新增views/index/index.php做為首頁的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.02.53.jpg" /></p>
+
+<p>index/index.php做為首頁的頁面，需分別放入header和footer的頁面，及首頁的訊息</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.18.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.18.00.jpg" /></p>
+
+<p>新增views/footer.php，並寫入footer(頁尾)所需的內容</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.56.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.56.20.jpg" /></p>
+
+<h2 id="controllerthis-gtview-gtrender">controller透過$this-&gt;view-&gt;render()來顯示畫面</h2>
+
+<p>在controllers/index.php內寫入$this-&gt;view-&gt;render(&#x27;index/index&#x27;);用render()來指定首頁的頁面是位於view/index/index.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.04.54.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.04.54.47.jpg" /></p>
+
+<p>首頁的頁面index.php所顯示的頁面訊息，改為This is the main page welcome</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.07.53.jpg" /></p>
+
+<h2 id="css">套用css效果</h2>
+
+<p>現在我們已經完成了controller和view互相溝通的功能，接下來， 要設定css的部份。我們在瀏覽器中來檢視workspace/mvc/index的原始碼，可看到已經有成功的導入header.php檔案的css了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.22.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.22.53.jpg" /></p>
+
+<p>所以，確定好已經讀到css的所在路徑後，接下來我們要開始新增css的檔案。新增public/css資料夾來存放之後要新增的css檔案，並新增檔案default.css</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.42.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.42.93.jpg" /></p>
+
+<p>在default.css內寫入背景、內距等樣式</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.16.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.16.47.jpg" /></p>
+
+<p>運行結果， 首頁成功套用css的效果</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.27.53.jpg" /></p>
+
+<h2 id="jquery">套用jquery</h2>
+
+<p>在public資料夾下，分別新增images和js二個資料夾，分別用來存放圖檔和js檔</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.43.53.jpg" /></p>
+
+<p>在js資料夾下，新增jquery.js，並寫入jquery v1.6.1的函式庫</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.07.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.07.27.53.jpg" /></p>
+
+<p>新增custom.js檔，作為日後用來自訂js功能的檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.08.54.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.08.54.80.jpg" /></p>
+
+<p>為了要確認js功能是否可正常運作，先寫入alert(1)，看看是否能成功執行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.05.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.05.53.jpg" /></p>
+
+<p>運行結果， 成功出現了訊息視窗，代表jquery設置成功了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.06.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.06.87.jpg" /></p>
+
+<h2 id="login">點選連結後login</h2>
+
+<p>header.php為首頁最上面的區塊，加入3個超連結，Index、About、Login來讓使用者以後能切換頁面。<br />首頁頁面到此設定完成。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.44.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.44.53.jpg" /></p>
+
+<p>接下來， 為login的功能。為了完成login功能，需分別設好login的controller(controllers/login.php)和其對應的view的頁面。<br />因此，使用view-&gt;render(&#x27;login/index&#x27;)來指定好對應的頁面。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.25.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.25.53.jpg" /></p>
+
+<p>新增views/login/index.php做為login的顯示頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.59.53.jpg" /></p>
+
+<p>login.php也是controller，因此一樣要透過extends來繼承父層的Controller的功能，才能具備controller的完整功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.04.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.04.33.jpg" /></p>
+
+<p>運行結果， 現在點選Login的超連結時，網址列上會出現對應的參數login，成功跳到login的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.07.53.jpg" /></p>
+
+<h2 id="help">help畫面</h2>
+
+<p>接下來， 我們要開始製做help的部份，由下圖可知，我們之前已經完成了help的controller的功能了，剩下的為help的顯示頁面(view)的部份。由於help和login的製作原理都一樣，所以我們依造製做login的製作步驟來製做help</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.08.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.08.53.jpg" /></p>
+
+<p>新增檔案help.index.php做為help的顯示頁面，一樣都置入header.php和footer.php，和help的訊息-this is the help</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.29.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.29.53.jpg" /></p>
+
+<p>在controllers/help.php的__construct()內，寫入$this-&gt;view-&gt;render(&#x27;help/index.php&#x27;);來指定要顯示的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.44.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.44.53.jpg" /></p>
+
+<p>運行結果， 成功點選Help的超連結時，跳到help的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.47.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.47.00.jpg" /></p>
+
+<h2 id="libsviewphprenderview">libs/view.php運用render()來統一置入view的檔案</h2>
+
+<p>剛才我們已經完成了login和help的功能，我們可歸納出它們有2個共同點:<br />1:都會運用render()來指定要顯示的頁面<br />2:所顯示的頁面中，都會放入veiws/header.php和veiws/footer.php<br />既然如此，我們何不將這2個共同點整合在一起，統一在呼叫render()時，就一併require所需的頁面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.00.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.00.53.jpg" /></p>
+
+<p>現在我們已經透過render()一併require所需的頁面檔案了，因此之前在views資料夾內所有的檔案，有用到來放入header和footer的程式碼就可以刪除了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.05.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.05.87.jpg" /></p>
+
+<p>運行結果， 用render()成合完頁面後的功能正確運行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.38.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.38.80.jpg" /></p>
+
+<h2 id="libsviewphpview">libs/view.php判斷是否要置入view的檔案</h2>
+
+<p>目前我們已將所有的頁面統一透過render()來放入header和footer了。但是如果有的頁面，我們並不想放入header和footer，而只是想顯示一個頁面，那要如何讓render()來判斷呢?<br />讓我們新增一個$noInclude變數，透過這個變數來讓render()判斷是否要放入放入header和footer</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.17.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.17.53.jpg" /></p>
+
+<p>像controllers/index.php的頁面，如果我們不想require header.php和footer.php，只要在使用render()時，將$noInclude的參數設為1即可</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.29.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.29.53.jpg" /></p>
+
+<p>運行結果， 參數輸入index時，就只出現index的頁面而已。<br />完成了用render($name,$noInclude)來判斷要顯示哪一個頁面的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.31.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.31.53.jpg" /></p>
+
+<h2 id="config">config內的檔案定義網址參數</h2>
+
+<p>新增config資料夾，並新增database.php和path.php，分別用來存放資料庫和檔案路徑的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.27.53.jpg" /></p>
+
+<p>觀察網頁的原始碼，可發現js和css的檔案路徑，目前都是使用相對位置，但是考量到日後檔案可能會放在不同的根目錄下，所以還是使用網址的絕對位置才不會出錯</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.48.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.48.07.jpg" /></p>
+
+<p>因此在config/paths.php內，新增常數&#x27;URL&#x27;為http://workspace/mvc/(這是目前所在的網址位置，以後網址如有變動，只要改這個常數即可)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.11.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.11.93.jpg" /></p>
+
+<p>在index.php內讀入path.php和database.php，這樣整個網頁就都能讀到這2個檔案建立的全域變數和函式了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.34.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.34.53.jpg" /></p>
+
+<p>將常數URL寫入，就可將相對路徑設為絕對路徑了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.59.53.jpg" /></p>
+
+<p>運行結果， 功能正確執行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.02.53.jpg" /></p>
+
+<p>觀察網頁的原始碼，可發現js和css的檔案路徑，都變成絕對路徑的網址了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.05.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.05.80.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mvc_01_basic]]></title>
+    <link href="http://wikihuang.github.io/blog/2016/10/08/mvc-01-basic/"/>
+    <updated>2016-10-08T09:00:00+08:00</updated>
+    <id>http://wikihuang.github.io/blog/2016/10/08/mvc-01-basic</id>
+    <content type="html"><![CDATA[<div id="intro">
+    <img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/00_demo.jpg" class="demo_img" alt="l Ill teach you how you can create a very simple, lightweight MVC. This tutorial covers creating an MVC PHP application and the bare essentials. Create PHP MVC" />
+    <p>l Ill teach you how you can create a very simple, lightweight MVC. This tutorial covers creating an MVC PHP application and the bare essentials. Create PHP MVC</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#htaccessindexphp" id="markdown-toc-htaccessindexphp">.htaccess固定網址導向至index.php</a></li>
+  <li><a href="#requirecontroller" id="markdown-toc-requirecontroller">在網址列上傳入參數，require該參數名稱的檔案為controller</a></li>
+  <li><a href="#controller" id="markdown-toc-controller">分割網址的參數，分別指定為controller和其函式及參數</a></li>
+  <li><a href="#bootstrapphp" id="markdown-toc-bootstrapphp">分割網址參數相關功能的程式碼，移至Bootstrap.php</a></li>
+  <li><a href="#section" id="markdown-toc-section">自訂錯誤訊息</a></li>
+  <li><a href="#extendscontroller" id="markdown-toc-extendscontroller">extends(繼承)controller</a></li>
+  <li><a href="#controllerview" id="markdown-toc-controllerview">在controller中讀取view</a></li>
+  <li><a href="#view" id="markdown-toc-view">view顯示各種情況的頁面</a></li>
+  <li><a href="#requiremodel" id="markdown-toc-requiremodel">傳入網址參數，require該參數名稱的檔案為model</a></li>
+</ul>
+<hr />
+
+<h2 id="htaccessindexphp">.htaccess固定網址導向至index.php</h2>
+
+<p>在命名為mvc的專案中，新增一檔案-index.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.00.00.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.00.00.60.jpg" /></p>
+
+<p>計劃一個control為dog，而其method為test，以便將來輸入不同的網址時，來對應到不同的control和method</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.00.41.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.00.41.80.jpg" /></p>
+
+<p>新增.htaccess檔，並運用RewriteRule來強制所輸入網址參數一律傳到index.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.01.28.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.01.28.00.jpg" /></p>
+
+<p>傳入的網址參數，統一由變數url來代表傳入的參數</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.01.50.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.01.50.47.jpg" /></p>
+
+<p>用RewriteCond來過濾符合的條件，判斷當輸入的網址不是目錄、檔案、連結時，才符合網址重寫的修件。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.02.16.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.02.16.27.jpg" /></p>
+
+<p>新增controllers、libs、models、views資料夾，用來放日後專案擴增後的程式碼。<br />並在index.php寫入1，來測試重寫網址的功能是否正常運行。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.02.40.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.02.40.33.jpg" /></p>
+
+<p>運行結果， 成功顯示出測試用的數字1。可發現不論輸入何種網址，都會成功導到index.php，</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.02.47.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.02.47.40.jpg" /></p>
+
+<h2 id="requirecontroller">在網址列上傳入參數，require該參數名稱的檔案為controller</h2>
+
+<p>新增變數$url並用$_GET來取得網址的參數&#x27;url&#x27;，當我們在網址輸入參數dogddd時，就能取得該參數了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.03.04.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.03.04.47.jpg" /></p>
+
+<p>在controllers資料夾中新增index.php，並寫入&#x27;We are in index&#x27;。目地是之後在測試時，知道是否有成功的調用到index.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.03.36.67.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.03.36.67.jpg" /></p>
+
+<p>得到網址參數index，以便使用require來匯入檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.03.52.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.03.52.73.jpg" /></p>
+
+<p>之後，當你取得不同的$url變數值後，就能去require不同的檔案。以目前的例子來說，我們取得$url變數為index，就能去controllers的資料夾內，匯入index.php這個檔案。<br />這樣就是最基本的切換controller的機制。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.04.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.04.80.jpg" /></p>
+
+<p>運行結果， 成功的完成了輸入網址參數index，就取得controllers/index.php資料的功能</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.24.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.24.27.jpg" /></p>
+
+<p>接下來，新增了help.php做為第2個controller，並寫入&#x27;We are insdie help&#x27;，讓測試時知道我們正在使用的controller為help.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.46.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.46.00.jpg" /></p>
+
+<p>help.php和index.php的使用方法是一樣的，都是輸入網址參數後，對應到相同的檔名。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.51.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.04.51.80.jpg" /></p>
+
+<h2 id="controller">分割網址的參數，分別指定為controller和其函式及參數</h2>
+
+<p>但是當我們想要新增一個參數other時，就會發生錯誤。錯誤的原因是，如果我們想要讀取多筆參數，就需要將參數分割後再行讀取</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.05.03.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.05.03.07.jpg" /></p>
+
+<p>使用explode()來分割網址參數，並儲放在變數$url，並觀察變數的內容。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.05.53.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.05.53.33.jpg" /></p>
+
+<p>運行結果， 網址參數被分割為陣列來存放</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.05.55.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.05.55.40.jpg" /></p>
+
+<p>將$url[0]做為$controller，$url[1]做為呼叫的函式(function)</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.06.43.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.06.43.60.jpg" /></p>
+
+<p>在help.php寫入function other()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.07.10.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.07.10.60.jpg" /></p>
+
+<p>運行結果， 當我們在網址列上輸入了參數help/other時，就會調用help.php內部的函式other()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.07.12.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.07.12.73.jpg" /></p>
+
+<p>目前的部份，我們已經完成了呼叫function()的部份，接下來， 我們要將function()加入參數，以$url[2]來做為function()的參數。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.08.05.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.08.05.00.jpg" /></p>
+
+<p>在other()寫入參數$arg，預設值為false。且只有當有輸入參數時，才會顯示$arg的變數值</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.08.17.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.08.17.73.jpg" /></p>
+
+<p>運行結果， 在網址列上輸入10，代表為function()的參數，就會看到10顯示在字串中。<br />到目前設計的功能，我們就可以在網址列上輸入不同的值，來分別指定要呼叫的controller、function()、function參數。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.08.22.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.08.22.07.jpg" /></p>
+
+<p>但是要注意網址列的字串，是透過/(斜線)來分割的，當輸入了多餘的斜線時，需要自動清除，不然會分割出NULL值，造成錯誤。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.09.08.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.09.08.27.jpg" /></p>
+
+<p>運用rtrim來去除$url的多餘斜線</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.09.55.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.09.55.53.jpg" /></p>
+
+<p>運行結果， 雖然多寫了斜線，但也會自動移除，只分割出所需要的字串</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.09.58.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.09.58.33.jpg" /></p>
+
+<h2 id="bootstrapphp">分割網址參數相關功能的程式碼，移至Bootstrap.php</h2>
+
+<p>我們目前在index.php所完成的程式碼，是為了讓網址列上的參數，能夠自動的對應到所要呼叫的controller。我們準備將此功能，統一集中到Bootstrap.php這個檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.10.35.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.10.35.27.jpg" /></p>
+
+<p>複製index.php的程式碼到Bootstrap.php之內，做為分割網址字串轉為controller的類別class</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.10.46.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.10.46.80.jpg" /></p>
+
+<p>加入file_exists()來判斷做為controller的檔案是否存在，不存在的話需傳送自訂的錯誤訊息</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.11.32.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.11.32.00.jpg" /></p>
+
+<p>在index.php中新增變數$app，來代表Bootstrap()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.05.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.05.47.jpg" /></p>
+
+<p>現在來測試錯誤事件的情況，在網址列上輸入test，但目前並沒有test.php這一個controller，所以會產生錯誤事件</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.09.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.09.20.jpg" /></p>
+
+<h2 id="section">自訂錯誤訊息</h2>
+
+<p>為處理錯誤事件，我們新增error.php來做為自訂錯誤事件的controller</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.38.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.38.93.jpg" /></p>
+
+<p>當判斷輸入的controller不存在時，就會呼叫自訂的錯誤事件 new Error()</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.58.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.12.58.73.jpg" /></p>
+
+<p>運行結果， 成功出現自訂的錯誤訊息This is error!。但是卻連預設的錯誤Fatal error也出現了，要如何關掉預設的錯誤訊息呢?</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.13.03.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.13.03.47.jpg" /></p>
+
+<p>加入return false，就不會出現預設的錯誤訊息了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.13.17.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.13.17.00.jpg" /></p>
+
+<p>運行結果， 成功只出現自訂的錯誤訊息</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.13.20.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.13.20.53.jpg" /></p>
+
+<h2 id="extendscontroller">extends(繼承)controller</h2>
+
+<p>在libs資料夾中新增Controller.php，其主要的功能為集中子層的controller都會用到的程式碼，提高程式碼的使用率。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.14.48.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.14.48.73.jpg" /></p>
+
+<p>讓子層的controller，如error.php、help.php、index.php，都繼承父層Controller.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.00.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.00.53.jpg" /></p>
+
+<p>在子層的建構式__construct()，加入父層的建構式parent::__construct()。這樣一來，呼叫子層的controller時，會同時執行父層controller的動作</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.34.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.34.00.jpg" /></p>
+
+<p>完成了controller元件的繼承了，接下來， 將父層的Controller.php放入index.php內，以確保呼叫子層controller時，能夠執行父層controller的動作。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.49.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.49.33.jpg" /></p>
+
+<p>運行結果， 在網址列上輸入help/other，會去呼叫子層的controller檔案help.php，而且也一同執行了父層的動作，成功輸出了父層的訊息Main controller</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.52.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.15.52.07.jpg" /></p>
+
+<h2 id="controllerview">在controller中讀取view</h2>
+
+<p>在libs資料夾中新增View.php，用來呈現介面的部份</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.16.38.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.16.38.73.jpg" /></p>
+
+<p>在index.php中放入libs/View.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.16.55.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.16.55.27.jpg" /></p>
+
+<p>每一個controller都需要一個對應的view，所以在controller.php的建構式中，新增全域變數$this-&gt;view來代表View的類別</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.17.15.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.17.15.73.jpg" /></p>
+
+<p>在View.php新增render($name)，目地是輸入不同的參數$name時，能讀取該名稱的view的檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.17.59.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.17.59.93.jpg" /></p>
+
+<h2 id="view">view顯示各種情況的頁面</h2>
+
+<p>統一在views資料夾下來存放各種情況所需顯示的畫面，error資料夾為錯誤畫面、index資料夾為首頁畫面等</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.18.15.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.18.15.33.jpg" /></p>
+
+<p>首先，先來製做error情況的畫面，在error資料夾內新增index.php，寫入html tag</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.18.33.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.18.33.40.jpg" /></p>
+
+<p>因為網頁中會有所多不同的頁面，但卻會共用同一個header區塊，所以header區塊可以獨立為一個檔案為header.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.18.46.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.18.46.07.jpg" /></p>
+
+<p>將獨立出來的header區塊，用require的方式來放入error資料夾下的index.php，就完成了error訊息的畫面了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.00.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.00.33.jpg" /></p>
+
+<p>運行結果， 在網址列輸入error時，的確是有連接到controller的檔案error.php了，但是卻還沒有顯示出view/error/index.php的畫面</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.03.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.03.93.jpg" /></p>
+
+<p>要在controller內顯示view的畫面，就需使用render()來指定需顯示view資料夾下的檔案</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.19.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.19.40.jpg" /></p>
+
+<p>運行結果， 成功顯示出error的畫面，header this is the error</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.20.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.20.80.jpg" /></p>
+
+<p>我們希望error.php可以傳送變數到負責顯示資料的error/index.php之中。所以新增全域變數msg代表字串&#x27;This page doesnt exist&#x27;</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.37.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.37.87.jpg" /></p>
+
+<p>在error/index.php內，運用echo來顯示由controller的error.php傳來的變數$this-&gt;msg</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.53.67.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.53.67.jpg" /></p>
+
+<p>運行結果， 成功透過controller傳送變數到呈現資料的檔案中了，完成了controller和view的應用。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.19.57.53.jpg" /></p>
+
+<h2 id="requiremodel">傳入網址參數，require該參數名稱的檔案為model</h2>
+
+<p>接下來， 為models的部份。model為MVC架構中用來負責資料運算的部份。之後所有資料運算的部份，會集中放置於models資料夾內。我們先新增處理help事件的help_model.php</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.20.23.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.20.23.40.jpg" /></p>
+
+<p>在help_model.php寫入類別class Help_Model，並在其__construct()內輸出字串&#x27;Help model&#x27;，好讓我們知道它有成功的被執行</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.20.41.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.20.41.20.jpg" /></p>
+
+<p>在controllers/help.php的函數other()中，新增變數$model，來取得Help_Model()的資料</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.21.13.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.21.13.60.jpg" /></p>
+
+<p>新增libs/Model.php，用來執行所有子層的model都會用到的功能。在之後的課程中，會用到database的部份，我們先將變數$this-&gt;database註解起來，以後再用。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.21.51.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.21.51.07.jpg" /></p>
+
+<p>在index.php中讀入libs/Model.php，現在MVC的3大元件都被放入index.php之中了</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.22.03.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.22.03.07.jpg" /></p>
+
+<p>model和controller的結構都一樣，都是由子層類別來繼承父層的類別。所以我們讓models/help_model.php繼承libs/Model.php，一同執行父層和子層的動作。</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.22.12.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.22.12.00.jpg" /></p>
+
+<p>運行結果， 在網址列上輸入參數help/other時，就能成功的顯示help_model.php執行的動作，來顯示字串Help model</p>
+<p><img src="http://wikihuang.github.io/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.22.19.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_01_basic/mvc_01_basic-0.22.19.87.jpg" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>

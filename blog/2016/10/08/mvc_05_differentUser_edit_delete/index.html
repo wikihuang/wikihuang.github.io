@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VLc9fvI6o0RY3W0jjZRFl7MTy3bSv--TK7f_WyFI_W4" />
+  <title>mvc_05_differentUser_edit_delete - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="I updated the CSS styles but all the PHP remains the same from part 4. Here we cover several topics (Not in order): ACL, CRUD without AJAX, Path Fix &hellip;">
+  <meta name="keywords" content="CRUD">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/10/08/mvc_05_differentUser_edit_delete/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/10/08/mvc_05_differentUser_edit_delete/">
+  <meta property="og:title" content="mvc_05_differentUser_edit_delete - wikihuang進行式">
+  <meta property="og:description" content="I updated the CSS styles but all the PHP remains the same from part 4. Here we cover several topics (Not in order): ACL, CRUD without AJAX, Path Fix, and a few minor things.">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-21792080-5', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">php</a>
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/php-mvc-diy">php-mvc-diy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        mvc_05_differentUser_edit_delete
+        
+    </h1>
+    
+  </header>
+
+<div id="refBox" class="alert alert-info">
+
+    <address>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true">原著影片網址:</span>
+        <a href=https://www.youtube.com/watch?v=4gDLBMs_9ng&index=5&list=PL7A20112CF84B2229>https://www.youtube.com/watch?v=4gDLBMs_9ng&index=5&list=PL7A20112CF84B2229</a>
+    </address>
+</div>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/00_demo.jpg" class="demo_img" alt="I updated the CSS styles but all the PHP remains the same from part 4. Here we cover several topics (Not in order): ACL, CRUD without AJAX, Path Fix, and a few minor things." />
+    <p>I updated the CSS styles but all the PHP remains the same from part 4. Here we cover several topics (Not in order): ACL, CRUD without AJAX, Path Fix, and a few minor things.</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#usersrole" id="markdown-toc-usersrole">新增users資料表欄位role，設定不同的使用者權限</a></li>
+  <li><a href="#section" id="markdown-toc-section">根據使用者登入的權限，來判斷是否要出現編輯使用者的超連結</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">顯示所有使用者的資料</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">新增使用者</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">刪除使用者</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">編輯使用者</a></li>
+  <li><a href="#urlserver" id="markdown-toc-urlserver">改變URL常數為遠端SERVER的網址</a></li>
+</ul>
+<hr />
+
+<h2 id="usersrole">新增users資料表欄位role，設定不同的使用者權限</h2>
+
+<p>進入phpMyAdmin，在users資料表內，新增欄位role，並設定其資料型別為ENUM，和3個值為default、admin、owner。此role欄位的目地是，在使用者登入時，判斷其使用者的身份，來根據其使用權限來顯示不同資料。例如，只有管理者權限的才能修改其它使用者的其料，一般的使用者則不行。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.42.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.42.53.jpg" /></p>
+
+<p>改變使用者jesse的權限為owner，這樣jesse就能被允許進入管理使用者資料的介面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.02.56.53.jpg" /></p>
+
+<p>新增使用者joe，並設其權限為default，代表為一般使用者</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.03.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.03.12.53.jpg" /></p>
+
+<h2 id="section">根據使用者登入的權限，來判斷是否要出現編輯使用者的超連結</h2>
+
+<p>使用者登入時，login_model.php就會去資料庫讀取使用者的role欄值資料，來取得使用者的登入權限。你可運用echo data[&#x27;role&#x27;]來確定是否有成功取得權限的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.04.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.04.57.53.jpg" /></p>
+
+<p>確認有取得使用者的權限資料($data[&#x27;role&#x27;])之後，新增Session變數role來代表使用者的權限資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.23.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.23.00.jpg" /></p>
+
+<p>由於登入成功後，就會跳到controllers/dashboard.php，因此在這觀察$_SESSION的值是否有成功設定了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.56.53.jpg" /></p>
+
+<p>運行結果， 成功取得session變數，可看到取得了登入權限的變數role，和已登入的變數loggedIn</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.58.67.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.05.58.67.jpg" /></p>
+
+<p>在之前的課程中，我們是利用Session的loggedIn變數的布林值來判斷是要出現login或是logout的超連結</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.06.58.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.06.58.53.jpg" /></p>
+
+<p>現在在使用者登入成功後，我們要透過session的role變數，來判斷使用者的登入權限，以決定是否要顯示Users的超連結(Users的超連結是用來進入管理使用者的介面)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.03.53.jpg" /></p>
+
+<p>運行結果， 使用joe的帳號登入，由於joe的登入權限是一般使用者(defaults)，登入後，將不會看到管理員才能用的超連結。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.15.53.jpg" /></p>
+
+<p>一般的使用者登入後，不會出現管理人員使用的超連結。這樣就完成了運用session的role變數，來判斷使用者權限，顯示不同資料的功能了。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.16.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.16.13.jpg" /></p>
+
+<h2 id="section-1">顯示所有使用者的資料</h2>
+
+<p>複製controllers/dashboard.php並命名為新的檔案controll/ers/user.php，因為這二個檔案的功能非常的相近，都是去處理資料庫的資料。Dashboard.php用來處理data資料表、user.php用來管理users資料表</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.37.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.08.37.13.jpg" /></p>
+
+<p>修改controllers/user.php的內容，新增變數$role來取得使用者的登入權限，並運用render()來指定要顯示的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.21.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.21.93.jpg" /></p>
+
+<p>在資料夾views\user之內新增檔案index.php，做為controllers/user.php所對應的要顯示的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.39.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.39.53.jpg" /></p>
+
+<p>在views/user/index.php，寫入&lt;h1&gt;User&lt;/h1&gt;</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.55.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.09.55.93.jpg" /></p>
+
+<p>運行結果， 用管理員的身份登入後，點選超連結Users，就成功得跳到所對應的頁面，出現了&lt;h1&gt;標題User</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.00.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.00.40.jpg" /></p>
+
+<p>之前的課程中，logout()用來跳到指定網址的寫法為<br />header(&#x27;location: ../login&#x27;)，這樣只能跳到網址的相對位置。現在改為<br />header(&#x27;location: &#x27; .URL. &#x27;login&#x27;)才能跳到網址的絕對位置<br /></p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.49.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.10.49.60.jpg" /></p>
+
+<p>controllers/user.php要負責產生、編輯、刪去使用者資料等3種功能，因此分別新增create()、edit()、delete()等3個函式來分別處理這些功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.02.53.jpg" /></p>
+
+<p>新增models/user_model.php做為之後要用來處理users資料表的sql運算用的檔案</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.12.12.53.jpg" /></p>
+
+<p>在user_model.php中新增userList()，用來讀取users資料表的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.22.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.22.53.jpg" /></p>
+
+<p>新增變數userList，用來接收來自model-&gt;userList()所讀取出的users資料表的資料，以便將接收到的userList資料顯示至所對應的頁面上(views/user/index.php)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.36.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.36.20.jpg" /></p>
+
+<p>在views/user/index.php中輸出userList變數，觀察是否有成功接收到userList的變數資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.54.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.54.53.jpg" /></p>
+
+<p>運行結果， 成功顯示出userList變數的資料，取得了來自users資料表的使用者資料了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.13.57.53.jpg" /></p>
+
+<h2 id="section-2">新增使用者</h2>
+
+<p>成功取得users資料表的資料userList之後，運用foreach()將使用者的資料用表格的方示顯示。<br />並新增一表單，用來讓管理者新增使用者用，此表單會將表單欄位內的資料運用action的屬性，將資料傳至controllers/user.php內的函式create()來處理</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.27.60.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.27.60.jpg" /></p>
+
+<p>為了確認controllers/user.php內的函式create()能否執行，寫入echo 1，看看是否會輸出數字1，以確認從表單新增使用者的功能是否能成功執行</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.31.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.31.20.jpg" /></p>
+
+<p>運行結果， 點選表單的Submit按鈕，觀察是否能成功執行從表單新增使用者的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.34.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.34.53.jpg" /></p>
+
+<p>成功輸出字串1，這代表資料能成功傳到controllers/user.php的函式create()</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.35.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.19.35.27.jpg" /></p>
+
+<p>在controllers/user.php的create()，運用$_POST來取得來自表單的資料，並用陣列變數$data來代表來自表單的資料。最後，將$data傳至相對應的model來處理新增使用者的sql指令</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.22.02.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.22.02.07.jpg" /></p>
+
+<p>user_model.php接收到新增使用者的$data資料後，運用sql的insert指令，來將資料寫入users資料表中</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.05.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.05.00.jpg" /></p>
+
+<p>運行結果， 在表單輸入新的使用者的資料後，就會成功的將資料寫入資料表內，並同時顯示在網頁上。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.32.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.32.53.jpg" /></p>
+
+<p>進入phpMyAdmin，在users資料表內可看到成功新增了新的使用者</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.38.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.25.38.20.jpg" /></p>
+
+<p>將使用者資料成功運用model來寫入資料庫後，需運用header()將網址跳回user畫面的網址，不然會跳到user/create而呈現出空白的畫面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.26.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.26.11.53.jpg" /></p>
+
+<h2 id="section-3">刪除使用者</h2>
+
+<p>刪除資料時，需要先取得要刪除資料的id值，因此需確認點選delete時，能正確的將對應的id資料傳送至controllers/user的delete($id)，因此超連結寫為&lt;a href=&quot;&#x27;.URL.&#x27;user/delete/&#x27;.$value[&#x27;id&#x27;] /&gt;</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.01.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.01.93.jpg" /></p>
+
+<p>controllers/user.php的delete($id)，接受到要刪除資料的id值後，傳給相對應的model進行資料庫的處理，刪除完後，一樣運用header()來跳回user的畫面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.15.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.27.15.93.jpg" /></p>
+
+<p>user_model.php取得要刪除資料的id值後，運用sql的delete指令，將該筆id的資料從users資料表刪除</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.05.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.05.93.jpg" /></p>
+
+<p>運行結果， 點選Delete，資料就可被刪去了，完成了刪除使用者資料的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.09.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.28.09.13.jpg" /></p>
+
+<h2 id="section-4">編輯使用者</h2>
+
+<p>接下來， 我們來處理編輯使用者資料的部份。在controllers/user.php的edit($id)，將$id傳入對應的model函式userSingleList($id)，來取得此筆id的使用者資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.12.53.jpg" /></p>
+
+<p>user_model.php的userSingleList($id)會運用sql的select指令來取得該筆id的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.46.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.30.46.53.jpg" /></p>
+
+<p> 在views/user/index.php新增編輯用的超連結，點選該筆超連結時，會將id資料傳送至controllers/user.php的edit()，來執行編輯該筆使用者資料的動作</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.30.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.30.53.jpg" /></p>
+
+<p>運行結果， 點選Edit的超連結，觀察是否會成功出現該筆使用者的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.00.jpg" /></p>
+
+<p>成功的出現所點選的使用者資料了。接下來， 就是製作編輯使用者資料的介面，來處理此筆id的使用者資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.31.36.80.jpg" /></p>
+
+<p>在views/user/edit.php內新增編輯使用者資料的表單，將使用者的資料寫入表單的輸入欄位中，讓管理人員在編輯使用者資料時，可知道原有的資料是什麼，以便修改為新的資料。編輯完後，點選submit，會將資料傳至controllers/user.php的editSave($id)(注意:這部份原文的作者寫錯了，作者本來是想寫為user/editSave的，但是寫錯為userSave/edit，之後作者會發現並修改)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.33.58.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.33.58.00.jpg" /></p>
+
+<p>controllers/user.php需進行接收表單欄位的資料，作者認為這樣的修改並儲存表單資料的動作之前有在create()寫過相似的程式碼，因此將相似的程式碼貼入editSave($id)，一樣都是接收$_POST變數的表單欄位資料，只是修改對應的model函式為editSave($data)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.34.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.34.15.53.jpg" /></p>
+
+<p>運行結果， 出現錯誤，userSave not found</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.26.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.26.20.jpg" /></p>
+
+<p>此時原文作者發現他表單的action屬性寫錯了，之前寫錯為userSave/edit，因該要寫為user/editSave，才能正確的將資料傳至controllers/user.php的editSave()</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.36.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.35.36.07.jpg" /></p>
+
+<p>user_model.php的editSave($data)從controllers/user.php的editSave($id)接收到要編輯的使用者資料後，運用sql的UPDATE指令，來更新原有的資料表資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.13.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.13.07.jpg" /></p>
+
+<p>由於controllers/user.php的editSave($id)需傳送此筆資料的id給相對應的model來進行運算，因此新增變數$data[&#x27;id&#x27;]來代表id值</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.20.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.20.87.jpg" /></p>
+
+<p>運行結果， 點選第一筆資料的Edit超連結</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.22.73.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.22.73.jpg" /></p>
+
+<p>將原本的login欄位資料從test2改為jesse，點選Submit觀察使用者資料是否會被成功修改</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.27.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.27.47.jpg" /></p>
+
+<p>運行結果， 成功的將資用者的資料從test2改為jesse了，完成了編輯使用者資料的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.28.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.36.28.53.jpg" /></p>
+
+<h2 id="urlserver">改變URL常數為遠端SERVER的網址</h2>
+
+<p>如果你想將目前所完成的專案從測試用的網址移到正式的網址時，需要改變常數URL的值，例如作者是將常數URL從http://workspace/mvc改為http://jream.com/test/</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.38.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_05_differentUser_edit_delete/mvc_05_differentUser_edit_delete-0.38.07.53.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/php-mvc-diy/'>php-mvc-diy</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/crud/'>CRUD</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/10/08/mvc_05_differentUser_edit_delete/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/10/08/mvc_05_differentUser_edit_delete/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/10/08/mvc_04_db_insrt_jquery-post/" title="Previous Post: mvc_04_db_insrt_jquery-post">&laquo; mvc_04_db_insrt_jquery-post</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/10/08/rss-outlook/" title="Next Post: Outlook的RSS功能-管理youtube教學影片">Outlook的RSS功能-管理youtube教學影片 &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item active" href="/blog/2016/10/08/mvc_05_differentUser_edit_delete/">mvc_05_differentUser_edit_delete</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_04_db_insrt_jquery-post/">Mvc_04_db_insrt_jquery-post</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_03_db_login/">Mvc_03_db_login</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/php-mvc-diy/'>php-mvc-diy (5)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 107.5%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 115.0%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 107.5%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 107.5%'>$.proxy(1)</a> <a href='/blog/tags/dot-htaccess' style='font-size: 107.5%'>.htaccess(1)</a> <a href='/blog/tags/accordion' style='font-size: 107.5%'>accordion(1)</a> <a href='/blog/tags/ajax' style='font-size: 107.5%'>ajax(1)</a> <a href='/blog/tags/animate' style='font-size: 115.0%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 115.0%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 107.5%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 107.5%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 115.0%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 122.5%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 107.5%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 107.5%'>config(1)</a> <a href='/blog/tags/crud' style='font-size: 107.5%'>CRUD(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(8)</a> <a href='/blog/tags/data' style='font-size: 107.5%'>data(1)</a> <a href='/blog/tags/db' style='font-size: 107.5%'>db(1)</a> <a href='/blog/tags/delegate' style='font-size: 107.5%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 130.0%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 115.0%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 107.5%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 115.0%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 107.5%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 107.5%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 107.5%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 115.0%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 115.0%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 107.5%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 115.0%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 115.0%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 107.5%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 107.5%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 107.5%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 107.5%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 107.5%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 115.0%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 115.0%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 107.5%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 115.0%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 107.5%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 145.0%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 115.0%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 107.5%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 107.5%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 115.0%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 115.0%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2019 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

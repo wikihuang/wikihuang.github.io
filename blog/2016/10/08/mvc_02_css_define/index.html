@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VLc9fvI6o0RY3W0jjZRFl7MTy3bSv--TK7f_WyFI_W4" />
+  <title>Mvc_02_css_define - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="In this PHP MVC Tutorial we&#x27;ll improve on part 1 and make a pretty looking view, handle the URL&#x27;s better and get some chicks in while we &hellip;">
+  <meta name="keywords" content="css">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/10/08/mvc_02_css_define/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/10/08/mvc_02_css_define/">
+  <meta property="og:title" content="Mvc_02_css_define - wikihuang進行式">
+  <meta property="og:description" content="In this PHP MVC Tutorial we&#x27;ll improve on part 1 and make a pretty looking view, handle the URL&#x27;s better and get some chicks in while we program">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-21792080-5', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">php</a>
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/php-mvc-diy">php-mvc-diy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Mvc_02_css_define
+        
+    </h1>
+    
+  </header>
+
+<div id="refBox" class="alert alert-info">
+
+    <address>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true">原著影片網址:</span>
+        <a href=https://www.youtube.com/watch?v=bQxvYs9yO7Y&index=2&list=PL7A20112CF84B2229>https://www.youtube.com/watch?v=bQxvYs9yO7Y&index=2&list=PL7A20112CF84B2229</a>
+    </address>
+</div>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/00_demo.jpg" class="demo_img" alt="In this PHP MVC Tutorial we&#x27;ll improve on part 1 and make a pretty looking view, handle the URL&#x27;s better and get some chicks in while we program" />
+    <p>In this PHP MVC Tutorial we&#x27;ll improve on part 1 and make a pretty looking view, handle the URL&#x27;s better and get some chicks in while we program</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#controllerindexphp" id="markdown-toc-controllerindexphp">網址沒輸入參數時，讓預設的controller設為index.php</a></li>
+  <li><a href="#viewsindexindexphpheaderphpfooterphp" id="markdown-toc-viewsindexindexphpheaderphpfooterphp">views/index/index.php放入header.php和footer.php</a></li>
+  <li><a href="#controllerthis-gtview-gtrender" id="markdown-toc-controllerthis-gtview-gtrender">controller透過$this-&gt;view-&gt;render()來顯示畫面</a></li>
+  <li><a href="#css" id="markdown-toc-css">套用css效果</a></li>
+  <li><a href="#jquery" id="markdown-toc-jquery">套用jquery</a></li>
+  <li><a href="#login" id="markdown-toc-login">點選連結後login</a></li>
+  <li><a href="#help" id="markdown-toc-help">help畫面</a></li>
+  <li><a href="#libsviewphprenderview" id="markdown-toc-libsviewphprenderview">libs/view.php運用render()來統一置入view的檔案</a></li>
+  <li><a href="#libsviewphpview" id="markdown-toc-libsviewphpview">libs/view.php判斷是否要置入view的檔案</a></li>
+  <li><a href="#config" id="markdown-toc-config">config內的檔案定義網址參數</a></li>
+</ul>
+<hr />
+
+<h2 id="controllerindexphp">網址沒輸入參數時，讓預設的controller設為index.php</h2>
+
+<p>網址列上沒有輸入controler的參數時，會出現錯誤</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.35.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.35.53.jpg" /></p>
+
+<p>因此需用isset()來判斷$(_GET[&#x27;url&#x27;])是否有得到網址參數了，有的話以變數$url代表網址參數，沒有的話設為$url設為null</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.00.59.53.jpg" /></p>
+
+<p>如果$url[0]的值為null的話，就代表沒有取得網址參數，沒有指定要呼叫哪一個controller，那就設controllers/index.php為預設的controller</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.41.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.41.53.jpg" /></p>
+
+<p>運行結果，workspace/mvc/indx的結果會等同於workspace/mvc ，因為沒有輸入參數時，預設的controller已設為index</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.53.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.01.53.93.jpg" /></p>
+
+<h2 id="viewsindexindexphpheaderphpfooterphp">views/index/index.php放入header.php和footer.php</h2>
+
+<p>views/header.php負責放入css檔</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.02.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.02.27.53.jpg" /></p>
+
+<p>新增views/index/index.php做為首頁的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.02.53.jpg" /></p>
+
+<p>index/index.php做為首頁的頁面，需分別放入header和footer的頁面，及首頁的訊息</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.18.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.18.00.jpg" /></p>
+
+<p>新增views/footer.php，並寫入footer(頁尾)所需的內容</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.56.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.03.56.20.jpg" /></p>
+
+<h2 id="controllerthis-gtview-gtrender">controller透過$this-&gt;view-&gt;render()來顯示畫面</h2>
+
+<p>在controllers/index.php內寫入$this-&gt;view-&gt;render(&#x27;index/index&#x27;);用render()來指定首頁的頁面是位於view/index/index.php</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.04.54.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.04.54.47.jpg" /></p>
+
+<p>首頁的頁面index.php所顯示的頁面訊息，改為This is the main page welcome</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.07.53.jpg" /></p>
+
+<h2 id="css">套用css效果</h2>
+
+<p>現在我們已經完成了controller和view互相溝通的功能，接下來， 要設定css的部份。我們在瀏覽器中來檢視workspace/mvc/index的原始碼，可看到已經有成功的導入header.php檔案的css了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.22.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.22.53.jpg" /></p>
+
+<p>所以，確定好已經讀到css的所在路徑後，接下來我們要開始新增css的檔案。新增public/css資料夾來存放之後要新增的css檔案，並新增檔案default.css</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.42.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.05.42.93.jpg" /></p>
+
+<p>在default.css內寫入背景、內距等樣式</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.16.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.16.47.jpg" /></p>
+
+<p>運行結果， 首頁成功套用css的效果</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.27.53.jpg" /></p>
+
+<h2 id="jquery">套用jquery</h2>
+
+<p>在public資料夾下，分別新增images和js二個資料夾，分別用來存放圖檔和js檔</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.06.43.53.jpg" /></p>
+
+<p>在js資料夾下，新增jquery.js，並寫入jquery v1.6.1的函式庫</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.07.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.07.27.53.jpg" /></p>
+
+<p>新增custom.js檔，作為日後用來自訂js功能的檔案</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.08.54.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.08.54.80.jpg" /></p>
+
+<p>為了要確認js功能是否可正常運作，先寫入alert(1)，看看是否能成功執行</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.05.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.05.53.jpg" /></p>
+
+<p>運行結果， 成功出現了訊息視窗，代表jquery設置成功了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.06.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.06.87.jpg" /></p>
+
+<h2 id="login">點選連結後login</h2>
+
+<p>header.php為首頁最上面的區塊，加入3個超連結，Index、About、Login來讓使用者以後能切換頁面。<br />首頁頁面到此設定完成。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.44.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.09.44.53.jpg" /></p>
+
+<p>接下來， 為login的功能。為了完成login功能，需分別設好login的controller(controllers/login.php)和其對應的view的頁面。<br />因此，使用view-&gt;render(&#x27;login/index&#x27;)來指定好對應的頁面。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.25.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.25.53.jpg" /></p>
+
+<p>新增views/login/index.php做為login的顯示頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.10.59.53.jpg" /></p>
+
+<p>login.php也是controller，因此一樣要透過extends來繼承父層的Controller的功能，才能具備controller的完整功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.04.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.04.33.jpg" /></p>
+
+<p>運行結果， 現在點選Login的超連結時，網址列上會出現對應的參數login，成功跳到login的畫面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.07.53.jpg" /></p>
+
+<h2 id="help">help畫面</h2>
+
+<p>接下來， 我們要開始製做help的部份，由下圖可知，我們之前已經完成了help的controller的功能了，剩下的為help的顯示頁面(view)的部份。由於help和login的製作原理都一樣，所以我們依造製做login的製作步驟來製做help</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.08.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.08.53.jpg" /></p>
+
+<p>新增檔案help.index.php做為help的顯示頁面，一樣都置入header.php和footer.php，和help的訊息-this is the help</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.29.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.29.53.jpg" /></p>
+
+<p>在controllers/help.php的__construct()內，寫入$this-&gt;view-&gt;render(&#x27;help/index.php&#x27;);來指定要顯示的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.44.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.44.53.jpg" /></p>
+
+<p>運行結果， 成功點選Help的超連結時，跳到help的畫面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.47.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.11.47.00.jpg" /></p>
+
+<h2 id="libsviewphprenderview">libs/view.php運用render()來統一置入view的檔案</h2>
+
+<p>剛才我們已經完成了login和help的功能，我們可歸納出它們有2個共同點:<br />1:都會運用render()來指定要顯示的頁面<br />2:所顯示的頁面中，都會放入veiws/header.php和veiws/footer.php<br />既然如此，我們何不將這2個共同點整合在一起，統一在呼叫render()時，就一併require所需的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.00.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.00.53.jpg" /></p>
+
+<p>現在我們已經透過render()一併require所需的頁面檔案了，因此之前在views資料夾內所有的檔案，有用到來放入header和footer的程式碼就可以刪除了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.05.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.05.87.jpg" /></p>
+
+<p>運行結果， 用render()成合完頁面後的功能正確運行</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.38.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.13.38.80.jpg" /></p>
+
+<h2 id="libsviewphpview">libs/view.php判斷是否要置入view的檔案</h2>
+
+<p>目前我們已將所有的頁面統一透過render()來放入header和footer了。但是如果有的頁面，我們並不想放入header和footer，而只是想顯示一個頁面，那要如何讓render()來判斷呢?<br />讓我們新增一個$noInclude變數，透過這個變數來讓render()判斷是否要放入放入header和footer</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.17.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.17.53.jpg" /></p>
+
+<p>像controllers/index.php的頁面，如果我們不想require header.php和footer.php，只要在使用render()時，將$noInclude的參數設為1即可</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.29.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.29.53.jpg" /></p>
+
+<p>運行結果， 參數輸入index時，就只出現index的頁面而已。<br />完成了用render($name,$noInclude)來判斷要顯示哪一個頁面的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.31.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.14.31.53.jpg" /></p>
+
+<h2 id="config">config內的檔案定義網址參數</h2>
+
+<p>新增config資料夾，並新增database.php和path.php，分別用來存放資料庫和檔案路徑的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.27.53.jpg" /></p>
+
+<p>觀察網頁的原始碼，可發現js和css的檔案路徑，目前都是使用相對位置，但是考量到日後檔案可能會放在不同的根目錄下，所以還是使用網址的絕對位置才不會出錯</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.48.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.15.48.07.jpg" /></p>
+
+<p>因此在config/paths.php內，新增常數&#x27;URL&#x27;為http://workspace/mvc/(這是目前所在的網址位置，以後網址如有變動，只要改這個常數即可)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.11.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.11.93.jpg" /></p>
+
+<p>在index.php內讀入path.php和database.php，這樣整個網頁就都能讀到這2個檔案建立的全域變數和函式了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.34.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.34.53.jpg" /></p>
+
+<p>將常數URL寫入，就可將相對路徑設為絕對路徑了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.16.59.53.jpg" /></p>
+
+<p>運行結果， 功能正確執行</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.02.53.jpg" /></p>
+
+<p>觀察網頁的原始碼，可發現js和css的檔案路徑，都變成絕對路徑的網址了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.05.80.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_02_css_define/mvc_02_css_define-0.17.05.80.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/php-mvc-diy/'>php-mvc-diy</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/css/'>css</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/10/08/mvc_02_css_define/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/10/08/mvc_02_css_define/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/10/08/mvc-01-basic/" title="Previous Post: mvc_01_basic">&laquo; mvc_01_basic</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/10/08/mvc_03_db_login/" title="Next Post: mvc_03_db_login">mvc_03_db_login &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_05_differentUser_edit_delete/">mvc_05_differentUser_edit_delete</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_04_db_insrt_jquery-post/">Mvc_04_db_insrt_jquery-post</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_03_db_login/">Mvc_03_db_login</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/php-mvc-diy/'>php-mvc-diy (5)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 107.5%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 115.0%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 107.5%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 107.5%'>$.proxy(1)</a> <a href='/blog/tags/dot-htaccess' style='font-size: 107.5%'>.htaccess(1)</a> <a href='/blog/tags/accordion' style='font-size: 107.5%'>accordion(1)</a> <a href='/blog/tags/ajax' style='font-size: 107.5%'>ajax(1)</a> <a href='/blog/tags/animate' style='font-size: 115.0%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 115.0%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 107.5%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 107.5%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 115.0%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 122.5%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 107.5%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 107.5%'>config(1)</a> <a href='/blog/tags/crud' style='font-size: 107.5%'>CRUD(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(8)</a> <a href='/blog/tags/data' style='font-size: 107.5%'>data(1)</a> <a href='/blog/tags/db' style='font-size: 107.5%'>db(1)</a> <a href='/blog/tags/delegate' style='font-size: 107.5%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 130.0%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 115.0%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 107.5%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 115.0%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 107.5%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 107.5%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 107.5%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 115.0%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 115.0%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 107.5%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 115.0%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 115.0%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 107.5%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 107.5%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 107.5%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 107.5%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 107.5%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 115.0%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 115.0%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 107.5%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 115.0%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 107.5%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 145.0%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 115.0%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 107.5%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 107.5%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 115.0%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 115.0%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2019 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

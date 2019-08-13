@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VLc9fvI6o0RY3W0jjZRFl7MTy3bSv--TK7f_WyFI_W4" />
+  <title>Mvc_04_db_insrt_jquery-post - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="We do some XHR (AJAX) Calls within our MVC. If you need help here are other tutorials:">
+  <meta name="keywords" content="ajax">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/10/08/mvc_04_db_insrt_jquery-post/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/10/08/mvc_04_db_insrt_jquery-post/">
+  <meta property="og:title" content="Mvc_04_db_insrt_jquery-post - wikihuang進行式">
+  <meta property="og:description" content="We do some XHR (AJAX) Calls within our MVC. If you need help here are other tutorials:">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-21792080-5', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">php</a>
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/php-mvc-diy">php-mvc-diy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Mvc_04_db_insrt_jquery-post
+        
+    </h1>
+    
+  </header>
+
+<div id="refBox" class="alert alert-info">
+
+    <address>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true">原著影片網址:</span>
+        <a href=https://www.youtube.com/watch?v=4hh2IXrdT4g&index=4&list=PL7A20112CF84B2229>https://www.youtube.com/watch?v=4hh2IXrdT4g&index=4&list=PL7A20112CF84B2229</a>
+    </address>
+</div>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/00_demo.jpg" class="demo_img" alt="We do some XHR (AJAX) Calls within our MVC. If you need help here are other tutorials:" />
+    <p>We do some XHR (AJAX) Calls within our MVC. If you need help here are other tutorials:</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#viewjavascript" id="markdown-toc-viewjavascript">view加入javascript的功能</a></li>
+  <li><a href="#section" id="markdown-toc-section">運來新增使用者資料的表單</a></li>
+  <li><a href="#jsdashboardphp" id="markdown-toc-jsdashboardphp">js接收表單輸入的資料，後傳給dashboard.php</a></li>
+  <li><a href="#dashboardmodelphpdata" id="markdown-toc-dashboardmodelphpdata">dashboard_model.php新增資料至data資料表</a></li>
+  <li><a href="#ltdiv-idquotlistinsetsquotgtdata" id="markdown-toc-ltdiv-idquotlistinsetsquotgtdata">&lt;div id="listInsets"&gt;顯示data資料表的資料</a></li>
+  <li><a href="#json" id="markdown-toc-json">輸入的參數轉為json格式</a></li>
+  <li><a href="#id" id="markdown-toc-id">點選刪除用的超連結，刪除該id的資料</a></li>
+</ul>
+<hr />
+
+<h2 id="viewjavascript">view加入javascript的功能</h2>
+
+<p>接下來， 我們新增一個陣列變數js。這個js變數是用來放入js檔案的所在路徑的。如此一來，當我們要指定哪一個view要放入什麼js檔案時，就可以讓controller透過js變數來指定要放入的js檔案路徑。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.00.52.47.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.00.52.47.jpg" /></p>
+
+<p>讓我們先來確定views內的檔案header.php，是否能正確的取得此js變數。運用isset()來確定js變數是否已經被設定了，有的話輸出數字1。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.22.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.22.13.jpg" /></p>
+
+<p>運行結果， 成功顯示數字1，這代表views/header.php可以正確的取得來自controller/dashboard.php的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.26.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.01.26.53.jpg" /></p>
+
+<p>確定js陣列變數資料可被views/header.php取得後，我們運用foreach()來將陣列內的資料逐一列出，整合為javascript的html標記</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.09.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.09.00.jpg" /></p>
+
+<p>把js的陣列變數寫入js檔案的路徑資料，就完成了從controller指定js檔案路徑，讓view來讀取的功能了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.33.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.33.00.jpg" /></p>
+
+<p>我們的js是放在views資料夾內，因此檔案路徑字串要加入&#x27;views/&#x27;</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.43.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.43.27.jpg" /></p>
+
+<p>運行結果， 成功運行出default.js的alert()的功能，出現警告視窗，並顯示1。這代表javascript的功能沒問題了。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.46.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.02.46.53.jpg" /></p>
+
+<h2 id="section">運來新增使用者資料的表單</h2>
+
+<p>在controllers/dashboard.php中，新增函式xhrInsert()，這是之後當views/dashboard/index.php的表單資料要傳送過來時，用來通知model用的</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.04.53.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.04.53.00.jpg" /></p>
+
+<p>在views/dashboard/index.php中，寫入&lt;form&gt;來完成表單功能，並在action屬性上指定網址參數dashboard/xhrInsert，這相當於呼叫controllers/dashboard.php的xhrInsert()</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.13.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.13.00.jpg" /></p>
+
+<p>運行結果， login後，成功出現dashboard的表單功能。表單的功能完成後，接下來， 我們要運用jquery來讓表單的資料可傳給php來做運算</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.22.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.22.87.jpg" /></p>
+
+<p>我們先為此表單取id名稱為randomInsert</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.35.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.05.35.87.jpg" /></p>
+
+<h2 id="jsdashboardphp">js接收表單輸入的資料，後傳給dashboard.php</h2>
+
+<p>接下來， 就可用運此表單的id名稱#randomInsert，來進行傳送表單內資料的功能。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.08.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.08.13.jpg" /></p>
+
+<p>在表單內的輸入欄位輸入測試用字串test，可看到在firebug的Console內成功的讀取到這個來自表單的資料text=test(因為欄位屬性為text，而值為test，所以經過serialize()後，資料為text=test)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.22.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.06.22.53.jpg" /></p>
+
+<p>在確定表單的資料可被取得後，運用$.post()將表單的資料傳到php，成功的話出現alert(1)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.14.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.14.53.jpg" /></p>
+
+<p>運行結果， 在表單輸入測試用的字串h，就可看到成功出現了alert()的視窗，這代表資料已經可成功傳給php了。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.19.93.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.19.93.jpg" /></p>
+
+<p>此外，從Console視窗可看到，成功的傳送資料到網址http://workspace/mvc/dashboard/xhrInsert，這代表資料傳到了controllers/dashboard.php之中的xhrInsert()</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.23.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.23.20.jpg" /></p>
+
+<h2 id="dashboardmodelphpdata">dashboard_model.php新增資料至data資料表</h2>
+
+<p>確定controllers/dashboard.php可收到執行xhrInsert()的訊息後，接下來， 就是呼叫對應的model，執行$this-&gt;model-&gt;xhrInsert()，來進行將資料寫入資料庫的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.54.67.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.07.54.67.jpg" /></p>
+
+<p>新增models/dashboard_model.php，這個檔案是用來處理寫入和讀取資料庫資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.03.53.jpg" /></p>
+
+<p>先觀察是否能取得來自表單的資料，看是否能顯示$_POST[&#x27;text&#x27;]的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.32.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.32.27.jpg" /></p>
+
+<p>運行結果， 在表單輸入測試用的字串vv，就可在console視窗看到回傳值傳為vv。這代表models/dashboard_model.php可成功取得來自表單的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.08.43.53.jpg" /></p>
+
+<p>進入phpMyAdmin，新增資料表，並命名為data。這資料表是用來儲放表單所寫入資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.09.02.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.09.02.53.jpg" /></p>
+
+<p>運用PDO的prepare()和sql的insert指令來將資料寫入資料表中</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.52.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.52.53.jpg" /></p>
+
+<p>運行結果， 在表單內輸入測試用字串asdf，可看到資料成功的傳到controllers/dashboard.php的xhrInsert()。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.59.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.11.59.00.jpg" /></p>
+
+<p>返回phpMyAdmin，可看到資料表成功的寫入從表單寫入的資料了，完成了從表單寫入資料到資料表的功能了。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.03.53.jpg" /></p>
+
+<h2 id="ltdiv-idquotlistinsetsquotgtdata">&lt;div id="listInsets"&gt;顯示data資料表的資料</h2>
+
+<p>接下來， 我們要完成讀取資料表資料，並將資料顯示在網頁的功能。因此新增一個&lt;div&gt;，並命名為listInserts，用來插入來自資料表的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.55.20.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.12.55.20.jpg" /></p>
+
+<p>在controllers/dashboard.php中，新增函式xhrGetListings()，用來傳送要讀取資料表的訊息給對應的model</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.14.00.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.14.00.33.jpg" /></p>
+
+<p>在models/dashboard_model.php中，寫入讀取資料表的函式xhrGetListings()，運用PDO的函式來讀取資料表，並運用json_encode()將資料轉為json格式</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.17.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.17.15.53.jpg" /></p>
+
+<p>運用$.get()來接收來自資料庫的資料，會呈現為json的格式，如{&quot;id&quot;:&quot;1&quot;，&quot;text&quot;:&quot;asdf&quot;}</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.04.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.04.53.jpg" /></p>
+
+<p>運行結果，可看到成功讀到資料表的資料，並呈現為json格式</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.08.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.18.08.53.jpg" /></p>
+
+<p>將來自data資料表的資料，用迴圈的方式附加至#listInserts之內。這樣就完成了將data資料表的資料顯示在網頁上的功能了。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.11.53.jpg" /></p>
+
+<h2 id="json">輸入的參數轉為json格式</h2>
+
+<p>我們之前已經完成了從表單寫入資料到資料表內，和把資料表資料讀出並顯示在網頁的功能。<br />接下來，我們要將這二個功能整合在一起，從表單寫入資料後，就會立即寫入資料表內，並立刻顯示在網頁上。<br />因此，先從表單傳送資料的$.post()來觀察，看傳送資料給server端的php後，是否有成功回傳資料給js</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.51.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.51.53.jpg" /></p>
+
+<p>運行結果， 在表單內輸入測試用字串f，是有成功的傳到php了，但是卻沒有回傳值(Resonse)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.59.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.20.59.87.jpg" /></p>
+
+<p>觀察dashboard_model.php的xhrInsert()，原來是因為之前沒有使用json_encode()來將表單輸入的值輸出，補寫json_enocde($text)之後，就可回傳值給js了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.12.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.12.87.jpg" /></p>
+
+<p>運行結果， 表單輸入測試用字串f，成功傳php端取得json格式的回傳值&quot;f&quot;</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.21.15.53.jpg" /></p>
+
+<p>接下來，我們希望能完成一個介面，這介面可讓使用者用來讀取、新增、刪取資料表的資料。我們剛才已完成了讀取、新增的功能，接下來為刪除的功能。<br />因此在附加資料到#listInserts的同時，也同時加入了用來點選的超連結，以便完成刪除資料的功能。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.11.53.jpg" /></p>
+
+<p>在刪除了的超連結中，加入class=&quot;del&quot;，以便能更明確的指定此超連結是用來刪除用的</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.37.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.22.37.53.jpg" /></p>
+
+<p>由於如果要透過點選超連結，來刪除指定的該列資料的話，需要知道這一列資料的id，才可以成功刪除。<br />因此顯示在網頁上的資料，也需具備id的資料，因此運用db-&gt;lastInsertId()來取得最新一筆加入資料表的資料。<br />將所需的資料表的資料整理於$data變數後，在用json_encode()將資料輸出</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.52.00.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.52.00.jpg" /></p>
+
+<p>運行結果， 可看到當輸入測試用字串aaaa時，成功從php取得json格式的回傳值</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.23.56.53.jpg" /></p>
+
+<p>回傳值有成功取得了，但為何讀取回傳值後，顯示的結果確是undefined呢?</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.01.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.01.53.jpg" /></p>
+
+<p>出錯的原因是，因為$.post()傳資料出去後，取回的格式需設為json，才能正確的讀回json格式的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.51.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.24.51.53.jpg" /></p>
+
+<h2 id="id">點選刪除用的超連結，刪除該id的資料</h2>
+
+<p>確定可以取得json資料後，將超連結的rel屬性設為資料表每一列資料的id值，目地是點選超連結後，能根據所對應的id值,來刪除所對應的資料庫資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.14.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.14.53.jpg" /></p>
+
+<p>運行結果，點選刪除用的超連結時，可看到rel的屬性為所對應的id值</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.27.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.25.27.53.jpg" /></p>
+
+<p>我們運用jquery的attr()來取得rel的值，並新增變數id來代表rel的值</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.48.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.48.13.jpg" /></p>
+
+<p>運行結果， 點選刪除用的超連結時，成功取得id值</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.54.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.26.54.13.jpg" /></p>
+
+<p>接下來，在models/dashboard_model.php運用sql指令delete來刪除該id位址的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.09.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.09.53.jpg" /></p>
+
+<p>在controllers/dashboard.php呼叫相對應的model檔案，以完成傳送刪除資料的指令給model的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.45.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.28.45.53.jpg" /></p>
+
+<p>在刪除資料庫的資料前，我們先來測試是否能成功刪除網頁上的dom元件。因此，新增變數delItem用來代表所點選的超連結，並運用parent()來找到該超連結的父層&lt;div&gt;，並運用remove()將該層&lt;div&gt;整個刪去。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.42.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.42.53.jpg" /></p>
+
+<p>運行結果， 點選刪除用的超連結後，成功刪除網頁上的資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.54.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.30.54.53.jpg" /></p>
+
+<p>接下來， 我們來刪除資料庫上的資料，運用PDO的execute()來執行刪除的指令。這樣就完成了所有的刪除功能了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.25.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.25.53.jpg" /></p>
+
+<p>現在，所有來自資料庫的資料都可被經點選後刪去了。但是，當我們剛從表單輸入一個字串test，成功顯示在畫面後，想立刻用點選的方式將之刪除，卻刪不掉，為何只有空新增的元件無法成功用點選的方式刪去呢?</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.39.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.31.39.53.jpg" /></p>
+
+<p>那是因為剛新增的元件尚未立刻bind到網頁的元件內，改用live來bind，就能成功的完成刪除功能了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.32.36.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_04_db_insrt_jquery-post/mvc_04_db_insrt_jquery-post-0.32.36.53.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/php-mvc-diy/'>php-mvc-diy</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/ajax/'>ajax</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/10/08/mvc_04_db_insrt_jquery-post/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/10/08/mvc_04_db_insrt_jquery-post/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/10/08/mvc_03_db_login/" title="Previous Post: mvc_03_db_login">&laquo; mvc_03_db_login</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/10/08/mvc_05_differentUser_edit_delete/" title="Next Post: mvc_05_differentUser_edit_delete">mvc_05_differentUser_edit_delete &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_05_differentUser_edit_delete/">mvc_05_differentUser_edit_delete</a>
+    
+    <a class="list-group-item active" href="/blog/2016/10/08/mvc_04_db_insrt_jquery-post/">Mvc_04_db_insrt_jquery-post</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_03_db_login/">Mvc_03_db_login</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/php-mvc-diy/'>php-mvc-diy (5)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 107.5%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 115.0%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 107.5%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 107.5%'>$.proxy(1)</a> <a href='/blog/tags/dot-htaccess' style='font-size: 107.5%'>.htaccess(1)</a> <a href='/blog/tags/accordion' style='font-size: 107.5%'>accordion(1)</a> <a href='/blog/tags/ajax' style='font-size: 107.5%'>ajax(1)</a> <a href='/blog/tags/animate' style='font-size: 115.0%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 115.0%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 107.5%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 107.5%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 115.0%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 122.5%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 107.5%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 107.5%'>config(1)</a> <a href='/blog/tags/crud' style='font-size: 107.5%'>CRUD(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(8)</a> <a href='/blog/tags/data' style='font-size: 107.5%'>data(1)</a> <a href='/blog/tags/db' style='font-size: 107.5%'>db(1)</a> <a href='/blog/tags/delegate' style='font-size: 107.5%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 130.0%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 115.0%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 107.5%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 115.0%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 107.5%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 107.5%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 107.5%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 115.0%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 115.0%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 107.5%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 115.0%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 115.0%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 107.5%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 107.5%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 107.5%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 107.5%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 107.5%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 115.0%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 115.0%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 107.5%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 115.0%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 107.5%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 145.0%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 115.0%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 107.5%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 107.5%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 115.0%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 115.0%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2019 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VLc9fvI6o0RY3W0jjZRFl7MTy3bSv--TK7f_WyFI_W4" />
+  <title>Mvc_03_db_login - wikihuang進行式</title>
+  <meta name="author" content="wikihuang">
+
+  <meta name="description" content="In this tutorial we make some changes and create a login form with a database connection;">
+  <meta name="keywords" content="db">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wikihuang.github.io/blog/2016/10/08/mvc_03_db_login/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="wikihuang進行式" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://wikihuang.github.io/blog/2016/10/08/mvc_03_db_login/">
+  <meta property="og:title" content="Mvc_03_db_login - wikihuang進行式">
+  <meta property="og:description" content="In this tutorial we make some changes and create a login form with a database connection;">
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<!--plugin-->
+<link href="/assets/plugin/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" rel="stylesheet" type="text/css">
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-21792080-5', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">wikihuang進行式</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                <a href="/blog/archives">Archives</a>
+                </li>
+                <!--coding-note-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        程式教學筆記<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">HTML</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/psd-to-html">psd轉html</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">javascript</a>
+
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/jquery-30day">jquery-30day</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">php</a>
+                            <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                                <li><a tabindex="0" href="/blog/categories/php-mvc-diy">php-mvc-diy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--software-->
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu="">
+                        實用軟體<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(191, 196, 192);">
+                        <li><a tabindex="0" href="/blog/categories/browser-plugin">browser-plugin</a></li>
+                        <li><a tabindex="0" href="/blog/categories/desktop-app">desktop-app</a></li>
+                        <li><a tabindex="0" href="/blog/categories/e-learning">e-learning</a></li>
+                    </ul>
+                </li>
+
+                <!--release-->
+                <li >
+                <a  href="/blog/categories/release">減輕疲勞</a>
+                </li>
+
+
+            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active">-->
+                    <!--<a rel="index" href="/">Blog</a>-->
+                <!--</li>-->
+                <!--<li >-->
+                    <!--<a href="/blog/archives">Archives</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="wikihuang.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="wikihuang進行式" />
+    <meta itemprop="description" content="js/css/php for front-web developer." />
+    <meta itemprop="url" content="http://wikihuang.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Mvc_03_db_login
+        
+    </h1>
+    
+  </header>
+
+<div id="refBox" class="alert alert-info">
+
+    <address>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true">原著影片網址:</span>
+        <a href=https://www.youtube.com/watch?v=2Eu0Nkpo6vM&index=3&list=PL7A20112CF84B2229>https://www.youtube.com/watch?v=2Eu0Nkpo6vM&index=3&list=PL7A20112CF84B2229</a>
+    </address>
+</div>
+
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="intro">
+    <img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/00_demo.jpg" class="demo_img" alt="In this tutorial we make some changes and create a login form with a database connection;" />
+    <p>In this tutorial we make some changes and create a login form with a database connection;</p>
+</div>
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#databasephppdo" id="markdown-toc-databasephppdo">Database.php繼承PDO的功能</a></li>
+  <li><a href="#controllersloginphpmodel" id="markdown-toc-controllersloginphpmodel">controllers/login.php加入讀取資料庫的Model</a></li>
+  <li><a href="#modellibscontrollerphp" id="markdown-toc-modellibscontrollerphp">讀取Model的功能搬至libs/Controller.php</a></li>
+  <li><a href="#login" id="markdown-toc-login">基本的login畫面</a></li>
+  <li><a href="#loginmodelphpsql" id="markdown-toc-loginmodelphpsql">login_model.php用來讀資料庫用的sql指令</a></li>
+  <li><a href="#section" id="markdown-toc-section">建立資料庫的使用者資料</a></li>
+  <li><a href="#md5" id="markdown-toc-md5">讀取經過md5()加密後的使用者資料</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">判斷使用者是否存在</a></li>
+  <li><a href="#dashboard" id="markdown-toc-dashboard">登入成功後，dashboard顯示使用者登入後的資料</a></li>
+  <li><a href="#session" id="markdown-toc-session">Session記錄有無登入</a></li>
+  <li><a href="#headerphploginlogout" id="markdown-toc-headerphploginlogout">header.php依有無登入切換超連結為login或logout</a></li>
+  <li><a href="#configdatabasephp" id="markdown-toc-configdatabasephp">config/database.php定義資料庫連結的常數</a></li>
+</ul>
+<hr />
+
+<h2 id="databasephppdo">Database.php繼承PDO的功能</h2>
+
+<p>新增libs/Database.php做為連接資料庫用的檔案</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.00.29.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.00.29.53.jpg" /></p>
+
+<p>確認php.ini的extension=php_pdo_mysql.dll有無啟用</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.03.53.jpg" /></p>
+
+<p>讓Database.php繼承PDO功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.17.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.17.53.jpg" /></p>
+
+<p>如想了解有關更多PDO的應用，請至PHP官網</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.26.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.01.26.53.jpg" /></p>
+
+<p>在libs/Database.php的__construct()中，寫入連接資料庫所需的參數，資料庫名稱、登入用帳密等</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.37.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.37.53.jpg" /></p>
+
+<h2 id="controllersloginphpmodel">controllers/login.php加入讀取資料庫的Model</h2>
+
+<p>進入phpmyadmin新增資料庫，取名為mvc</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.53.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.02.53.53.jpg" /></p>
+
+<p>libs/Model.php中，新增全域變數db用來代表Database</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.23.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.23.53.jpg" /></p>
+
+<p>新增models/login_model.php，並繼承libs/Model.php</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.47.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.03.47.53.jpg" /></p>
+
+<p>我們希望當controllers/login執行時，能一併執行與其同名稱的model，所以在index()中require同名稱的login_model.php</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.04.59.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.04.59.53.jpg" /></p>
+
+<p>在index.php中，讀入&#x27;libs/Database.php&#x27;，就完成了model和database的功能了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.12.53.jpg" /></p>
+
+<p>運行結果， login的功能成功執行，代表model的資料庫連接上沒有問題</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.16.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.05.16.53.jpg" /></p>
+
+<h2 id="modellibscontrollerphp">讀取Model的功能搬至libs/Controller.php</h2>
+
+<p>接下來， 我們將讀取model的功能集中在libs/Controller.php裡，這樣設計的話，不論哪一個controller要呼叫model時，只要透過libs/Controller.php的loadModel()就可以呼叫model了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.07.55.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.07.55.53.jpg" /></p>
+
+<p>loadModel會接第一個網址參數的參數，例如輸入http://mvc/login，就會傳入login的參數，而調用models/login_model.php。成功完成了loadModel()統一讀取model的功能。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.08.58.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.08.58.53.jpg" /></p>
+
+<p>在loadModel()功能統合完model的讀取功能後，就可以將之前暫時用來讀model的功能刪除了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.12.53.jpg" /></p>
+
+<p>運行結果， login的功能成功執行，代表loadModel()成功整合讀取model的功能了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.18.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.18.53.jpg" /></p>
+
+<p>如想確讀login_model.php是否有成功讀取，可在__construct()內輸入測試用字串，看能否成功輸出。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.36.13.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.36.13.jpg" /></p>
+
+<p>運行結果， 成功輸出測試用字串，代表login_model.php真的有被讀到</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.38.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.09.38.07.jpg" /></p>
+
+<h2 id="login">基本的login畫面</h2>
+
+<p>剛才我自已經完成了login的controller和model的功能，接下來來製作login的view的部份，因此新增views/login/index.php，並寫入輸入帳密的表單功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.48.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.48.53.jpg" /></p>
+
+<p>運行結果， 得到了基本的login畫面，後續的動作，就是讓使用者輸入帳密資料後，能傳送到login_model.php，進行資料庫的讀寫動作。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.50.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.10.50.53.jpg" /></p>
+
+<p>當表單的帳密輸入完後，點選submit按鈕，表單就會送出網址參數login/run，也就是執行controllers/login.php之內的run()</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.15.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.15.53.jpg" /></p>
+
+<h2 id="loginmodelphpsql">login_model.php用來讀資料庫用的sql指令</h2>
+
+<p>在controllers/login.php內的函式run()，執行model的功能。<br />這是實現controller和model互通非常重要的部份，你可以發現身為controller的login.php只負責通知model去執行，而不用去處理任何參數的運算。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.35.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.11.35.53.jpg" /></p>
+
+<p>models/login_model.php，負責將表單傳入的帳密資料傳到資料庫中，再將資料顯示出來處理。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.35.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.35.53.jpg" /></p>
+
+<p>運行結果， 出現錯誤，因為資料表尚未建立</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.43.53.jpg" /></p>
+
+<h2 id="section">建立資料庫的使用者資料</h2>
+
+<p>進入phpmyadmin，再mvc資料庫中建立資料表users</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.56.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.14.56.53.jpg" /></p>
+
+<p>新增3個欄位，id、login、password，分別建立其資料型別和長度。而因為password之後要存放md5加密過後的資料，所以長度設長點，長度設為32。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.19.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.19.53.jpg" /></p>
+
+<p>資料表的欄位設定好後，用Insert的方式，來新增一名使用者，並設定其帳號和密碼。完成了資料表的功能。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.48.27.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.15.48.27.jpg" /></p>
+
+<h2 id="md5">讀取經過md5()加密後的使用者資料</h2>
+
+<p>models/login_model.php運用parent::__construct()來執行父層的建構式，以確保能使用全域變數db，來使用資料庫功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.07.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.07.53.jpg" /></p>
+
+<p>計劃將資料表的使用者資料讀出</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.37.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.37.53.jpg" /></p>
+
+<p>運行結果， 只有輸出空的陣列，是哪寫錯了?</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.41.07.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.41.07.jpg" /></p>
+
+<p>出錯的原因是因為之前寫入的密碼是有經過MD5加密過的，因此輸入的密碼欄(password)也需經過MD5來進行加密，才會符合</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.58.87.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.16.58.87.jpg" /></p>
+
+<p>運行結果， 成功輸出使用者的id資料</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.17.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.17.03.53.jpg" /></p>
+
+<h2 id="section-1">判斷使用者是否存在</h2>
+
+<p>但我們也要考慮如果輸入的帳密不存在於資料表的情況，我們使用rowCount()來計算符合輸入條件的數量，如果大於0，代表有此使用者，讓其登入。否則的話，就出現錯誤訊息，代表輸入的帳密有誤。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.11.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.11.53.jpg" /></p>
+
+<h2 id="dashboard">登入成功後，dashboard顯示使用者登入後的資料</h2>
+
+<p>login的功能確定完成後，我們要開始計劃登入後的畫面。登入成功後，要顯示使用者的個人資料。我們規劃為dashboard，並用之前教過的方法依序完成controller和view的相關檔案。先新增controllers/dashboard.php，並運用render()來指定要顯示的頁面為dashboard/index</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.43.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.18.43.53.jpg" /></p>
+
+<p>新增views/dashboard/index.php做為dashboard的頁面，並寫入輸出字串</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.01.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.01.53.jpg" /></p>
+
+<p>運行結果， 網址列上輸入dashboard時，成功跳到dashboard的畫面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.09.33.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.09.33.jpg" /></p>
+
+<h2 id="session">Session記錄有無登入</h2>
+
+<p>新增libs/Session.php用來處理session變數(用來儲放使用者登入資料用)</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.28.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.19.28.53.jpg" /></p>
+
+<p>在libs/Session.php內，分別寫入新增、設定、取得、銷毀session變數的函式</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.03.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.03.53.jpg" /></p>
+
+<p>在index.php中，require &#x27;libs/Session.php&#x27;，這樣整個網站都能取得對session變數的控制權了</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.21.12.53.jpg" /></p>
+
+<p>運用session變數的用意是在記錄這名使用者之前是否有登入過了，如果有登入過就不用在進入輸入帳密的畫面，直接登入就好。<br />因此，我們運用Session::get(&#x27;loggedIn&#x27;)，來取得是否有此筆session資料，沒有資料的話就跳回login的畫面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.22.10.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.22.10.53.jpg" /></p>
+
+<p>login_model.php的功能是用來讀取資料庫的使用者資料的，現在加入判斷式，如果使用者存在，就新增並設定session變數&#x27;loggedIn&#x27;，並跳到dashboard的頁面，不存在則跳回login的頁面。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.05.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.05.53.jpg" /></p>
+
+<p>完成了session的功能了後，我們再用jesse的帳密登入</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.12.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.12.53.jpg" /></p>
+
+<p>運行結果， 成功登入，進入dashboard的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.13.40.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.13.40.jpg" /></p>
+
+<p>我們已經完成了登入功能了，接下來是登出功能，寫為函式logout()，登出後，就將session變數銷毀，並跳回login的頁面</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.36.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.24.36.53.jpg" /></p>
+
+<h2 id="headerphploginlogout">header.php依有無登入切換超連結為login或logout</h2>
+
+<p>我們現在已經完成了登入和登出的功能了，因此在介面的部份，就需要讓使用者可點選連結來切換登入和登出。因此借由判斷session變數&#x27;loggedIn&#x27;的值，來決定要顯示logout或login的連結</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.25.57.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.25.57.53.jpg" /></p>
+
+<p>目前完成的session功能中，由於我們要確保整個網頁都能運用session變數，因此只要有用到session變數的地方，我們都會運用Session::init()來宣告session變數。但是，如果已經有宣告過了，然後又再次宣告的話，程式就會出現警告訊息，警告我們已經有宣告過了。警告並不是錯誤，因此不至會影響到程式的運作。如果要暫時忽略警告的話，可加入@符號。<br />至於運用get()取得session的變數前，我們加入isset()來判斷此session變數是否存在後再回傳，才不會傳回空值而造成錯誤。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.42.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.42.53.jpg" /></p>
+
+<p>運行結果， 成功完成logout的功能</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.45.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.26.45.53.jpg" /></p>
+
+<h2 id="configdatabasephp">config/database.php定義資料庫連結的常數</h2>
+
+<p>在config/database.php中，寫入連結資料庫所需用到的常數</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.33.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.33.53.jpg" /></p>
+
+<p>將libs/Database.php連結資料庫所需的參數，改為傳入從config/database.php所寫的常數</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.58.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.28.58.53.jpg" /></p>
+
+<p>運行結果， 設完資料庫的常數後，login和logout功能依然正確運行。</p>
+<p><img src="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.29.16.53.jpg" alt="/images/coding-note/php/mvc/php-mvc-diy/mvc_03_db_login/mvc_03_db_login-0.29.16.53.jpg" /></p>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">wikihuang</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-08T09:00:00+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/php-mvc-diy/'>php-mvc-diy</a>
+  
+</span>
+
+
+        </p>
+        <p class="meta">
+          Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/db/'>db</a>
+  
+</span>
+
+
+        </p>
+
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://wikihuang.github.io/blog/2016/10/08/mvc_03_db_login/" data-via="" data-counturl="http://wikihuang.github.io/blog/2016/10/08/mvc_03_db_login/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/10/08/mvc_02_css_define/" title="Previous Post: mvc_02_css_define">&laquo; mvc_02_css_define</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/10/08/mvc_04_db_insrt_jquery-post/" title="Next Post: mvc_04_db_insrt_jquery-post">mvc_04_db_insrt_jquery-post &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/10/08/voiceTube-repeat/">單句反覆功能-找出英文不懂的句子</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/rss-outlook/">Outlook的RSS功能-管理youtube教學影片</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_05_differentUser_edit_delete/">mvc_05_differentUser_edit_delete</a>
+    
+    <a class="list-group-item " href="/blog/2016/10/08/mvc_04_db_insrt_jquery-post/">Mvc_04_db_insrt_jquery-post</a>
+    
+    <a class="list-group-item active" href="/blog/2016/10/08/mvc_03_db_login/">Mvc_03_db_login</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <ul id="categories">
+        <li class='category'><a href='/blog/categories/browser-plugin/'>browser-plugin (2)</a></li>
+<li class='category'><a href='/blog/categories/desktop-app/'>desktop-app (4)</a></li>
+<li class='category'><a href='/blog/categories/e-learning/'>e-learning (2)</a></li>
+<li class='category'><a href='/blog/categories/jquery-30day/'>jquery-30day (15)</a></li>
+<li class='category'><a href='/blog/categories/php-mvc-diy/'>php-mvc-diy (5)</a></li>
+<li class='category'><a href='/blog/categories/psd-to-html/'>psd-to-html (9)</a></li>
+<li class='category'><a href='/blog/categories/release/'>release (2)</a></li>
+
+    </ul>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='/blog/tags/dollars' style='font-size: 107.5%'>$(1)</a> <a href='/blog/tags/dollars-dot-fn' style='font-size: 115.0%'>$.fn(2)</a> <a href='/blog/tags/dollars-dot-fx' style='font-size: 107.5%'>$.fx(1)</a> <a href='/blog/tags/dollars-dot-proxy' style='font-size: 107.5%'>$.proxy(1)</a> <a href='/blog/tags/dot-htaccess' style='font-size: 107.5%'>.htaccess(1)</a> <a href='/blog/tags/accordion' style='font-size: 107.5%'>accordion(1)</a> <a href='/blog/tags/ajax' style='font-size: 107.5%'>ajax(1)</a> <a href='/blog/tags/animate' style='font-size: 115.0%'>animate(2)</a> <a href='/blog/tags/attr' style='font-size: 115.0%'>attr(2)</a> <a href='/blog/tags/bind' style='font-size: 107.5%'>bind(1)</a> <a href='/blog/tags/button' style='font-size: 107.5%'>button(1)</a> <a href='/blog/tags/call' style='font-size: 115.0%'>call(2)</a> <a href='/blog/tags/children' style='font-size: 122.5%'>children(3)</a> <a href='/blog/tags/clone' style='font-size: 107.5%'>clone(1)</a> <a href='/blog/tags/config' style='font-size: 107.5%'>config(1)</a> <a href='/blog/tags/crud' style='font-size: 107.5%'>CRUD(1)</a> <a href='/blog/tags/css' style='font-size: 160.0%'>css(8)</a> <a href='/blog/tags/data' style='font-size: 107.5%'>data(1)</a> <a href='/blog/tags/db' style='font-size: 107.5%'>db(1)</a> <a href='/blog/tags/delegate' style='font-size: 107.5%'>delegate(1)</a> <a href='/blog/tags/desktop-app' style='font-size: 130.0%'>desktop-app(4)</a> <a href='/blog/tags/dom' style='font-size: 115.0%'>dom(2)</a> <a href='/blog/tags/domwindow' style='font-size: 107.5%'>DomWindow(1)</a> <a href='/blog/tags/e-learning' style='font-size: 115.0%'>e-learning(2)</a> <a href='/blog/tags/effect' style='font-size: 107.5%'>effect(1)</a> <a href='/blog/tags/englisgh' style='font-size: 107.5%'>englisgh(1)</a> <a href='/blog/tags/english' style='font-size: 107.5%'>english(1)</a> <a href='/blog/tags/eq' style='font-size: 115.0%'>eq(2)</a> <a href='/blog/tags/event' style='font-size: 115.0%'>event(2)</a> <a href='/blog/tags/fade' style='font-size: 107.5%'>fade(1)</a> <a href='/blog/tags/find' style='font-size: 115.0%'>find(2)</a> <a href='/blog/tags/firefox' style='font-size: 115.0%'>firefox(2)</a> <a href='/blog/tags/html' style='font-size: 107.5%'>html(1)</a> <a href='/blog/tags/jquery' style='font-size: 107.5%'>jquery(1)</a> <a href='/blog/tags/js' style='font-size: 107.5%'>js(1)</a> <a href='/blog/tags/live' style='font-size: 107.5%'>live(1)</a> <a href='/blog/tags/monitor' style='font-size: 107.5%'>monitor(1)</a> <a href='/blog/tags/overflow' style='font-size: 115.0%'>overflow(2)</a> <a href='/blog/tags/parent' style='font-size: 115.0%'>parent(2)</a> <a href='/blog/tags/parseint' style='font-size: 107.5%'>parseInt(1)</a> <a href='/blog/tags/plugin' style='font-size: 115.0%'>plugin(2)</a> <a href='/blog/tags/prototype' style='font-size: 107.5%'>prototype(1)</a> <a href='/blog/tags/psd' style='font-size: 145.0%'>psd(6)</a> <a href='/blog/tags/release' style='font-size: 115.0%'>release(2)</a> <a href='/blog/tags/siblings' style='font-size: 107.5%'>siblings(1)</a> <a href='/blog/tags/slidedown' style='font-size: 107.5%'>slideDown(1)</a> <a href='/blog/tags/this' style='font-size: 115.0%'>this(2)</a> <a href='/blog/tags/tool' style='font-size: 115.0%'>tool(2)</a> </span>
+    </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2019 - wikihuang<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<!--<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<!--plugin-->
+<script src="/assets/plugin/bootstrap-submenu/dist/js/bootstrap-submenu.min.js"></script>
+<!--diy-->
+<script src="/javascripts/diy/mdjs.js"></script>
+<script src="/javascripts/diy/nav.js"></script>
+
+
+  </body>
+</html>
