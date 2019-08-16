@@ -203,7 +203,7 @@ function processToc() {//todolater 1 toc for tocbot
                 $span.addClass("glyphicon-collapse-down").removeClass("glyphicon-collapse-up");
             }
             $('#modal_content').slideToggle();
-            // $('#modal_content').attr('height','0px');
+            // $('#modal_content').attr('height','0px'); //todon height error fix for toc toggle
             // $('#modal_content').animate({ height: '0' },400);
         })
     }
