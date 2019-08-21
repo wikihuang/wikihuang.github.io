@@ -11,12 +11,13 @@ function init() {
     "use strict";
     removeImgWrap();
     toggleAllImg();
-    scrollToP();
+    // scrollToP();
     createH3ByImg();
     toggleSingleImg();
     //todo browser img size different 
     // imgSameRate(true, 400, 300);
     // imgSameRate(false, 700, 500);
+    jumpToTop();
     processToc();
     //imgPrefix();
     //insertRef();
@@ -188,7 +189,7 @@ function processToc() {//todolater 1 toc for tocbot
     var $toc = $('ul#markdown-toc').clone();
     if ($toc[0]) {
         $('#content aside').append(
-            "<div id='toc_window' class='panel panel-info '>        <div class='panel-heading text-right'>文章目錄<a href='#' id='modal_switch'><span></span>        </a>        </div>        <div id='modal_content' class='panel-body'>        </div>    </div>"
+            "<div id='toc_window' class='panel panel-info '>        <div class='panel-heading text-right'>文章目錄<a id='modal_switch'><span></span>        </a>        </div>        <div id='modal_content' class='panel-body'>        </div>    </div>"
         );
         $('#modal_content').html($toc);
         $("#modal_switch>span").addClass('glyphicon glyphicon-collapse-down');
@@ -203,8 +204,35 @@ function processToc() {//todolater 1 toc for tocbot
                 $span.addClass("glyphicon-collapse-down").removeClass("glyphicon-collapse-up");
             }
             $('#modal_content').slideToggle();
-            // $('#modal_content').attr('height','0px'); //todon height error fix for toc toggle
+            // $('#modal_content').attr('height','0px'); //ko height error fix for toc toggle
             // $('#modal_content').animate({ height: '0' },400);
         })
     }
 }
+
+
+function jumpToTop(){ //todon jump to top
+    // $('body').append(
+    $('#content aside').append(
+        "<a id=\"back-to-top\" href=\"#\" class=\"btn btn-primary btn-lg back-to-top\" role=\"button\" title=\"Click to return on the top page\" data-toggle=\"tooltip\" data-placement=\"left\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a>"
+    )
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+        $('#back-to-top').tooltip('hide');
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
+
+    $('#back-to-top').tooltip('show');
+
+}
+
